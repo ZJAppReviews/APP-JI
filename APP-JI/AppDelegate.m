@@ -57,13 +57,16 @@
 
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
-    [nav popToRootViewControllerAnimated:NO];
-//AddJITableViewController *noDataVC = [[AddJITableViewController alloc]init];
-//    [nav pushViewController:noDataVC animated:YES];
+    [self performSelector:@selector(addJiButtonClicked) withObject:nil afterDelay:3];
+
 }
 
-
+- (void)addJiButtonClicked{
+    UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+    [nav popToRootViewControllerAnimated:NO];
+    AddJITableViewController *noDataVC = [[AddJITableViewController alloc]init];
+    [nav pushViewController:noDataVC animated:YES];
+}
 
 //本地推送通知
 
