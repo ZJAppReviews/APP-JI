@@ -15,6 +15,8 @@
 #import "SwitchLogTableViewController.h"
 #import "FMDB.h"
 #import "EditTableViewController.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+
 
 @interface ListTableViewController ()
 
@@ -180,92 +182,7 @@
 }
 
 #pragma mark 行左划删除方法&编辑方法
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-//    
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        
-//        
-//        // 初始化一个一个UIAlertController
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"删除问题后所有记录也被删除" preferredStyle:(UIAlertControllerStyleAlert)];
-//        
-//        // 确认按钮
-//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
-//           
-//            NSString *question = [NSString stringWithString:[_arr[indexPath.row] objectForKey:@"question"]];
-//            
-//            // 删除数组
-//            [self.arr removeObjectAtIndex:indexPath.row];
-//            [self.arr2 removeObjectAtIndex:indexPath.row];
-//            
-//            // 建立资料库
-//            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//            NSString *documentDirectory = [paths objectAtIndex:0];
-//            NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-//            _db = [FMDatabase databaseWithPath:dbPath] ;
-//            if (![_db open]) {
-//                NSLog(@"Could not open db.");
-//                return ;
-//            }else
-//                NSLog(@"db opened");
-//            //删除
-//            [_db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
-//            [_db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
-//            
-//            [_db close];
-//            //刷新表示图
-//            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-//
-//            
-//            //        //取消通知
-//            //        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//            
-//            // 取消某个特定的本地通知
-//            for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-//                NSString *notiID = noti.category;
-//                NSString *receiveNotiID = question;
-//                if ([notiID isEqualToString:receiveNotiID]) {
-//                    [[UIApplication sharedApplication] cancelLocalNotification:noti];
-//                }
-//            }
-//            
-//            
-//            if (_arr.count == 0) {
-//                
-//                UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
-//                UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
-//                noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
-//                [self.view addSubview:noDataImgV];
-//                
-//                UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-//                UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
-//                self.view.backgroundColor = imageColor;
-//                
-//                UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//                newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
-//                [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
-//                [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-//                [self.view addSubview:newJIBtn];
-//                
-//            }
-//
-//            
-//        }];
-//        // 取消按钮
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction *action) {
-//            
-//            return ;
-//        }];
-//        
-//        // 添加按钮 将按钮添加到UIAlertController对象上
-//        [alertController addAction:okAction];
-//        [alertController addAction:cancelAction];
-//        
-//        // 将UIAlertController模态出来 相当于UIAlertView show 的方法
-//        [self presentViewController:alertController animated:YES completion:nil];
-//        
-//        
-//    }
-//}
+
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
@@ -275,7 +192,7 @@
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action,NSIndexPath *indexPath){
         
         // 初始化一个一个UIAlertController
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"删除问题后所有记录也被删除" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"这个操作将会删除该类目下的所有记录" preferredStyle:(UIAlertControllerStyleAlert)];
         
         // 确认按钮
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
@@ -387,17 +304,39 @@
 #pragma mark - Text&Switch CellDelegate
 - (void)pushBtnClicked2:(id)sender
 {
-    
-    TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
-    [self.navigationController pushViewController:textLogTVC animated:YES];
-    
+    LAContext *LAContent = [[LAContext alloc]init];
+    [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@"身份验证成功！");
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
+                [self.navigationController pushViewController:textLogTVC animated:YES];
+            }];
+        } else {
+            // 做特定的错误判断处理逻辑。
+            NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
+            // error 参考 LAError.h
+        }
+    }];
 }
--(void)pushtoSwitchLog2:(id)sender{
-    
-    SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
-    [self.navigationController pushViewController:switchLogTVC animated:YES];
 
+-(void)pushtoSwitchLog2:(id)sender{
+    LAContext *LAContent = [[LAContext alloc]init];
+    [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@"身份验证成功！");
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
+                [self.navigationController pushViewController:switchLogTVC animated:YES];
+            }];
+        } else {
+            // 做特定的错误判断处理逻辑。
+            NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
+            // error 参考 LAError.h
+        }
+    }];
 }
+
 -(void)reloadCell:(id)sender{
     
     [self.tableView reloadData];

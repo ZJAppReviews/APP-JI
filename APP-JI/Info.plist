@@ -47,5 +47,7 @@
 			<string>UIApplicationShortcutIconTypeAdd</string>
 		</dict>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>需要使用你的面部数据来完成解锁</string>
 </dict>
 </plist>
