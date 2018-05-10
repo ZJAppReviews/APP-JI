@@ -18,12 +18,12 @@
 
 @interface TextTableViewCell()
 
-@property (nonatomic,strong) UILabel *questionLab;
-@property (nonatomic,strong) UITextView *answerTV;
-@property (nonatomic,strong) UILabel *answerLab;
-@property (nonatomic,strong) UIButton *pushBtn;
+@property (nonatomic,strong) UILabel *questionLab;//问题的标签，左对齐22点
+@property (nonatomic,strong) UITextView *answerTV;//答案的输入框（棕色背景），左对齐20点
+@property (nonatomic,strong) UILabel *answerLab;//有答案时的答案内容，左对齐30点
+@property (nonatomic,strong) UIButton *pushBtn;//首页的文字类型纪输入完之后引导进入记录详情页的按钮
 @property (nonatomic,strong) NSMutableArray *quesArr;
-@property (nonatomic,strong) UILabel *bgLab;
+@property (nonatomic,strong) UILabel *bgLab;//首页的文字类型纪的背景，左对齐10点
 
 
 @end
@@ -43,17 +43,17 @@
         
         _questionLab = [[UILabel alloc]init];
         _questionLab.font = [UIFont systemFontOfSize:25];
-        _questionLab.frame = CGRectMake(30, 20, [[UIScreen mainScreen]bounds].size.width-60, 64);
+        _questionLab.frame = CGRectMake(22, 20, [[UIScreen mainScreen]bounds].size.width-44, 64);
         _questionLab.numberOfLines = 0;
         [self.contentView addSubview:_questionLab];
         
         _answerTV = [[UITextView alloc]init];
         _answerTV.font = [UIFont systemFontOfSize:25];
-        _answerTV.frame = CGRectMake(15, CGRectGetMaxY(_questionLab.frame)+20, [[UIScreen mainScreen]bounds].size.width-30, 120);
+        _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+20, [[UIScreen mainScreen]bounds].size.width-40, 120);
         _answerTV.tag = 1001;
         [_answerTV.layer setCornerRadius:4];
-        _answerTV.layer.borderWidth = 5;
-        _answerTV.layer.borderColor = [[UIColor colorWithRed:0.52 green:0.09 blue:0.07 alpha:0.5] CGColor];
+//        _answerTV.layer.borderWidth = 5;
+//        _answerTV.layer.borderColor = [[UIColor colorWithRed:0.52 green:0.09 blue:0.07 alpha:0.5] CGColor];
         _answerTV.layer.contents = (id)[UIImage imageNamed:@"TextViewBGC.png"].CGImage; //给图层添加背景图片
        
         _answerTV.delegate = self;
@@ -64,14 +64,13 @@
         keyboardDoneButtonView.tintColor = [UIColor clearColor];
         keyboardDoneButtonView.translucent = YES;
         [keyboardDoneButtonView sizeToFit];
+
         // toolbar上的2个按钮
-        UIBarButtonItem *cancelButton=[[UIBarButtonItem alloc] initWithTitle:@"我要再想一想" style:UIBarButtonItemStylePlain target:self action:@selector(pickerCancelClicked)];
+        UIBarButtonItem *cancelButton=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(pickerCancelClicked)];
         cancelButton.tintColor = [UIColor redColor];
-        
-        UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        // 让完成按钮显示在右侧
-        UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"就这样了" style:UIBarButtonItemStylePlain target:self action:@selector(pickerDoneClicked)];
-        doneButton.tintColor = [UIColor redColor];
+        UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];// 让完成按钮显示在右侧
+        UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(pickerDoneClicked)];
+        doneButton.tintColor = [UIColor colorWithRed:0.098 green:0.512 blue:0.99 alpha:1.0];
         
         [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:cancelButton, spaceButton ,doneButton, nil]];
         _answerTV.inputAccessoryView = keyboardDoneButtonView;
@@ -87,9 +86,9 @@
 
         
         _pushBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _pushBtn.frame = CGRectMake(10, 0, [[UIScreen mainScreen]bounds].size.width-110, _cellHeight);
+        //这里是设置隐形触发区域大小的地方
+        _pushBtn.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
         [_pushBtn addTarget:self action:@selector(pushBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-
         _pushBtn.hidden = YES;
         _pushBtn.enabled = NO;
         [self.contentView addSubview:_pushBtn];
@@ -160,9 +159,8 @@
     _answerTV.layer.contents = (id)[UIImage imageNamed:@"CellBGC.png"].CGImage; //给图层添加背景图片
     
     CGSize answerSize = [_textModel.answer boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-40, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]} context:nil].size;
-    _answerLab.frame = CGRectMake(20,CGRectGetMaxY(_questionLab.frame)+20, [[UIScreen mainScreen]bounds].size.width-40, answerSize.height+10);
-    
-    _answerTV.frame = CGRectMake(15, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-30, answerSize.height+20);
+    _answerLab.frame = CGRectMake(30,CGRectGetMaxY(_questionLab.frame)+20, [[UIScreen mainScreen]bounds].size.width-60, answerSize.height+10);
+    _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, answerSize.height+20);
     
     _cellHeight = CGRectGetMaxY(_answerLab.frame)+30;
     
@@ -170,8 +168,6 @@
     
     _bgLab.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
 
-    
-            
     [db close];
     
     _pushBtn.hidden = NO;
@@ -179,33 +175,29 @@
     
     [self reloadCell];
 }
+
+// 在首页弹出记录键盘后点击取消，重新绘制点击框。
 -(void)pickerCancelClicked{
     UITextView* view = (UITextView *)[self.contentView viewWithTag:1001];
     [view resignFirstResponder];
     [view setText:@""];
-    
-    _answerTV.layer.borderWidth = 5;
-    _answerTV.layer.borderColor = [[UIColor colorWithRed:0.52 green:0.09 blue:0.07 alpha:0.5] CGColor];
     _answerTV.layer.contents = (id)[UIImage imageNamed:@"TextViewBGC.png"].CGImage; //给图层添加背景图片
-    
     _cellHeight = CGRectGetMaxY(_answerTV.frame)+30;
     _bgLab.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
-
 
 }
 
 -(void)settingText{
     _questionLab.text = _textModel.question;
     _questionStr = _textModel.question;
-    
-    
+
     CGSize questionSize = [_textModel.question boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-60, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]} context:nil].size;
     
     _questionLab.numberOfLines = 0;
     
-    _questionLab.frame = CGRectMake(30, 20, [[UIScreen mainScreen]bounds].size.width-60, questionSize.height+10);
+    _questionLab.frame = CGRectMake(22, 20, [[UIScreen mainScreen]bounds].size.width-44, questionSize.height+10);
     
-     _answerTV.frame = CGRectMake(15, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-30, 120);
+     _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, 120);
     
     _cellHeight = CGRectGetMaxY(_answerTV.frame)+30;
     
@@ -224,13 +216,13 @@
         
         _answerLab.numberOfLines = 0;
         
-        _answerLab.frame = CGRectMake(25,CGRectGetMaxY(_questionLab.frame)+20,[[UIScreen mainScreen]bounds].size.width-50, answerSize.height);
+        _answerLab.frame = CGRectMake(30,CGRectGetMaxY(_questionLab.frame)+20,[[UIScreen mainScreen]bounds].size.width-60, answerSize.height);
         
-        _answerTV.frame = CGRectMake(15, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-30, answerSize.height+20);
+        _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, answerSize.height+20);
         
         _cellHeight = CGRectGetMaxY(_answerLab.frame)+30;
         
-        _pushBtn.frame = CGRectMake(10, 0, [[UIScreen mainScreen]bounds].size.width-110, _cellHeight);
+        _pushBtn.frame = CGRectMake(10, 0, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight);
         _pushBtn.hidden = NO;
         _pushBtn.enabled = YES;
         

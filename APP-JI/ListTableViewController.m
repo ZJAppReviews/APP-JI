@@ -29,12 +29,13 @@
 
 @end
 
+
 @implementation ListTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
     
     _arr = [NSMutableArray array];
     _arr2 = [NSMutableArray array];
@@ -44,8 +45,6 @@
     [self clearExtraLine:self.tableView];
     self.title = @"纪";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
-    
-
     
     //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBtnClicked)];
@@ -61,10 +60,11 @@
     NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
     _db = [FMDatabase databaseWithPath:dbPath] ;
     if (![_db open]) {
-        NSLog(@"Could not open db.");
+//        NSLog(@"Could not open db.");
         return ;
     }else
-        NSLog(@"db opened");
+//        NSLog(@"db opened");
+    
     //建立table
     if (![_db tableExists:@"DataList"]) {
         
@@ -85,7 +85,7 @@
         [_arr addObject:dict];
     }
     
-    NSLog(@"%lu",(unsigned long)_arr.count);
+//    NSLog(@"%lu",(unsigned long)_arr.count);
     [resultSet close];
     [_db close];
     
@@ -287,7 +287,7 @@
     return @[deleteAction,editAction];
 }
 
-#pragma mark - 导航栏右键点击事件
+#pragma mark - 导航栏上新建Button事件
 -(void)rightBtnClicked{
     AddJITableViewController *addTVC = [[AddJITableViewController alloc]init];
     [self.navigationController pushViewController:addTVC animated:YES];
@@ -302,6 +302,7 @@
 }
 
 #pragma mark - Text&Switch CellDelegate
+//点击文字类型纪的时候，开始验证
 - (void)pushBtnClicked2:(id)sender
 {
     LAContext *LAContent = [[LAContext alloc]init];
@@ -320,6 +321,7 @@
     }];
 }
 
+//点击选择类型纪的时候，开始验证
 -(void)pushtoSwitchLog2:(id)sender{
     LAContext *LAContent = [[LAContext alloc]init];
     [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
