@@ -43,9 +43,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    //调整标题栏样式
+    if (@available(iOS 11.0, *)) {
+        [self.navigationController.navigationBar setPrefersLargeTitles:NO];
+    }
+
     //初始化模型
     _textItem = [[CellTextItem alloc]init];
-    
+
     // 建立资料库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];

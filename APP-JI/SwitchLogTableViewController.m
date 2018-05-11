@@ -28,12 +28,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    //更新导航栏样式
+    if (@available(iOS 11.0, *)) {
+        [self.navigationController.navigationBar setPrefersLargeTitles:YES];
+    }
+    
     ListLogSM *sm = [ListLogSM shareSingletonModel];
     _question = sm.question;
-    
-    NSLog(@"TextLogTVC");
-    NSLog(@"%@",_question);
     
     _arr = [NSMutableArray array];
     _arr2 = [NSMutableArray array];

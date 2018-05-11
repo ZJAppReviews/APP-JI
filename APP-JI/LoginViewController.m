@@ -24,9 +24,9 @@
     [self.navigationController setNavigationBarHidden:YES];
 
     //设置更好看的导航栏
-    if (@available(iOS 11.0, *)) {
+      if (@available(iOS 11.0, *)) {
         [[UINavigationBar appearance] setPrefersLargeTitles:true];
-    }
+      }
     
     //获取当前日期
     NSDate *currentDate = [NSDate date];

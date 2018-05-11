@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50FB8D3720A5AEF200EC6D25 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */; };
 		CAFFA80786B0EDB90EF26BF5 /* libPods-APP-JI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */; };
 		FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1F172B1CB51FB800531356 /* TextCellModel.m */; };
 		FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5617BC1CE88959006EFC65 /* NotificationsMethods.m */; };
@@ -73,6 +74,7 @@
 		03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APP-JI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BF36C322CE8CD3A5D19A05A /* Pods-APP-JI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.debug.xcconfig"; sourceTree = "<group>"; };
 		5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APP-JI.entitlements"; sourceTree = "<group>"; };
+		50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.release.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.release.xcconfig"; sourceTree = "<group>"; };
 		FC1F172A1CB51FB800531356 /* TextCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCellModel.h; sourceTree = "<group>"; };
 		FC1F172B1CB51FB800531356 /* TextCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCellModel.m; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */,
 				FCCCF6351CD1FC270065F20E /* LogListCell */,
 				FCAA59791CB410A500E41A8D /* ListCell */,
+				50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */,
 			);
 			name = "AddModel & Cell";
 			path = "Model and DataBase";
@@ -467,6 +470,7 @@
 				FCCCF64B1CD2FCD60065F20E /* CellBGC2.png in Resources */,
 				FCCCF6491CD2EB350065F20E /* TextViewBGC.png in Resources */,
 				FC8253981CECA1BA00E6ED38 /* back.png in Resources */,
+				50FB8D3720A5AEF200EC6D25 /* Setting.storyboard in Resources */,
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,
 				FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */,
 				FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */,

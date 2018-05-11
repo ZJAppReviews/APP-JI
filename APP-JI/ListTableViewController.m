@@ -37,7 +37,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _unAuthented=1;
+   
+    //更新导航栏样式
     [self.navigationController setNavigationBarHidden:NO];
+    if (@available(iOS 11.0, *)) {
+        [self.navigationController.navigationBar setPrefersLargeTitles:YES];
+    }
     
     _arr = [NSMutableArray array];
     _arr2 = [NSMutableArray array];
@@ -49,8 +54,8 @@
     
     
     //添加按钮
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBtnClicked)];
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@" " style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClicked)];
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:nil];
     leftBtn.enabled = NO;
     
     self.navigationItem.leftBarButtonItem = leftBtn;
