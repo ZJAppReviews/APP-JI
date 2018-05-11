@@ -23,7 +23,6 @@
 		FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290111CF1A38B00ACB26B /* firstin2.png */; };
 		FC8290141CF1A39C00ACB26B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290131CF1A39C00ACB26B /* start.png */; };
 		FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */; };
-		FC8C3E9B1CA93B6900E3AAC6 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8C3E9A1CA93B6900E3AAC6 /* NoDataViewController.m */; };
 		FC8C3E9E1CA93B8B00E3AAC6 /* AddJITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */; };
 		FC8C3EA21CA9402700E3AAC6 /* NoDataVC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */; };
 		FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */; };
@@ -98,8 +97,6 @@
 		FC8290131CF1A39C00ACB26B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewController.h; sourceTree = "<group>"; };
 		FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewController.m; sourceTree = "<group>"; };
-		FC8C3E991CA93B6900E3AAC6 /* NoDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataViewController.h; sourceTree = "<group>"; };
-		FC8C3E9A1CA93B6900E3AAC6 /* NoDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataViewController.m; sourceTree = "<group>"; };
 		FC8C3E9C1CA93B8B00E3AAC6 /* AddJITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJITableViewController.h; sourceTree = "<group>"; };
 		FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJITableViewController.m; sourceTree = "<group>"; };
 		FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoDataVC.png; sourceTree = "<group>"; };
@@ -235,8 +232,6 @@
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
 				FCAA597A1CB412B500E41A8D /* LoginViewController.h */,
 				FCAA597B1CB412B500E41A8D /* LoginViewController.m */,
-				FC8C3E991CA93B6900E3AAC6 /* NoDataViewController.h */,
-				FC8C3E9A1CA93B6900E3AAC6 /* NoDataViewController.m */,
 				FC8C3E9C1CA93B8B00E3AAC6 /* AddJITableViewController.h */,
 				FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */,
 				FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */,
@@ -545,7 +540,6 @@
 				FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */,
 				FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */,
 				FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */,
-				FC8C3E9B1CA93B6900E3AAC6 /* NoDataViewController.m in Sources */,
 				FC64C9271CB26174004E874F /* ListTableViewController.m in Sources */,
 				FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */,
 			);

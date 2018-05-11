@@ -42,6 +42,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //更新导航栏样式
+    if (@available(iOS 11.0, *)) {
+        [self.navigationController.navigationBar setPrefersLargeTitles:NO];
+    }
+    
     //拿原有的数据
     NSLog(@"%@",_question);
     // 建立资料库
@@ -70,7 +76,7 @@
     [self.cellData addObject:group1];
     [self.cellData addObject:group2];
     
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(DownBtnClicked)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(DoneBtnClicked)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];

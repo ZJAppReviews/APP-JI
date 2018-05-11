@@ -82,7 +82,7 @@
     NSLog(@"%@",answer1);
     
     
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(DownBtnClicked)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(DoneBtnClicked)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
@@ -261,7 +261,7 @@
 
 
 #pragma mark 储存
--(void)DownBtnClicked{
+-(void)DoneBtnClicked{
     
     _singletonModel = [SingletonModel shareSingletonModel];
     NSString *question = _singletonModel.question;

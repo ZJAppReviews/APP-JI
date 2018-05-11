@@ -37,6 +37,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _unAuthented=1;
+    
+    if (_arr.count == 0) {
+        
+        UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
+        UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
+        noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
+        [self.view addSubview:noDataImgV];
+        
+        UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
+        UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
+        self.view.backgroundColor = imageColor;
+        
+        UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
+        [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
+        [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:newJIBtn];
+        
+    }
    
     //更新导航栏样式
     [self.navigationController setNavigationBarHidden:NO];
@@ -92,7 +111,6 @@
         [_arr addObject:dict];
     }
     
-//    NSLog(@"%lu",(unsigned long)_arr.count);
     [resultSet close];
     [_db close];
     
@@ -214,17 +232,16 @@
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentDirectory = [paths objectAtIndex:0];
             NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-            _db = [FMDatabase databaseWithPath:dbPath] ;
-            if (![_db open]) {
+            self->_db = [FMDatabase databaseWithPath:dbPath] ;
+            if (![self->_db open]) {
                 NSLog(@"Could not open db.");
                 return ;
             }else
                 NSLog(@"db opened");
             //删除
-            [_db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
-            [_db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
-            
-            [_db close];
+            [self->_db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
+            [self->_db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
+            [self->_db close];
             //刷新表示图
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             
@@ -279,7 +296,7 @@
     
     
     //编辑
-    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"编辑" handler:^(UITableViewRowAction *action,NSIndexPath *indexPath){
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"编辑" handler:^(UITableViewRowAction *action,NSIndexPath *indexPath){
         
         EditTableViewController *editTVC = [[EditTableViewController alloc]init];
         editTVC.question = [NSString stringWithString:[_arr[indexPath.row] objectForKey:@"question"]];

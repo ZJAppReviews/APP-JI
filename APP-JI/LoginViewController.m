@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "NoDataViewController.h"
 #import "ListTableViewController.h"
 #import "FMDB.h"
 
@@ -134,7 +133,6 @@
 
 -(void)loginBtnClicked{
     ListTableViewController *listTVC = [[ListTableViewController alloc]init];
-    NoDataViewController *noDataVC = [[NoDataViewController alloc]init];
     
     // 建立资料库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -173,11 +171,8 @@
     [resultSet close];
     [db close];
 
-    if (arr.count) {
-        [self.navigationController pushViewController:listTVC animated:YES];
-    }else{
-        [self.navigationController pushViewController:noDataVC animated:YES];
-    }
+    [self.navigationController pushViewController:listTVC animated:YES];
+
 
 }
 
