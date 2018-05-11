@@ -39,17 +39,17 @@
         [self.contentView addSubview:bgLab];
         
         _questionLab = [[UILabel alloc]init];
-        _questionLab.frame = CGRectMake(30, 20, [[UIScreen mainScreen]bounds].size.width-60, 50);
+        _questionLab.frame = CGRectMake(22, 20, [[UIScreen mainScreen]bounds].size.width-60, 50);
         [self.contentView addSubview:_questionLab];
         
         
         _yesBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [self.contentView addSubview:_yesBtn];
         [_yesBtn mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(_questionLab).with.offset(60);
-            make.left.equalTo(self.contentView).with.offset(50);
-            make.width.mas_equalTo(@110);
-            make.height.mas_equalTo(@44);
+            make.top.equalTo(self->_questionLab).with.offset(50);
+            make.left.equalTo(self.contentView).with.offset(20);
+            make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
+            make.height.mas_equalTo(@80);
         }];
         [_yesBtn addTarget:self action:@selector(yesBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [_yesBtn setBackgroundImage:[UIImage imageNamed:@"ViewBGC.png"] forState:UIControlStateNormal];
@@ -62,10 +62,10 @@
         _noBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [self.contentView addSubview:_noBtn];
         [_noBtn mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(_questionLab).with.offset(60);
-            make.right.equalTo(self.contentView).with.offset(-50);
-            make.width.mas_equalTo(@110);
-            make.height.mas_equalTo(@44);
+            make.top.equalTo(self->_questionLab).with.offset(50);
+            make.right.equalTo(self.contentView).with.offset(-20);
+            make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
+            make.height.mas_equalTo(@80);
         }];
         [_noBtn addTarget:self action:@selector(noBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [_noBtn setTitle:@"没有!" forState:UIControlStateNormal];
@@ -76,7 +76,6 @@
         
         
         _answerLab = [[UILabel alloc]init];
-//        _answerLab.frame = CGRectMake(30, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
         _answerLab.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBGC.png"]];
         [self.contentView addSubview:_answerLab];
         _answerLab.hidden = YES;
@@ -111,21 +110,23 @@
     
     CGSize questionSize = [_switchModel.question boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-60, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} context:nil].size;
     
-    _questionLab.frame = CGRectMake(30, 20, [[UIScreen mainScreen]bounds].size.width-60, questionSize.height+5);
+    _questionLab.frame = CGRectMake(20, 20, [[UIScreen mainScreen]bounds].size.width-60, questionSize.height+5);
     _questionLab.numberOfLines = 0;
-    _answerLab.frame = CGRectMake(30, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
+    _answerLab.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, 100);
     
+    
+    //设置是否两个按钮的大小
     [_yesBtn mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(_questionLab).with.offset(60);
-        make.left.equalTo(self.contentView).with.offset(50);
-        make.width.mas_equalTo(@110);
-        make.height.mas_equalTo(@44);
+        make.top.equalTo(self->_questionLab).with.offset(50);
+        make.left.equalTo(self.contentView).with.offset(20);
+        make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
+        make.height.mas_equalTo(@80);
     }];
     [_noBtn mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.equalTo(_questionLab).with.offset(60);
-        make.right.equalTo(self.contentView).with.offset(-50);
-        make.width.mas_equalTo(@110);
-        make.height.mas_equalTo(@44);
+        make.top.equalTo(self->_questionLab).with.offset(50);
+        make.right.equalTo(self.contentView).with.offset(-20);
+        make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
+        make.height.mas_equalTo(@80);
     }];
 
     if (_switchModel.answer) {
@@ -168,7 +169,7 @@
     _answerLab.textAlignment = NSTextAlignmentCenter;
     _answerLab.textColor = [UIColor whiteColor];
     _answerLab.font = [UIFont systemFontOfSize:55 weight:UIFontWeightBold];
-    _answerLab.frame = CGRectMake(30, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
+    _answerLab.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
     //获取当前日期
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -224,7 +225,7 @@
     _answerLab.textAlignment = NSTextAlignmentCenter;
     _answerLab.textColor = [UIColor whiteColor];
     _answerLab.font = [UIFont systemFontOfSize:55 weight:UIFontWeightBold];
-    _answerLab.frame = CGRectMake(30, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
+    _answerLab.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
     //获取当前日期
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
