@@ -26,6 +26,7 @@
 @property (nonatomic,strong) TextTableViewCell *textCell;
 @property (nonatomic,strong) SwitchTableViewCell *switchCell;
 @property (nonatomic,strong) FMDatabase *db;
+@property (nonatomic) BOOL unAuthented;
 
 @end
 
@@ -34,17 +35,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _unAuthented=1;
     [self.navigationController setNavigationBarHidden:NO];
     
     _arr = [NSMutableArray array];
     _arr2 = [NSMutableArray array];
-    
     self.tableView.dataSource = self;
     
     [self clearExtraLine:self.tableView];
-    self.title = @"纪";
+    self.title = @"壹日壹纪";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
+    
     
     //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBtnClicked)];
@@ -305,38 +306,46 @@
 //点击文字类型纪的时候，开始验证
 - (void)pushBtnClicked2:(id)sender
 {
+    if(_unAuthented){
     LAContext *LAContent = [[LAContext alloc]init];
     [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
         if (success) {
-            NSLog(@"身份验证成功！");
+            self->_unAuthented = NO;
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
                 [self.navigationController pushViewController:textLogTVC animated:YES];
             }];
         } else {
-            // 做特定的错误判断处理逻辑。
             NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
-            // error 参考 LAError.h
         }
     }];
+    }
+    else{
+        TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
+        [self.navigationController pushViewController:textLogTVC animated:YES];
+    }
 }
 
 //点击选择类型纪的时候，开始验证
 -(void)pushtoSwitchLog2:(id)sender{
-    LAContext *LAContent = [[LAContext alloc]init];
-    [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
-        if (success) {
-            NSLog(@"身份验证成功！");
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
-                [self.navigationController pushViewController:switchLogTVC animated:YES];
-            }];
-        } else {
-            // 做特定的错误判断处理逻辑。
-            NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
-            // error 参考 LAError.h
-        }
-    }];
+    if(_unAuthented){
+        LAContext *LAContent = [[LAContext alloc]init];
+        [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
+            if (success) {
+                self->_unAuthented = NO;
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
+                    [self.navigationController pushViewController:switchLogTVC animated:YES];
+                }];
+            } else {
+                NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
+                }
+        }];
+    }
+    else{
+        TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
+        [self.navigationController pushViewController:textLogTVC animated:YES];
+    }
 }
 
 -(void)reloadCell:(id)sender{

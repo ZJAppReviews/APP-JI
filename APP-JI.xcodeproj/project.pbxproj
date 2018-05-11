@@ -18,7 +18,6 @@
 		FC64C9401CB2696B004E874F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC64C93F1CB2696B004E874F /* libsqlite3.dylib */; };
 		FC8253981CECA1BA00E6ED38 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8253971CECA1BA00E6ED38 /* back.png */; };
 		FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8253991CECAE9D00E6ED38 /* ji.png */; };
-		FC828FCC1CEEEF6700ACB26B /* UserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC828FCB1CEEEF6700ACB26B /* UserGuideViewController.m */; };
 		FC8290101CF1A37E00ACB26B /* firstin.png in Resources */ = {isa = PBXBuildFile; fileRef = FC82900F1CF1A37E00ACB26B /* firstin.png */; };
 		FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290111CF1A38B00ACB26B /* firstin2.png */; };
 		FC8290141CF1A39C00ACB26B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290131CF1A39C00ACB26B /* start.png */; };
@@ -92,8 +91,6 @@
 		FC64C93F1CB2696B004E874F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		FC8253971CECA1BA00E6ED38 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		FC8253991CECAE9D00E6ED38 /* ji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ji.png; sourceTree = "<group>"; };
-		FC828FCA1CEEEF6700ACB26B /* UserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGuideViewController.h; sourceTree = "<group>"; };
-		FC828FCB1CEEEF6700ACB26B /* UserGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGuideViewController.m; sourceTree = "<group>"; };
 		FC82900F1CF1A37E00ACB26B /* firstin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstin.png; sourceTree = "<group>"; };
 		FC8290111CF1A38B00ACB26B /* firstin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstin2.png; sourceTree = "<group>"; };
 		FC8290131CF1A39C00ACB26B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
@@ -234,8 +231,6 @@
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
-				FC828FCA1CEEEF6700ACB26B /* UserGuideViewController.h */,
-				FC828FCB1CEEEF6700ACB26B /* UserGuideViewController.m */,
 				FCAA597A1CB412B500E41A8D /* LoginViewController.h */,
 				FCAA597B1CB412B500E41A8D /* LoginViewController.m */,
 				FC8C3E991CA93B6900E3AAC6 /* NoDataViewController.h */,
@@ -542,7 +537,6 @@
 				FC64C9201CB25070004E874F /* CellArrowItem.m in Sources */,
 				FC9F658A1CA834BD00363A24 /* main.m in Sources */,
 				FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */,
-				FC828FCC1CEEEF6700ACB26B /* UserGuideViewController.m in Sources */,
 				FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */,
 				FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */,
 				FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */,

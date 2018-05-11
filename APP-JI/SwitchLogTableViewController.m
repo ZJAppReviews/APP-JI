@@ -20,13 +20,14 @@
 @property (nonatomic,strong) LogSwitchTableViewCell *logCell;
 @property (nonatomic,strong) FMDatabase *db;
 
+
 @end
 
 @implementation SwitchLogTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     ListLogSM *sm = [ListLogSM shareSingletonModel];
     _question = sm.question;
     

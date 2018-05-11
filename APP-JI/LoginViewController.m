@@ -12,6 +12,7 @@
 #import "FMDB.h"
 
 @interface LoginViewController ()
+@property(nonatomic, readwrite, assign) BOOL prefersLargeTitles;
 
 @end
 
@@ -21,6 +22,7 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:YES];
+    self.prefersLargeTitles = YES;
     
     //获取当前日期
     NSDate *currentDate = [NSDate date];
