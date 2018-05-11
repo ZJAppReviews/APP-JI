@@ -2,8 +2,8 @@
 //  LoginViewController.m
 //  APP-JI
 //
-//  Created by 魏大同 on 16/4/5.
-//  Copyright © 2016年 魏大同. All rights reserved.
+//  Created by 黄鹏昊 on 2018/5/11.
+//  Copyright © 2018年 黄鹏昊. All rights reserved.
 //
 
 #import "LoginViewController.h"
@@ -22,7 +22,11 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:YES];
-    self.prefersLargeTitles = YES;
+
+    //设置更好看的导航栏
+    if (@available(iOS 11.0, *)) {
+        [[UINavigationBar appearance] setPrefersLargeTitles:true];
+    }
     
     //获取当前日期
     NSDate *currentDate = [NSDate date];
