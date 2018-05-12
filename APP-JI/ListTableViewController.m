@@ -37,25 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _unAuthented=1;
-    
-    if (_arr.count == 0) {
-        
-        UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
-        UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
-        noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
-        [self.view addSubview:noDataImgV];
-        
-        UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-        UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
-        self.view.backgroundColor = imageColor;
-        
-        UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
-        [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
-        [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:newJIBtn];
-        
-    }
    
     //更新导航栏样式
     [self.navigationController setNavigationBarHidden:NO];
@@ -125,6 +106,24 @@
 
     [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
     [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
+    
+    //添加首页无内容默认背景
+    if (_arr.count == 0) {
+        UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
+        UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
+        noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
+        [self.view addSubview:noDataImgV];
+        
+        UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
+        UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
+        self.view.backgroundColor = imageColor;
+        
+        UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
+        [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
+        [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:newJIBtn];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
