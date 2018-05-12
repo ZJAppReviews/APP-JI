@@ -313,7 +313,10 @@
 #pragma mark - 导航栏上新建Button事件
 -(void)rightBtnClicked{
     AddJITableViewController *addTVC = [[AddJITableViewController alloc]init];
-    [self.navigationController pushViewController:addTVC animated:YES];
+//    [self.navigationController pushViewController:addTVC animated:YES];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addTVC];
+        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navController animated:YES completion:nil];
 
 }
 
