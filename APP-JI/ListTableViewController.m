@@ -95,6 +95,7 @@
     [resultSet close];
     [_db close];
     
+    //生成文字纪的Cell
     for (NSDictionary *dict in _arr)
     {
         _textCellModel = [[TextCellModel alloc]init];
@@ -109,26 +110,45 @@
     
     //添加首页无内容默认背景
     if (_arr.count == 0) {
-        UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
-        UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
-        noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
-        [self.view addSubview:noDataImgV];
-        
-        UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-        UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
-        self.view.backgroundColor = imageColor;
-        
-        UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
-        [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
-        [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:newJIBtn];
+        [self refreshToEmptyView];
     }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshUI {
+    
+    for (NSDictionary *dict in _arr)
+    {
+        _textCellModel = [[TextCellModel alloc]init];
+        _textCellModel = [TextCellModel JIWithDict:dict];
+        [_arr2 addObject:_textCellModel];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotif:) name:@"ReloadView" object:nil];
+    
+    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
+    [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
+    }
+
+- (void)refreshToEmptyView {
+    UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
+    UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
+    noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
+    [self.view addSubview:noDataImgV];
+    
+    UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
+    UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
+    self.view.backgroundColor = imageColor;
+    
+    UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
+    [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
+    [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:newJIBtn];
 }
 
 #pragma mark - Table view data source
@@ -196,6 +216,7 @@
     
     return _textCell.cellHeight;
 }
+
 #pragma makr 观察者模式
 
 -(void)receivedNotif:(NSNotification *)notification {
@@ -221,7 +242,7 @@
         // 确认按钮
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
             
-            NSString *question = [NSString stringWithString:[_arr[indexPath.row] objectForKey:@"question"]];
+            NSString *question = [NSString stringWithString:[self->_arr[indexPath.row] objectForKey:@"question"]];
             
             // 删除数组
             [self.arr removeObjectAtIndex:indexPath.row];
@@ -258,7 +279,7 @@
             }
             
             
-            if (_arr.count == 0) {
+            if (self->_arr.count == 0) {
                 
                 UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
                 UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
@@ -298,7 +319,7 @@
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"编辑" handler:^(UITableViewRowAction *action,NSIndexPath *indexPath){
         
         EditTableViewController *editTVC = [[EditTableViewController alloc]init];
-        editTVC.question = [NSString stringWithString:[_arr[indexPath.row] objectForKey:@"question"]];
+        editTVC.question = [NSString stringWithString:[self->_arr[indexPath.row] objectForKey:@"question"]];
         [self.navigationController pushViewController:editTVC animated:YES];
         
         
@@ -313,6 +334,7 @@
 #pragma mark - 导航栏上新建Button事件
 -(void)rightBtnClicked{
     AddJITableViewController *addTVC = [[AddJITableViewController alloc]init];
+    addTVC.backTVC = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addTVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:navController animated:YES completion:nil];

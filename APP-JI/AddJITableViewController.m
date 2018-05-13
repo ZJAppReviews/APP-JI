@@ -392,16 +392,16 @@
     //成功记录了问题和问题类型
     ListTableViewController *listTVC = [[ListTableViewController alloc]init];
     //[self.navigationController pushViewController:listTVC animated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
-
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self->_backTVC refreshUI];
+    }];
     
 }
 
 #pragma mark 取消
 -(void)CancleBtnClicked{
-    ListTableViewController *listTVC = [[ListTableViewController alloc]init];
     [self dismissViewControllerAnimated:YES completion:^{
-        [listTVC viewDidLoad];
+        [self->_backTVC viewDidLoad];
     }];
 }
 

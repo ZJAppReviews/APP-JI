@@ -14,5 +14,6 @@
 
 @interface ListTableViewController : UITableViewController<UITableViewDataSource,SwitchCellDelegate,TextCellDelegate>
 //协议对象
+-(void) refreshUI;
 
 @end

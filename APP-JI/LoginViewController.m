@@ -118,15 +118,16 @@
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginBtn addTarget:self action:@selector(loginBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-//    loginBtn.frame = CGRectMake(150, 300, 80, 44);
-//    [loginBtn setTitle:@"login" forState:UIControlStateNormal];
-    
+
+    //展示首页的启动图
     UIImage *img = [UIImage imageNamed:@"ji.png"];
     UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:img];
     noDataImgV.frame = CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
     [self.view addSubview:noDataImgV];
     
-    [self performSelector:@selector(loginBtnClicked) withObject:nil afterDelay:2];
+    [self performSelector:@selector(loginBtnClicked) withObject:nil afterDelay:0];
+    
+
    
     
 }
