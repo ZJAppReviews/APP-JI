@@ -49,6 +49,13 @@
         [self.navigationController.navigationBar setPrefersLargeTitles:NO];
     }
 
+    //更新导航栏
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(DoneBtnClicked)];
+    self.navigationItem.rightBarButtonItem = rightBtn;
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(CancleBtnClicked)];
+    self.navigationItem.leftBarButtonItem = leftBtn;
+    self.navigationItem.title = @"新建一个纪";
+    
     //初始化模型
     _textItem = [[CellTextItem alloc]init];
 
@@ -78,12 +85,9 @@
     NSLog(@"%@",answer);
     //删除
     [_db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",@"question"];
-    NSString *answer1 = [_db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",@"question"];
-    NSLog(@"%@",answer1);
-    
-    
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(DoneBtnClicked)];
-    self.navigationItem.rightBarButtonItem = rightBtn;
+//    NSString *answer1 = [_db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",@"question"];
+//    NSLog(@"%@",answer1);
+
     
     UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
     UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
@@ -186,14 +190,6 @@
     return cell;
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSArray *array = self.cellData[indexPath.section];
-//    CellSettingItem *item = array[indexPath.row];
-//    if (item.vcClass) {
-//        id vc = [[item.vcClass alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-//}
 
 #pragma mark - Header&FooterInSection
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -395,8 +391,16 @@
     
     //成功记录了问题和问题类型
     ListTableViewController *listTVC = [[ListTableViewController alloc]init];
-    [self.navigationController pushViewController:listTVC animated:YES];
-    //
+    //[self.navigationController pushViewController:listTVC animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+    
+}
+
+#pragma mark 取消
+-(void)CancleBtnClicked{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"这里被执行了");
 }
 
 
