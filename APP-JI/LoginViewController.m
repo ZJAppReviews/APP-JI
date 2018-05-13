@@ -118,13 +118,13 @@
     
 
     //展示首页的启动图
-    UIImage *img = [UIImage imageNamed:@"ji.png"];
+/*    UIImage *img = [UIImage imageNamed:@"ji.png"];
     UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:img];
     noDataImgV.frame = CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
-    [self.view addSubview:noDataImgV];
+    [self.view addSubview:noDataImgV];*/
     
     ListTableViewController *listTVC = [[ListTableViewController alloc]init];
-    [self.navigationController pushViewController:listTVC animated:YES];
+    [self.navigationController pushViewController:listTVC animated:NO];
 
 }
 
