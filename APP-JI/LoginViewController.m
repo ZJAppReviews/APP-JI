@@ -116,8 +116,6 @@
     [db close];
     
     
-    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [loginBtn addTarget:self action:@selector(loginBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 
     //展示首页的启动图
     UIImage *img = [UIImage imageNamed:@"ji.png"];
@@ -125,57 +123,11 @@
     noDataImgV.frame = CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
     [self.view addSubview:noDataImgV];
     
-    [self performSelector:@selector(loginBtnClicked) withObject:nil afterDelay:0];
-    
-
-   
-    
-}
-
--(void)loginBtnClicked{
     ListTableViewController *listTVC = [[ListTableViewController alloc]init];
-    
-    // 建立资料库
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
-    NSMutableArray *arr = [NSMutableArray array];
-    if (![db open]) {
-        NSLog(@"Could not open db.");
-        return ;
-    }else
-        NSLog(@"db opened");
-    
-    
-    //建立table
-    if (![db tableExists:@"DataList"]) {
-        
-        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
-    }
-    
-    FMResultSet *resultSet = [db executeQuery:@"select * from DataList;"];
-    while ([resultSet  next])
-        
-    {
-        NSString *question = [resultSet stringForColumn:@"Question"];
-        NSString *answerT = [resultSet stringForColumn:@"AnswerT"];
-        
-        NSDictionary *dict = [[NSDictionary alloc]init];
-        dict = [NSDictionary dictionaryWithObjectsAndKeys:question,@"question",answerT,@"answerT" ,nil];
-        
-        [arr addObject:dict];
-        
-        
-    }
-    NSLog(@"%lu",(unsigned long)arr.count);
-    [resultSet close];
-    [db close];
-
     [self.navigationController pushViewController:listTVC animated:YES];
 
-
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
