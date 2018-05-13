@@ -399,8 +399,10 @@
 
 #pragma mark 取消
 -(void)CancleBtnClicked{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"这里被执行了");
+    ListTableViewController *listTVC = [[ListTableViewController alloc]init];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [listTVC viewDidLoad];
+    }];
 }
 
 
