@@ -78,6 +78,8 @@
     
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(DoneBtnClicked)];
     self.navigationItem.rightBarButtonItem = rightBtn;
+    UIBarButtonItem *CancelBtn = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(CancelBtnClicked)];
+    self.navigationItem.leftBarButtonItem = CancelBtn;
     
     UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
     UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
@@ -101,7 +103,7 @@
     
 }
 #pragma mark 储存
--(void)DownBtnClicked{
+-(void)DoneBtnClicked{
     
     _singletonModel = [SingletonModel shareSingletonModel];
     NSString *question = _singletonModel.question;
@@ -224,9 +226,16 @@
     }
     
     //成功记录了问题和问题类型
-    ListTableViewController *listTVC = [[ListTableViewController alloc]init];
-    [self.navigationController pushViewController:listTVC animated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self->_backTVC refreshUI];
+    }];
+    
 }
+
+-(void)CancelBtnClicked{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+     
 
 -(void)switch1Changed:(id)sender{
     UISwitch *myswitch = (UISwitch *)sender;

@@ -12,11 +12,14 @@
 #import "CellArrowItem.h"
 #import "JITableViewCell.h"
 #import "CellTextItem.h"
+#import "ListTableViewController.h"
 
 @interface EditTableViewController : UITableViewController
 
 @property (nonatomic,strong) JITableViewCell *jiTVCell;
 @property (nonatomic,strong) CellTextItem *textItem;
 @property (nonatomic,strong) NSString *question;
+@property (nonatomic,strong) ListTableViewController *backTVC;
+
 
 @end

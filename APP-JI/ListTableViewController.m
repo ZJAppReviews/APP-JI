@@ -37,48 +37,66 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _unAuthented=1;
-    NSLog(@"这里被执行了！");
+
     //更新导航栏样式
     [self.navigationController setNavigationBarHidden:NO];
     if (@available(iOS 11.0, *)) {
         [self.navigationController.navigationBar setPrefersLargeTitles:YES];
     }
     
-    _arr = [NSMutableArray array];
-    _arr2 = [NSMutableArray array];
     self.tableView.dataSource = self;
     
-    [self clearExtraLine:self.tableView];
+    
     self.title = @"壹日壹纪";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
-    
+    [self clearExtraLine:self.tableView];
     
     //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClicked)];
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:nil];
     leftBtn.enabled = NO;
-    
     self.navigationItem.leftBarButtonItem = leftBtn;
     self.navigationItem.rightBarButtonItem = rightBtn;
                                  
+    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
+    [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
+
+    [self refreshUI];
+
+    //添加首页无内容默认背景
+    if (_arr.count == 0) {
+        [self refreshToEmptyView];
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshUI {
+    
+    _arr = [[NSMutableArray array]init];
+    _arr2 = [[NSMutableArray array]init];
+    
     // 建立资料库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
     NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
     _db = [FMDatabase databaseWithPath:dbPath] ;
     if (![_db open]) {
-//        NSLog(@"Could not open db.");
+        //        NSLog(@"Could not open db.");
         return ;
     }else
-//        NSLog(@"db opened");
-    
-    //建立table
-    if (![_db tableExists:@"DataList"]) {
+        //        NSLog(@"db opened");
         
-        [_db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
-    }
+        //建立table
+        if (![_db tableExists:@"DataList"]) {
+            
+            [_db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
+        }
     
-
+    
     FMResultSet *resultSet = [_db executeQuery:@"select * from DataList;"];
     while ([resultSet  next])
         
@@ -101,37 +119,14 @@
         _textCellModel = [[TextCellModel alloc]init];
         _textCellModel = [TextCellModel JIWithDict:dict];
         [_arr2 addObject:_textCellModel];
+//        NSLog(@"beizhanshile");
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotif:) name:@"ReloadView" object:nil];
-
-    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
-    [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotif:) name:@"ReloadView" object:nil];
+    [self.tableView reloadData];
+    [self.tableView reloadInputViews];
     
-    //添加首页无内容默认背景
-    if (_arr.count == 0) {
-        [self refreshToEmptyView];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)refreshUI {
-    
-    for (NSDictionary *dict in _arr)
-    {
-        _textCellModel = [[TextCellModel alloc]init];
-        _textCellModel = [TextCellModel JIWithDict:dict];
-        [_arr2 addObject:_textCellModel];
-    }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotif:) name:@"ReloadView" object:nil];
-    
-    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
-    [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
+//    NSLog(@"ViewRefreshed");
     }
 
 - (void)refreshToEmptyView {
@@ -202,6 +197,7 @@
     return _textCell;
 
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *type = [[NSString alloc]init];
@@ -278,24 +274,8 @@
                 }
             }
             
-            
             if (self->_arr.count == 0) {
-                
-                UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
-                UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
-                noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
-                [self.view addSubview:noDataImgV];
-                
-                UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-                UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
-                self.view.backgroundColor = imageColor;
-                
-                UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
-                [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
-                [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-                [self.view addSubview:newJIBtn];
-                
+                [self refreshToEmptyView];
             }
             
             
@@ -319,11 +299,11 @@
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"编辑" handler:^(UITableViewRowAction *action,NSIndexPath *indexPath){
         
         EditTableViewController *editTVC = [[EditTableViewController alloc]init];
-        editTVC.question = [NSString stringWithString:[self->_arr[indexPath.row] objectForKey:@"question"]];
-        [self.navigationController pushViewController:editTVC animated:YES];
-        
-        
-               
+        editTVC.backTVC = self;
+        UINavigationController *editNavController = [[UINavigationController alloc] initWithRootViewController:editTVC];
+        editNavController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:editNavController animated:YES completion:nil];
+    
     }];
     editAction.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     //editAction.backgroundColor = [UIColor blueColor];
@@ -344,7 +324,8 @@
 #pragma mark - 去掉多余的线
 -(void)clearExtraLine: (UITableView *)tableView{
     UIView *view= [[UIView alloc]init];
-    view.backgroundColor = [UIColor lightGrayColor];
+    UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
+    view.backgroundColor = [UIColor colorWithPatternImage:backGC];
     [self.tableView setTableFooterView:view];
 }
 
@@ -408,7 +389,7 @@
 //}
 
 //-(void)viewDidAppear:(BOOL)animated{
-//    [self.tableView reloadData];
+//    NSLog(@"viewdidappear");
 //}
 /*
 // Override to support conditional editing of the table view.
