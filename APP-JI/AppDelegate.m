@@ -7,29 +7,31 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+#import "ListTableViewController.h"
 #import "NotificationsMethods.h"
 #import "NoDataViewController.h"
 #import "AddJITableViewController.h"
 #import <FMDB.h>
 
 @interface AppDelegate ()
-
-
+@property (nonatomic,strong) ListTableViewController *listTVC;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [self initDatabaseAction];
+
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    
-    LoginViewController *loginVC = [[LoginViewController alloc]init];
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
+    _listTVC = [[ListTableViewController alloc]init];
     _nav = [[UINavigationController alloc]init];
-    [_nav pushViewController:loginVC animated:YES];
     self.window.rootViewController = _nav;
     [self setNav];
+    
+    [_nav pushViewController:_listTVC animated:YES];
     
     return YES;
 }
@@ -39,26 +41,19 @@
 - (void)setNav
 
 {
-    
     UINavigationBar *bar = [UINavigationBar appearance];
-    
-    //设置显示的颜色
-    
-    bar.barTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBGC2.png"]];
-    
-    //设置字体颜色
-    
-    bar.tintColor = [UIColor blackColor];
 
+    bar.barTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBGC2.png"]];
+    bar.tintColor = [UIColor blackColor];
     [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];
-    
-    
+    if (@available(iOS 11.0, *)) {
+        [bar setPrefersLargeTitles:true];
+    }
 }
 
-
+//3D Touch 快捷方式
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    [self performSelector:@selector(addJiButtonClicked) withObject:nil afterDelay:3];
-
+    [_listTVC rightBtnClicked];
 }
 
 - (void)addJiButtonClicked{
@@ -68,8 +63,98 @@
     [nav pushViewController:noDataVC animated:YES];
 }
 
-//本地推送通知
+//初始化数据库
+- (void)initDatabaseAction{
+    //获取当前日期
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
+    NSString *nowDay = [dateFormatter stringFromDate:currentDate];
+    NSLog(@"当前日期:%@",nowDay);
+    
+    // 建立资料库
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return ;
+    }else
+        NSLog(@"db opened");
+    
+    //建立table
+    if (![db tableExists:@"LoginTime"]) {
+        
+        [db executeUpdate:@"CREATE TABLE LoginTime (Day text, Value text)"];
+        NSLog(@"Create table LoginTime succeed!");
+    }
+    //建立table
+    if (![db tableExists:@"DataList"]) {
+        
+        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
+        NSLog(@"Creat table DataList succeed!");
+    }
+    //建立table
+    if (![db tableExists:@"LogList"]) {
+        
+        [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
+        NSLog(@"Creat table LogList succeed!");
+    }
+    
+    
+    //找地址
+    NSString *today = [db stringForQuery:@"SELECT Value FROM LoginTime WHERE Day = ?",@"Day"];
+    //NSString *today = @"2016年05月01日";
+    NSLog(@"%@",today);
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    
+    if (today) {
+        if ([today isEqualToString:nowDay]) {
+        }else{
+            //更新
+            [db executeUpdate:@"UPDATE LoginTime SET Value = ? WHERE Day = ?",nowDay,@"Day"];
+            
+            
+            //删除
+            FMResultSet *rs = [db executeQuery:@"select * from DataList;"];
+            
+            while ([rs next]) {
+                
+                NSString *question = [rs stringForColumn:@"Question"];
+                NSString *type = [rs stringForColumn:@"Type"];
+                
+                //删除
+                [db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
+                
+                NSDictionary *dict = [[NSDictionary alloc]init];
+                dict = [NSDictionary dictionaryWithObjectsAndKeys:question,@"question" ,type,@"type",nil];
+                
+                [arr addObject:dict];
+            }
+            
+            [rs close];
+            
+            for (NSDictionary *dict in arr)
+            {
+                NSString *question = [NSString stringWithString:[dict objectForKey:@"question"]];
+                NSString *type = [NSString stringWithString:[dict objectForKey:@"type"]];
+                
+                //写入
+                [db executeUpdate:@"INSERT INTO DataList (Question, Type) VALUES (?,?)",question, type];
+            }
+        }
+        
+    }else{
+        //写入
+        [db executeUpdate:@"INSERT INTO LoginTime (Day, Value) VALUES (?,?)",@"Day", nowDay];
+    }
+    [db close];
+}
 
+//本地推送通知
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
     
     
@@ -132,8 +217,6 @@
     }
 
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

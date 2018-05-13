@@ -45,6 +45,11 @@
 			<string>新建一个纪</string>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>firstShorcutKey1</key>
+				<string>firstShortcutKeyValue1</string>
+			</dict>
 		</dict>
 	</array>
 	<key>NSFaceIDUsageDescription</key>

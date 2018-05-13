@@ -37,7 +37,6 @@
 		FC9F65A31CA834BD00363A24 /* APP_JITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65A21CA834BD00363A24 /* APP_JITests.m */; };
 		FC9F65AE1CA834BD00363A24 /* APP_JIUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65AD1CA834BD00363A24 /* APP_JIUITests.m */; };
 		FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */; };
-		FCAA597C1CB412B500E41A8D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA597B1CB412B500E41A8D /* LoginViewController.m */; };
 		FCCCF6251CCCE7150065F20E /* TextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6241CCCE7150065F20E /* TextTableViewCell.m */; };
 		FCCCF6281CCCE7210065F20E /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6271CCCE7210065F20E /* SwitchTableViewCell.m */; };
 		FCCCF62C1CD069540065F20E /* CellBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF62B1CD069540065F20E /* CellBGC.png */; };
@@ -121,8 +120,6 @@
 		FC9F65AF1CA834BD00363A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCA756D31CD5AB020037321D /* LogSwitchCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogSwitchCellModel.h; sourceTree = "<group>"; };
 		FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogSwitchCellModel.m; sourceTree = "<group>"; };
-		FCAA597A1CB412B500E41A8D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		FCAA597B1CB412B500E41A8D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FCCCF6231CCCE7150065F20E /* TextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTableViewCell.h; sourceTree = "<group>"; };
 		FCCCF6241CCCE7150065F20E /* TextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTableViewCell.m; sourceTree = "<group>"; };
 		FCCCF6261CCCE7210065F20E /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
@@ -230,8 +227,6 @@
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
-				FCAA597A1CB412B500E41A8D /* LoginViewController.h */,
-				FCAA597B1CB412B500E41A8D /* LoginViewController.m */,
 				FC8C3E9C1CA93B8B00E3AAC6 /* AddJITableViewController.h */,
 				FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */,
 				FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */,
@@ -529,7 +524,6 @@
 				FC64C91A1CB2466B004E874F /* JITableViewCell.m in Sources */,
 				FCCCF6281CCCE7210065F20E /* SwitchTableViewCell.m in Sources */,
 				FCCCF62F1CD1F64A0065F20E /* SwitchLogTableViewController.m in Sources */,
-				FCAA597C1CB412B500E41A8D /* LoginViewController.m in Sources */,
 				FCCCF6251CCCE7150065F20E /* TextTableViewCell.m in Sources */,
 				FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */,
 				FCFD3AE61CDC41D400C31544 /* ListLogSM.m in Sources */,
