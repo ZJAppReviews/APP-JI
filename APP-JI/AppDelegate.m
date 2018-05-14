@@ -66,8 +66,12 @@
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
     
     NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
+    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+    [dbmethod initDatabaseAction];
+    [dbmethod addAnswer:response.actionIdentifier WithQuestion:categoryIdentifier];
     
-    if ([categoryIdentifier isEqualToString:@"JiNotifi"]) {//识别需要被处理的拓展
+    
+/*    if ([categoryIdentifier isEqualToString:@"JiNotifi"]) {
         
         if ([response.actionIdentifier isEqualToString:@"input text"]) {//识别用户点击的是哪个 action
             
@@ -81,7 +85,7 @@
             
         }
         
-    }
+    }*/
     completionHandler();
 }
 

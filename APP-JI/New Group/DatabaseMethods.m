@@ -53,8 +53,7 @@
     
     //找地址
     NSString *today = [db stringForQuery:@"SELECT Value FROM LoginTime WHERE Day = ?",@"Day"];
-    //NSString *today = @"2016年05月01日";
-    NSLog(@"%@",today);
+//    NSLog(@"%@",today);
     
     NSMutableArray *arr = [NSMutableArray array];
     
@@ -116,47 +115,36 @@
 
 -(void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question {
 
-        
-        // 建立资料库
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentDirectory = [paths objectAtIndex:0];
-        NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-        FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
-        if (![db open]) {
-            NSLog(@"Could not open db.");
-            return ;
-        }else
-            NSLog(@"db opened");
-        
-        
-        //建立table
-        if (![db tableExists:@"DataList"]) {
-            
-            [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
-        }
-        //更新
-        [db executeUpdate:@"UPDATE DataList SET AnswerT = ? WHERE Question = ?",answer,question];
-        
-        //找地址
-        NSString *address = [db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",question];
-        
-        NSLog(@"appdelegate %@",address);
-        
-        //建立table
-        if (![db tableExists:@"LogList"]) {
-            
-            [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
-        }
-        //获取当前日期
-        NSDate *currentDate = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
-        NSString *nowDay = [dateFormatter stringFromDate:currentDate];
-        
-        //写入
-        [db executeUpdate:@"INSERT INTO LogList (Question,Time, Answer) VALUES (?,?,?)",question,nowDay,answer];
-        [db close];
-        
+    // 建立资料库
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return ;
+    }else
+        NSLog(@"db opened");
+    
+    //获取当前日期
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
+    NSString *nowDay = [dateFormatter stringFromDate:currentDate];
+    
+    //更新首页的展示数据
+    if (![db tableExists:@"DataList"]) {
+        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
+    }
+    [db executeUpdate:@"UPDATE DataList SET AnswerT = ? WHERE Question = ?",answer,question];
+    
+    //添加新的记录
+    if (![db tableExists:@"LogList"]) {
+        [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
+    }
+    [db executeUpdate:@"INSERT INTO LogList (Question,Time, Answer) VALUES (?,?,?)",question,nowDay,answer];
+
+    [db close];
     
     }
 

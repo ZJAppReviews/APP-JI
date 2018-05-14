@@ -248,13 +248,10 @@
     [db executeUpdate:@"UPDATE DataList SET AnswerT = ? WHERE Question = ?",@"no",_questionStr];
     
     //找地址
-    NSString *answer = [db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",_questionStr];
-    
-    NSLog(@"switch %@",answer);
+ //   [db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",_questionStr];
     
     //建立table
     if (![db tableExists:@"LogList"]) {
-        
         [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
     }
     
@@ -265,8 +262,7 @@
     _pushBtn.enabled = YES;
     _pushBtn.hidden = NO;
 
-//    [self reloadCell];
-//    [self settingText];
+
     
 }
 

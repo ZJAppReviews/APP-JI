@@ -33,14 +33,14 @@
     if (JiType == 1){
         UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"answerYes" title:@"是" options:UNNotificationActionOptionNone];
         UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"answerNo" title:@"不是" options:UNNotificationActionOptionNone];
-        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"JiNotifi" actions:@[answerYes,answerNo] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:question actions:@[answerYes,answerNo] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
     }else if (JiType == 0){
         UNTextInputNotificationAction *answerText =[UNTextInputNotificationAction actionWithIdentifier:@"answerText" title:@"记录" options:UNNotificationActionOptionNone textInputButtonTitle:@"记录" textInputPlaceholder:@"" ];
-        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"JiNotifi" actions:@[answerText] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:question actions:@[answerText] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
     }
-    content.categoryIdentifier = @"JiNotifi";
+    content.categoryIdentifier = question;
     
     //添加提醒触发时间
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:UNTime repeats:YES];
