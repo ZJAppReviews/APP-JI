@@ -68,24 +68,17 @@
     NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
     DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
     [dbmethod initDatabaseAction];
-    [dbmethod addAnswer:response.actionIdentifier WithQuestion:categoryIdentifier];
     
+    NSString *answer;
+    if ([response.actionIdentifier  isEqual: @"answerText"]) {
+        UNTextInputNotificationResponse *textResponse = (UNTextInputNotificationResponse*)response;
+        answer = textResponse.userText;
+    }else {
+        answer = response.actionIdentifier;
+    }
     
-/*    if ([categoryIdentifier isEqualToString:@"JiNotifi"]) {
-        
-        if ([response.actionIdentifier isEqualToString:@"input text"]) {//识别用户点击的是哪个 action
-            
-            //假设点击了输入内容的 UNTextInputNotificationAction 把 response 强转类型
-            UNTextInputNotificationResponse *textResponse = (UNTextInputNotificationResponse*)response;
-            //获取输入内容
-            NSString *userText = textResponse.userText;
-            //发送 userText 给需要接收的方法
-            //[NotificationsActionsMethods handleUserText: userText];
-        }else{
-            
-        }
-        
-    }*/
+    [dbmethod addAnswer:answer WithQuestion:categoryIdentifier];
+    
     completionHandler();
 }
 

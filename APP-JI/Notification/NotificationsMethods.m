@@ -31,8 +31,8 @@
     
     //添加快捷响应方法
     if (JiType == 1){
-        UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"answerYes" title:@"是" options:UNNotificationActionOptionNone];
-        UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"answerNo" title:@"不是" options:UNNotificationActionOptionNone];
+        UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"yes" title:@"是" options:UNNotificationActionOptionNone];
+        UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"no" title:@"不是" options:UNNotificationActionOptionNone];
         UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:question actions:@[answerYes,answerNo] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
     }else if (JiType == 0){
