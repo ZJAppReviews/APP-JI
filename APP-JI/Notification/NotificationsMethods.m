@@ -12,33 +12,11 @@
 
 @implementation NotificationsMethods
 
-- (void)setupNotifications :(NSString *)question{
-    
-    UIMutableUserNotificationAction *textAction = [[UIMutableUserNotificationAction alloc] init];
-    textAction.identifier = @"quickreply_action";
-    textAction.title = @"回复";
-    textAction.activationMode = UIUserNotificationActivationModeBackground;
-   
-    textAction.authenticationRequired = YES;
-    textAction.behavior = UIUserNotificationActionBehaviorTextInput;
-    
-    UIMutableUserNotificationCategory *category = [[UIMutableUserNotificationCategory alloc]init];
-    //category.identifier = @"category_qr";
-    category.identifier = question;
-    [category setActions:@[textAction] forContext:UIUserNotificationActionContextMinimal];
-    NSSet *categories = [NSSet setWithObjects:category, nil];
-    
-    UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeSound |UIUserNotificationTypeBadge;
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types
-                                                                             categories:categories];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    
-}
-
 - (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType {
 
-    //判断用户是否打开推送通知
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+
+    //判断用户是否打开推送通知
     UNAuthorizationOptions options = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert;
     [center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if(error){
@@ -48,17 +26,17 @@
     
     //注册本地推送通知
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    content.body = question;
+    content.title = question;
     content.badge = @1;
     
     //添加快捷响应方法
     if (JiType == 1){
-        UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"answerYes" title:@"是!" options:UNNotificationActionOptionNone];
-        UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"answerNo" title:@"不是！" options:UNNotificationActionOptionNone];
+        UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"answerYes" title:@"是" options:UNNotificationActionOptionNone];
+        UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"answerNo" title:@"不是" options:UNNotificationActionOptionNone];
         UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"JiNotifi" actions:@[answerYes,answerNo] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
     }else if (JiType == 0){
-        UNTextInputNotificationAction *answerText =[UNTextInputNotificationAction actionWithIdentifier:@"answerText" title:@"记录" options:UNNotificationActionOptionNone textInputButtonTitle:@"记录" textInputPlaceholder:question];
+        UNTextInputNotificationAction *answerText =[UNTextInputNotificationAction actionWithIdentifier:@"answerText" title:@"记录" options:UNNotificationActionOptionNone textInputButtonTitle:@"记录" textInputPlaceholder:@"" ];
         UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"JiNotifi" actions:@[answerText] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
     }
@@ -68,30 +46,21 @@
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:UNTime repeats:YES];
 
     //触发提醒
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"NotifiRequest" content:content trigger:trigger];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:question content:content trigger:trigger];
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
     }];
     
     return YES;
 }
 
-
-
-- (void)presentNotificationNow:(NSString *)question andHour:(NSString *)hour minute:(NSString *)minute{
+- (BOOL)cancelNotification:(NSString *)question{
     
-    UILocalNotification *reminder = [[UILocalNotification alloc] init];
-    reminder.alertBody = question;
-    reminder.alertTitle = @"来自纪的消息";
-    //reminder.category = @"category_qr";
-    reminder.category = question;
-    int Hour = [hour intValue];
-    int Minute = [minute intValue];
-    reminder.fireDate = [NSDate dateWithTimeIntervalSince1970:(60*(Hour-8)+Minute)*60];//本次开启立即执行的周期
-    reminder.repeatInterval=kCFCalendarUnitDay;//循环通知的周期
-    reminder.applicationIconBadgeNumber=0; //应用程序的右上角小数字
-    [[UIApplication sharedApplication] scheduleLocalNotification:reminder];
-    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center removePendingNotificationRequestsWithIdentifiers:@[question]];
+
+    return YES;
 }
+
 
 
 @end

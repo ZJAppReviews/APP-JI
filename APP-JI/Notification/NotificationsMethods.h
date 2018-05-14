@@ -11,9 +11,8 @@
 
 @interface NotificationsMethods : NSObject
 
-- (void)setupNotifications:(NSString *)question;
-- (void)presentNotificationNow:(NSString *)question andHour:(NSString *)hour minute:(NSString *)minute;
 - (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType;
+- (BOOL)cancelNotification:(NSString *)question;
 
 
 

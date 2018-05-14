@@ -17,6 +17,7 @@
 #import "FMDB.h"
 #import "EditTableViewController.h"
 #import <LocalAuthentication/LocalAuthentication.h>
+#import "NotificationsMethods.h"
 
 
 @interface ListTableViewController ()
@@ -27,6 +28,8 @@
 @property (nonatomic,strong) TextTableViewCell *textCell;
 @property (nonatomic,strong) SwitchTableViewCell *switchCell;
 @property (nonatomic,strong) FMDatabase *db;
+@property (nonatomic,strong) UIButton *addJIBtn;
+@property (nonatomic,strong) UIImageView *noDataImgV;
 @property (nonatomic) BOOL unAuthented;
 
 @end
@@ -63,10 +66,8 @@
 
     [self refreshUI];
 
-    //添加首页无内容默认背景
-    if (_arr.count == 0) {
-        [self refreshToEmptyView];
-    }
+
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +76,7 @@
 }
 
 - (void)refreshUI {
-    
+
     _arr = [[NSMutableArray array]init];
     _arr2 = [[NSMutableArray array]init];
     
@@ -113,38 +114,37 @@
     [resultSet close];
     [_db close];
     
-    //生成文字纪的Cell
-    for (NSDictionary *dict in _arr)
-    {
-        _textCellModel = [[TextCellModel alloc]init];
-        _textCellModel = [TextCellModel JIWithDict:dict];
-        [_arr2 addObject:_textCellModel];
-//        NSLog(@"beizhanshile");
-    }
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotif:) name:@"ReloadView" object:nil];
-    [self.tableView reloadData];
-    [self.tableView reloadInputViews];
-    
-//    NSLog(@"ViewRefreshed");
+    if (_arr.count == 0) {
+        
+        _noDataImgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"NoDataVC.png"]];
+        _noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
+        [self.view addSubview:_noDataImgV];
+        
+        _addJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _addJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
+        [_addJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
+        [_addJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_addJIBtn];
+        
+    }else {
+        
+        //生成文字纪的Cell
+        for (NSDictionary *dict in _arr)
+        {
+            _textCellModel = [[TextCellModel alloc]init];
+            _textCellModel = [TextCellModel JIWithDict:dict];
+            [_arr2 addObject:_textCellModel];
+        }
+        [_noDataImgV setHidden:YES];
+        [_addJIBtn setHidden:YES];
+        
+        [self.tableView reloadData];
+        [self.tableView reloadInputViews];
     }
 
-- (void)refreshToEmptyView {
-    UIImage *noDataImg = [UIImage imageNamed:@"NoDataVC.png"];
-    UIImageView *noDataImgV = [[UIImageView alloc]initWithImage:noDataImg];
-    noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
-    [self.view addSubview:noDataImgV];
-    
-    UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-    UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
-    self.view.backgroundColor = imageColor;
-    
-    UIButton *newJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    newJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
-    [newJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
-    [newJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:newJIBtn];
-}
+
+    }
+
 
 #pragma mark - Table view data source
 
@@ -261,22 +261,12 @@
             //刷新表示图
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             
-            
-            //        //取消通知
-            //        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-            
             // 取消某个特定的本地通知
-            for (UILocalNotification *noti in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-                NSString *notiID = noti.category;
-                NSString *receiveNotiID = question;
-                if ([notiID isEqualToString:receiveNotiID]) {
-                    [[UIApplication sharedApplication] cancelLocalNotification:noti];
-                }
-            }
+            NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
+            [notifimethod cancelNotification:question];
             
-            if (self->_arr.count == 0) {
-                [self refreshToEmptyView];
-            }
+            [self refreshUI];
+            
             
             
         }];

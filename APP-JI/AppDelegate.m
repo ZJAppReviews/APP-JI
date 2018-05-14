@@ -11,9 +11,11 @@
 #import "NotificationsMethods.h"
 #import "NoDataViewController.h"
 #import "AddJITableViewController.h"
+#import "DatabaseMethods.h"
+#import <UserNotifications/UserNotifications.h>
 #import <FMDB.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 @property (nonatomic,strong) ListTableViewController *listTVC;
 @end
 
@@ -22,8 +24,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [self initDatabaseAction];
-
+    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+    [dbmethod initDatabaseAction];
+    
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
     _listTVC = [[ListTableViewController alloc]init];
@@ -32,6 +35,9 @@
     [self setNav];
     
     [_nav pushViewController:_listTVC animated:YES];
+
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
     
     return YES;
 }
@@ -56,106 +62,37 @@
     [_listTVC rightBtnClicked];
 }
 
-- (void)addJiButtonClicked{
-    UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
-    [nav popToRootViewControllerAnimated:NO];
-    AddJITableViewController *noDataVC = [[AddJITableViewController alloc]init];
-    [nav pushViewController:noDataVC animated:YES];
+//响应通知
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+    
+    NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
+    
+    if ([categoryIdentifier isEqualToString:@"JiNotifi"]) {//识别需要被处理的拓展
+        
+        if ([response.actionIdentifier isEqualToString:@"input text"]) {//识别用户点击的是哪个 action
+            
+            //假设点击了输入内容的 UNTextInputNotificationAction 把 response 强转类型
+            UNTextInputNotificationResponse *textResponse = (UNTextInputNotificationResponse*)response;
+            //获取输入内容
+            NSString *userText = textResponse.userText;
+            //发送 userText 给需要接收的方法
+            //[NotificationsActionsMethods handleUserText: userText];
+        }else{
+            
+        }
+        
+    }
+    completionHandler();
 }
+
 
 //初始化数据库
 - (void)initDatabaseAction{
-    //获取当前日期
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
-    NSString *nowDay = [dateFormatter stringFromDate:currentDate];
-    NSLog(@"当前日期:%@",nowDay);
-    
-    // 建立资料库
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
-    
-    if (![db open]) {
-        NSLog(@"Could not open db.");
-        return ;
-    }else
-        NSLog(@"db opened");
-    
-    //建立table
-    if (![db tableExists:@"LoginTime"]) {
-        
-        [db executeUpdate:@"CREATE TABLE LoginTime (Day text, Value text)"];
-        NSLog(@"Create table LoginTime succeed!");
-    }
-    //建立table
-    if (![db tableExists:@"DataList"]) {
-        
-        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
-        NSLog(@"Creat table DataList succeed!");
-    }
-    //建立table
-    if (![db tableExists:@"LogList"]) {
-        
-        [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
-        NSLog(@"Creat table LogList succeed!");
-    }
-    
-    
-    //找地址
-    NSString *today = [db stringForQuery:@"SELECT Value FROM LoginTime WHERE Day = ?",@"Day"];
-    //NSString *today = @"2016年05月01日";
-    NSLog(@"%@",today);
-    
-    NSMutableArray *arr = [NSMutableArray array];
-    
-    if (today) {
-        if ([today isEqualToString:nowDay]) {
-        }else{
-            //更新
-            [db executeUpdate:@"UPDATE LoginTime SET Value = ? WHERE Day = ?",nowDay,@"Day"];
-            
-            
-            //删除
-            FMResultSet *rs = [db executeQuery:@"select * from DataList;"];
-            
-            while ([rs next]) {
-                
-                NSString *question = [rs stringForColumn:@"Question"];
-                NSString *type = [rs stringForColumn:@"Type"];
-                
-                //删除
-                [db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
-                
-                NSDictionary *dict = [[NSDictionary alloc]init];
-                dict = [NSDictionary dictionaryWithObjectsAndKeys:question,@"question" ,type,@"type",nil];
-                
-                [arr addObject:dict];
-            }
-            
-            [rs close];
-            
-            for (NSDictionary *dict in arr)
-            {
-                NSString *question = [NSString stringWithString:[dict objectForKey:@"question"]];
-                NSString *type = [NSString stringWithString:[dict objectForKey:@"type"]];
-                
-                //写入
-                [db executeUpdate:@"INSERT INTO DataList (Question, Type) VALUES (?,?)",question, type];
-            }
-        }
-        
-    }else{
-        //写入
-        [db executeUpdate:@"INSERT INTO LoginTime (Day, Value) VALUES (?,?)",@"Day", nowDay];
-    }
-    [db close];
+
 }
 
 //本地推送通知
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
+/*- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
     
     
     if ([identifier isEqualToString:@"yes"]||[identifier isEqualToString:@"no"]) {
@@ -216,7 +153,7 @@
     completionHandler(UIBackgroundFetchResultNoData);
     }
 
-}
+}*/
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

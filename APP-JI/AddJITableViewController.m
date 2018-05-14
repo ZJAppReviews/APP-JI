@@ -317,7 +317,7 @@
 
     
     
-    //判断通知
+    //设置通知
     if (_textItem.notifi) {
         NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
         [notifimethod setUserNotification:question withDate:_notificationTime andType:_textItem.type];

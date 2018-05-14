@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		50FB8D3720A5AEF200EC6D25 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */; };
 		CAFFA80786B0EDB90EF26BF5 /* libPods-APP-JI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */; };
 		FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1F172B1CB51FB800531356 /* TextCellModel.m */; };
@@ -29,7 +30,6 @@
 		FC8C3EA61CA949E200E3AAC6 /* AddNewJI.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA51CA949E200E3AAC6 /* AddNewJI.png */; };
 		FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */; };
 		FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */; };
-		FC9F658A1CA834BD00363A24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65891CA834BD00363A24 /* main.m */; };
 		FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F658C1CA834BD00363A24 /* AppDelegate.m */; };
 		FC9F65931CA834BD00363A24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65911CA834BD00363A24 /* Main.storyboard */; };
 		FC9F65951CA834BD00363A24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65941CA834BD00363A24 /* Assets.xcassets */; };
@@ -71,6 +71,8 @@
 /* Begin PBXFileReference section */
 		03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APP-JI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BF36C322CE8CD3A5D19A05A /* Pods-APP-JI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.debug.xcconfig"; sourceTree = "<group>"; };
+		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
+		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APP-JI.entitlements"; sourceTree = "<group>"; };
 		50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.release.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 		FC9A5A631CC1D394005BC3A9 /* SingletonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonModel.h; sourceTree = "<group>"; };
 		FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonModel.m; sourceTree = "<group>"; };
 		FC9F65851CA834BD00363A24 /* APP-JI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APP-JI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC9F65891CA834BD00363A24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC9F658B1CA834BD00363A24 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC9F658C1CA834BD00363A24 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FC9F65921CA834BD00363A24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -178,6 +179,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		505A2D0E20A9A888002907FF /* DBMethods */ = {
+			isa = PBXGroup;
+			children = (
+				505A2D0B20A9A882002907FF /* DatabaseMethods.h */,
+				505A2D0C20A9A882002907FF /* DatabaseMethods.m */,
+			);
+			name = DBMethods;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		F2B09C89154D78CD9ED7D3D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */,
+				505A2D0E20A9A888002907FF /* DBMethods */,
 				FC5617BA1CE8892F006EFC65 /* Notification */,
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
@@ -249,7 +261,6 @@
 		FC9F65881CA834BD00363A24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FC9F65891CA834BD00363A24 /* main.m */,
 				FC8253991CECAE9D00E6ED38 /* ji.png */,
 				FC82900F1CF1A37E00ACB26B /* firstin.png */,
 				FC8290111CF1A38B00ACB26B /* firstin2.png */,
@@ -528,7 +539,6 @@
 				FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */,
 				FCFD3AE61CDC41D400C31544 /* ListLogSM.m in Sources */,
 				FC64C9201CB25070004E874F /* CellArrowItem.m in Sources */,
-				FC9F658A1CA834BD00363A24 /* main.m in Sources */,
 				FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */,
 				FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */,
 				FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */,
@@ -536,6 +546,7 @@
 				FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */,
 				FC64C9271CB26174004E874F /* ListTableViewController.m in Sources */,
 				FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */,
+				505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
