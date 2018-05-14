@@ -26,6 +26,7 @@
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) SingletonModel *singletonModel;
 @property (nonatomic,strong) UIDatePicker *datePicker;
+@property (nonatomic,strong) NSDateComponents *notificationTime;
 @property (nonatomic) int hour;
 @property (nonatomic) int minute;
 
@@ -127,7 +128,12 @@
     [_datePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
     _datePicker.hidden = YES;
     
+
     [_db close];
+    
+    //初始化记录时间的类notificationTime
+    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    _notificationTime = [greCalendar components:NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveQuickReply:) name:@"QuickReplyGotTextNotification" object:nil];
     
@@ -135,12 +141,16 @@
 
 
 -(void)datePickerChanged:(id)sender{
+
     NSDate *date = _datePicker.date;
-    
     NSDateFormatter *hh = [[NSDateFormatter alloc]init];
     NSDateFormatter *mm = [[NSDateFormatter alloc]init];
     [hh setDateFormat:@"HH"];
     [mm setDateFormat:@"mm"];
+    _notificationTime.hour = [[hh stringFromDate:date] intValue];
+    _notificationTime.minute = [[mm stringFromDate:date] intValue];
+
+
     
     _pickerStr = [[NSString alloc]init];
     _pickerStr2 = [[NSString alloc]init];
@@ -149,11 +159,7 @@
     
     _hour = [_pickerStr intValue];
     _minute = [_pickerStr2 intValue];
-    
-//    NSLog(@"%@",_pickerStr);
-//    NSLog(@"%@",_pickerStr2);
-//    NSLog(@"%d",hour);
-//    NSLog(@"%D",minute);
+
 }
 
 
@@ -212,6 +218,7 @@
     return footerView;
     
 }
+
 #pragma mark 给定选项开关
 -(void)switch1Changed:(UISwitch *)sender{
     if (sender.isOn) {
@@ -312,61 +319,10 @@
     
     //判断通知
     if (_textItem.notifi) {
-
-        
-        if (_textItem.type) {//有选项
-
-            //1.创建消息上面要添加的动作(按钮的形式显示出来)
-            UIMutableUserNotificationAction *action = [[UIMutableUserNotificationAction alloc] init];
-            action.identifier = @"yes";//按钮的标示
-            action.title=@"有!";//按钮的标题
-            action.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
-            
-            UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];
-            action2.identifier = @"no";
-            action2.title=@"没有!";
-            action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
-            action.destructive = YES;
-    
-            //2.创建动作(按钮)的类别集合
-            UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-            categorys.identifier = question;//这组动作的唯一标示
-            [categorys setActions:@[action,action2] forContext:(UIUserNotificationActionContextMinimal)];
-    
-            //3.创建UIUserNotificationSettings，并设置消息的显示类类型
-            UIUserNotificationSettings *uns = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound) categories:[NSSet setWithObjects:categorys, nil]];
-    
-            //4.注册推送
-            [[UIApplication sharedApplication] registerForRemoteNotifications];
-            [[UIApplication sharedApplication] registerUserNotificationSettings:uns];
-    
-    
-            //发起本地推送消息
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-    
-            if (notification!=nil) {//判断系统是否支持本地通知
-        
-                notification.fireDate = [NSDate dateWithTimeIntervalSince1970:(60*(_hour-8)+_minute)*60];//本次开启立即执行的周期
-                notification.repeatInterval=kCFCalendarUnitDay;//循环通知的周期
-                notification.timeZone=[NSTimeZone defaultTimeZone];
-                notification.applicationIconBadgeNumber=0; //应用程序的右上角小数字
-                notification.soundName= UILocalNotificationDefaultSoundName;//本地化通知的声音
-        
-                notification.alertBody = question;
-                notification.category = question;
-        
-                [[UIApplication sharedApplication]  scheduleLocalNotification:notification];
-            }
-        }else{//没选项
-            NotificationsMethods *method = [[NotificationsMethods alloc] init];
-            [method setupNotifications:_singletonModel.question];
-            
-    
-            [method presentNotificationNow:_singletonModel.question andHour:_pickerStr minute:_pickerStr2];
-        }
-
+        NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
+        [notifimethod setUserNotification:question withDate:_notificationTime andType:_textItem.type];
     }
-    
+
     //成功记录了问题和问题类型
     [self dismissViewControllerAnimated:YES completion:^{
         [self->_backTVC refreshUI];

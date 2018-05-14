@@ -35,7 +35,7 @@
     
 }
 
-- (BOOL) setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType {
+- (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType {
 
     //判断用户是否打开推送通知
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
