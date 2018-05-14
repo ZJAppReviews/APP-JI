@@ -25,6 +25,7 @@
 @property (nonatomic,strong) NSString *pickerStr2;
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) SingletonModel *singletonModel;
+@property (nonatomic,strong) UIDatePicker *datePicker;
 @property (nonatomic) int hour;
 @property (nonatomic) int minute;
 
@@ -118,14 +119,13 @@
     
     
     //提醒时间
-    UIDatePicker *datePicker = [[UIDatePicker alloc]init];
-    [datePicker setTag:1002];
-    datePicker.frame = CGRectMake(70, 230, [[UIScreen mainScreen]bounds].size.width-140, 130);
-    datePicker.datePickerMode = UIDatePickerModeTime;
-    [self.view addSubview:datePicker];
+    _datePicker = [[UIDatePicker alloc]init];
+    _datePicker.frame = CGRectMake(70, 230, [[UIScreen mainScreen]bounds].size.width-140, 130);
+    _datePicker.datePickerMode = UIDatePickerModeTime;
+    [self.view addSubview:_datePicker];
     
-    [datePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
-    datePicker.hidden = YES;
+    [_datePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
+    _datePicker.hidden = YES;
     
     [_db close];
     
@@ -135,9 +135,7 @@
 
 
 -(void)datePickerChanged:(id)sender{
-    UIDatePicker *picker = (UIDatePicker *)sender;
-    
-    NSDate *date = picker.date;
+    NSDate *date = _datePicker.date;
     
     NSDateFormatter *hh = [[NSDateFormatter alloc]init];
     NSDateFormatter *mm = [[NSDateFormatter alloc]init];
@@ -161,7 +159,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
 
 #pragma mark - Table view data source
@@ -216,43 +213,26 @@
     
 }
 #pragma mark 给定选项开关
--(void)switch1Changed:(id)sender{
-    UISwitch *myswitch = (UISwitch *)sender;
-    BOOL setting = myswitch.isOn;
-
-    if (setting) {
-       // NSLog(@"on");
+-(void)switch1Changed:(UISwitch *)sender{
+    if (sender.isOn) {
         _textItem.type = 1;
-       // NSLog(@"%d",_textItem.type);
     }else{
-       // NSLog(@"off");
         _textItem.type = 0;
-       // NSLog(@"%d",_textItem.type);
     }
 }
--(void)switch2Changed:(id)sender{
-    UISwitch *myswitch = (UISwitch *)sender;
-    BOOL setting = myswitch.isOn;
-    UIDatePicker *picker = (UIDatePicker *)[self.view viewWithTag:1002];
-    
-    if (setting) {
-      //  NSLog(@"on");
-        
-        picker.hidden = NO;
-    
+-(void)switch2Changed:(UISwitch *)sender{
+    if (sender.isOn) {
+        _datePicker.hidden = NO;
         [UIView beginAnimations:@"a" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:picker cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:_datePicker cache:YES];
         [UIView setAnimationDuration:0.5];
         [UIView commitAnimations];
-        
         _textItem.notifi = 1;
     }else{
-       // NSLog(@"off");
-        picker.hidden = YES;
+        _datePicker.hidden = YES;
         _textItem.notifi = 0;
     }
-
 }
 
 
@@ -278,9 +258,7 @@
     //判断问题是否为空
     if ([question  isEqual: @""]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"文本不能为空" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            
-        }];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
         

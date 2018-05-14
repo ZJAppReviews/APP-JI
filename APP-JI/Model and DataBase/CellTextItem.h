@@ -12,7 +12,7 @@
 
 @property (nonatomic,copy) NSString *text;
 @property (nonatomic,copy) NSString *question;
-@property (nonatomic) int type;
+@property (nonatomic) int type;//选择为1 文字为0
 @property (nonatomic) int notifi;
 
 -(instancetype)initWithText:(NSString *)text;

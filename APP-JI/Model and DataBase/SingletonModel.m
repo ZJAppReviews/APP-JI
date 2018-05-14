@@ -26,6 +26,7 @@ static SingletonModel *shareObj = nil;
 -(id) init
 {
     if (self = [super init]) {
+        NSLog(@"在singletonModel里有一个奇怪的判断");
         self.question = [[NSString alloc]init];
         self.firstRowswitch = [[NSString alloc]init];
     }

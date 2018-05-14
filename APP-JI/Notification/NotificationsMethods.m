@@ -7,6 +7,8 @@
 
 
 #import "NotificationsMethods.h"
+#import <UserNotifications/UserNotifications.h>
+
 
 @implementation NotificationsMethods
 
@@ -32,6 +34,47 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     
 }
+
+- (BOOL) setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType {
+
+    //判断用户是否打开推送通知
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNAuthorizationOptions options = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert;
+    [center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"推送权限获取失败！");
+        }
+    }];
+    
+    //注册本地推送通知
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.body = question;
+    content.badge = @1;
+    
+    //添加快捷响应方法
+    if (JiType == 1){
+        UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"answerYes" title:@"是!" options:UNNotificationActionOptionNone];
+        UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"answerNo" title:@"不是！" options:UNNotificationActionOptionNone];
+        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"JiNotifi" actions:@[answerYes,answerNo] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+        [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
+    }else if (JiType == 0){
+        UNTextInputNotificationAction *answerText =[UNTextInputNotificationAction actionWithIdentifier:@"answerText" title:@"记录" options:UNNotificationActionOptionNone textInputButtonTitle:@"记录" textInputPlaceholder:question];
+        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:@"JiNotifi" actions:@[answerText] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+        [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
+    }
+    content.categoryIdentifier = @"JiNotifi";
+    
+    //添加提醒触发时间
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:UNTime repeats:YES];
+
+    //触发提醒
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"NotifiRequest" content:content trigger:trigger];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+    }];
+    
+    return YES;
+}
+
 
 
 - (void)presentNotificationNow:(NSString *)question andHour:(NSString *)hour minute:(NSString *)minute{
