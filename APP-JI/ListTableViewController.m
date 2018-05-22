@@ -163,6 +163,7 @@
     _mainCell.selectionStyle = UITableViewCellSelectionStyleNone;
     _mainCell.contentView.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
     _mainCell.mainModel = _arr2[indexPath.row];
+    _mainCell.Delegate = self;
     [_mainCell settingText];
     return _mainCell;
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50529A2D20AAAF8A004B1A86 /* MainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50529A2C20AAAF89004B1A86 /* MainViewCell.m */; };
+		5058038320B45B72003D33BC /* TextCellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038220B45B71003D33BC /* TextCellBG.png */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
 		505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D1220A9CF80002907FF /* AuthenticMethods.m */; };
@@ -76,6 +77,7 @@
 		4BF36C322CE8CD3A5D19A05A /* Pods-APP-JI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.debug.xcconfig"; sourceTree = "<group>"; };
 		50529A2B20AAAF89004B1A86 /* MainViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewCell.h; sourceTree = "<group>"; };
 		50529A2C20AAAF89004B1A86 /* MainViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewCell.m; sourceTree = "<group>"; };
+		5058038220B45B71003D33BC /* TextCellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextCellBG.png; sourceTree = "<group>"; };
 		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				FC8290131CF1A39C00ACB26B /* start.png */,
 				FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */,
 				FCCCF6481CD2EB350065F20E /* TextViewBGC.png */,
+				5058038220B45B71003D33BC /* TextCellBG.png */,
 				FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */,
 				FC8253971CECA1BA00E6ED38 /* back.png */,
 				FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */,
@@ -485,6 +488,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5058038320B45B72003D33BC /* TextCellBG.png in Resources */,
 				FC8C3EA21CA9402700E3AAC6 /* NoDataVC.png in Resources */,
 				FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */,
 				FCCCF62C1CD069540065F20E /* CellBGC.png in Resources */,

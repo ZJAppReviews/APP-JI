@@ -10,9 +10,10 @@
 #import "TextTableViewCell.h"
 #import "SwitchTableViewCell.h"
 #import "SwitchLogTableViewController.h"
+#import "MainViewCell.h"
 
 
-@interface ListTableViewController : UITableViewController<UITableViewDataSource,SwitchCellDelegate,TextCellDelegate>
+@interface ListTableViewController : UITableViewController<UITableViewDataSource,MainCellDelegate>
 //协议对象
 -(void) refreshUI;
 -(void) rightBtnClicked;

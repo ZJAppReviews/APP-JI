@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "FMDB.h"
 #import <UIKit/UIKit.h>
+#import "DatabaseMethods.h"
 
 @interface MainViewCell ()
 
@@ -21,7 +22,8 @@
 
 @property (nonatomic,strong) UILabel *contentLab;
 @property (nonatomic,strong) UITextView *contentTV;
-@property (nonatomic,strong) UIButton *pushBtn;//首页的文字类型纪输入完之后引导进入记录详情页的按钮
+@property (nonatomic,strong) UILabel *contentBG;
+@property (nonatomic,strong) UIButton *pushBtn;
 
 
 
@@ -87,14 +89,14 @@
             if ([_mainModel.answer  isEqualToString:@"yes"]) {
 
                 _noBtn.hidden = YES;
-                _yesBtn.frame = CGRectMake(28,57,([[UIScreen mainScreen]bounds].size.width)/2-56,162);
+                _yesBtn.frame = CGRectMake(28,57,([[UIScreen mainScreen]bounds].size.width)-56,162);
                 [_yesBtn setBackgroundColor:[UIColor colorWithRed:167/255.0 green:134/255.0 blue:27/255.0 alpha:1.0]];
                 [_yesBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 
             }else if ([_mainModel.answer isEqualToString:@"no"]){
 
                 _yesBtn.hidden = YES;
-                _noBtn.frame = CGRectMake(28,57,([[UIScreen mainScreen]bounds].size.width)/2-56,162);
+                _noBtn.frame = CGRectMake(28,57,([[UIScreen mainScreen]bounds].size.width)-56,162);
                 [_noBtn setBackgroundColor:[UIColor colorWithRed:167/255.0 green:134/255.0 blue:27/255.0 alpha:1.0]];
                 [_noBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 
@@ -108,30 +110,34 @@
             _noBtn.frame = CGRectMake(([[UIScreen mainScreen]bounds].size.width)/2+5.5,57,([[UIScreen mainScreen]bounds].size.width)/2-33.5,162);
             [_noBtn setBackgroundColor:[UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1.0]];
             [_noBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-
-
             
         }
 
     }else if ([_mainModel.type isEqualToString:@"text"]){
 
+        _contentBG = [[UILabel alloc]init];
+        [_contentBG.layer setCornerRadius:7];
+        _contentBG.layer.masksToBounds = YES;
+        [self.contentView addSubview:_contentBG];
+
         if(_mainModel.answer){
 
             _contentLab = [[UILabel alloc]init];
-            [_contentLab setBackgroundColor:[UIColor colorWithRed:167/255.0 green:134/255.0 blue:27/255.0 alpha:1.0]];
-            [_contentLab.layer setCornerRadius:7];
             [self.contentView addSubview:_contentLab];
             
             //计算文本需要占用的物理尺寸
-            CGSize answerSize = [_mainModel.answer boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-56, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size;
-            _contentLab.frame = CGRectMake(28,57,[[UIScreen mainScreen]bounds].size.width-56, answerSize.height);
-            
+            CGSize answerSize = [_mainModel.answer boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-76, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size;
+
+            _contentBG.frame = CGRectMake(28,57,[[UIScreen mainScreen]bounds].size.width-56, answerSize.height+27);
+            [_contentBG setBackgroundColor:[UIColor colorWithRed:167/255.0 green:134/255.0 blue:27/255.0 alpha:1.0]];
+
+            _contentLab.frame = CGRectMake(38,71,[[UIScreen mainScreen]bounds].size.width-76, answerSize.height);
             _contentLab.text = _mainModel.answer;
             _contentLab.numberOfLines = 0;
             _contentLab.font = [UIFont systemFontOfSize:17];
             _contentLab.textColor = [UIColor whiteColor];
 
-            _cellHeight = CGRectGetMaxY(_contentLab.frame)+80;
+            _cellHeight = answerSize.height+107;
 
             _pushBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             _pushBtn.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
@@ -140,26 +146,28 @@
             _pushBtn.enabled = NO;
             [self.contentView addSubview:_pushBtn];
             
-            
-            
         }else{
             
+            [_contentBG setBackgroundColor:[UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1.0]];
+            _contentBG.frame = CGRectMake(28,57,[[UIScreen mainScreen]bounds].size.width-56, 162);
+
             _contentTV = [[UITextView alloc]init];
             _contentTV.font = [UIFont systemFontOfSize:17];
-            _contentTV.frame = CGRectMake(28, 57, [[UIScreen mainScreen]bounds].size.width-56, 162);
+            _contentTV.frame = CGRectMake(38, 71, [[UIScreen mainScreen]bounds].size.width-76, 135);
+            _contentTV.layer.contents = (id)[UIImage imageNamed:@"TextCellBG.png"].CGImage;
             [_contentTV.layer setCornerRadius:7];
             [_contentTV setBackgroundColor:[UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1.0]];
-//            _contentTV.delegate = self;
+            _contentTV.delegate = self;
             
             UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
             keyboardDoneButtonView.barStyle = UIBarStyleDefault;
             keyboardDoneButtonView.tintColor = [UIColor clearColor];
             keyboardDoneButtonView.translucent = YES;
             [keyboardDoneButtonView sizeToFit];
-            UIBarButtonItem *cancelButton=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(pickerCancelClicked)];
+            UIBarButtonItem *cancelButton=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(textInputCancelClicked)];
             cancelButton.tintColor = [UIColor redColor];
             UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];// 让完成按钮显示在右侧
-            UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(pickerDoneClicked)];
+            UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(textInputDoneClicked)];
             doneButton.tintColor = [UIColor colorWithRed:0.098 green:0.512 blue:0.99 alpha:1.0];
             [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:cancelButton, spaceButton ,doneButton, nil]];
             _contentTV.inputAccessoryView = keyboardDoneButtonView;
@@ -174,76 +182,62 @@
 
 }
 
+#pragma mark - 文字Cell方法
+
+-(void)textInputDoneClicked{
+    _mainModel.answer = _contentTV.text;
+    [_contentTV resignFirstResponder];
+    _contentTV.hidden =YES;
+    [self settingText];
+    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+    [dbmethod addAnswer:_contentTV.text WithQuestion:_mainModel.question];
+    [self.Delegate refreshUI];
+}
+
+-(void)textInputCancelClicked{
+    [_contentTV resignFirstResponder];
+    [_contentTV setText:@""];
+    _contentTV.layer.contents = (id)[UIImage imageNamed:@"TextCellBG.png"].CGImage;
+}
+
+#pragma mark - 选择Cell方法
+
+-(void)noBtnClicked{
+    if (_mainModel.answer){
+        return;
+    }
+    _mainModel.answer = @"no";
+    [self settingText];
+    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+    [dbmethod addAnswer:@"no" WithQuestion:_mainModel.question];
+}
+
+
+-(void)yesBtnClicked{
+    if (_mainModel.answer){
+        return;
+    }
+    _mainModel.answer = @"yes";
+    [self settingText];
+    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+    [dbmethod addAnswer:@"yes" WithQuestion:_mainModel.question];
+}
+
+
+
+
+#pragma mark - TextView代理方法
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    _contentTV.layer.contents = nil;
+}
+
 
 +(NSString *)ID{
     return @"Main";
 }
 
-/*
--(void)noBtnClicked{
-        _yesBtn.enabled = NO;
-        _noBtn.enabled = NO;
-        _yesBtn.hidden = YES;
-        _noBtn.hidden = YES;
-        _answerLab.hidden = NO;
-        _answerLab.text = @"没有!";
-        _answerLab.textAlignment = NSTextAlignmentCenter;
-        _answerLab.textColor = [UIColor whiteColor];
-        _answerLab.font = [UIFont systemFontOfSize:55 weight:UIFontWeightBold];
-        _answerLab.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-60, 100);
-        //获取当前日期
-        NSDate *currentDate = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
-        NSString *nowDay = [dateFormatter stringFromDate:currentDate];
-        NSLog(@"当前日期:%@",nowDay);
-        
-        // 建立资料库
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentDirectory = [paths objectAtIndex:0];
-        NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-        FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
-        if (![db open]) {
-            NSLog(@"Could not open db.");
-            return ;
-        }else
-            NSLog(@"db opened");
-        
-        //写入
-        [db executeUpdate:@"UPDATE DataList SET AnswerT = ? WHERE Question = ?",@"no",_questionStr];
-        
-        //找地址
-        //   [db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",_questionStr];
-        
-        //建立table
-        if (![db tableExists:@"LogList"]) {
-            [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
-        }
-        
-        //写入
-        [db executeUpdate:@"INSERT INTO LogList (Question,Time, Answer) VALUES (?,?,?)",_questionStr,nowDay,@"no"];
-        
-        [db close];
-        _pushBtn.enabled = YES;
-        _pushBtn.hidden = NO;
-        
-        
-        
-    }*/
-
-    
-/*    _titleLab.text = _switchModel.question;
-    _questionStr = _switchModel.question;
-    _questionLab.font = [UIFont systemFontOfSize:25];
-    
-    CGSize questionSize = [_switchModel.question boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-60, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} context:nil].size;
-    
-    _questionLab.frame = CGRectMake(20, 20, [[UIScreen mainScreen]bounds].size.width-60, questionSize.height+5);
-    _questionLab.numberOfLines = 0;
-    _answerLab.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, 100);
-    
-    
-    //设置是否两个按钮的大小*/
 
 
 

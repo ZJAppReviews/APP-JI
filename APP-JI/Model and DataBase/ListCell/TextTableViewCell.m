@@ -183,7 +183,7 @@
 
 // 在首页弹出记录键盘后点击取消，重新绘制点击框。
 -(void)pickerCancelClicked{
-    UITextView* view = (UITextView *)[self.contentView viewWithTag:1001];
+    UITextView *view = (UITextView *)[self.contentView viewWithTag:1001];
     [view resignFirstResponder];
     [view setText:@""];
     _answerTV.layer.contents = (id)[UIImage imageNamed:@"TextViewBGC.png"].CGImage; //给图层添加背景图片
@@ -246,7 +246,6 @@
     _answerTV.layer.borderWidth = 0;
     _answerTV.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor clearColor]);
     _answerTV.layer.contents = (id)[UIImage imageNamed:@"ViewBGC.png"].CGImage; //给图层添加背景图片
-    
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
