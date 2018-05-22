@@ -210,9 +210,7 @@
     
     if (_textModel.answer) {
         _answerLab.text = _textModel.answer;
-        _answerLab.numberOfLines = 0;
         _answerTV.editable = NO;
-        _answerTV.layer.borderWidth = 0;
         _answerTV.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor clearColor]);
         _answerTV.layer.contents = (id)[UIImage imageNamed:@"CellBGC.png"].CGImage; //给图层添加背景图片
 

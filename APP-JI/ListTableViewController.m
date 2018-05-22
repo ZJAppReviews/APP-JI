@@ -21,7 +21,7 @@
 #import <LocalAuthentication/LocalAuthentication.h>
 
 #import "AuthenticMethods.h"
-
+#import "MainViewCell.h"
 
 @interface ListTableViewController ()
 
@@ -30,6 +30,7 @@
 @property (nonatomic,strong) TextCellModel *textCellModel;
 @property (nonatomic,strong) TextTableViewCell *textCell;
 @property (nonatomic,strong) SwitchTableViewCell *switchCell;
+@property (nonatomic,strong) MainViewCell *mainCell;
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) UIButton *addJIBtn;
 @property (nonatomic,strong) UIImageView *noDataImgV;
@@ -46,12 +47,10 @@
     
     self.tableView.dataSource = self;
     
-    
     self.title = @"壹日壹纪";
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
     self.view.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
 
-    [self clearExtraLine:self.tableView];
+//    [self clearExtraLine:self.tableView];
     
     //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClicked)];
@@ -62,9 +61,8 @@
     
     
     //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
-    [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
-    [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
 
+    [self.tableView registerClass:[MainViewCell class] forCellReuseIdentifier:[MainViewCell ID]];
     [self refreshUI];
 
 }
@@ -150,6 +148,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     return 1;
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -159,50 +158,19 @@
 
 //分类初始化列表元件
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    _textCell = [tableView dequeueReusableCellWithIdentifier:[TextTableViewCell ID]];
-    _textCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    _switchCell = [tableView dequeueReusableCellWithIdentifier:[SwitchTableViewCell ID]];
-    _switchCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
-    UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-    UIColor *imageColor = [UIColor colorWithPatternImage:backGC];       //根据图片生成颜色
-    _textCell.contentView.backgroundColor = imageColor;
-    _switchCell.contentView.backgroundColor = imageColor;
-    
-    NSString *type = [[NSString alloc]init];
-    type = [_arr[indexPath.row] objectForKey:@"type"];
-    
-    if ([type isEqualToString:@"switch"]) {
-        _switchCell.switchModel = _arr2[indexPath.row];
-        [_switchCell settingText];
-        _switchCell.sDelegate = self;           //cell的代理方法
-        return _switchCell;
-    }
-    
-    _textCell.textModel = _arr2[indexPath.row];
-    [_textCell settingText];
-    _textCell.tDelegate = self;         //cell的代理方法
-    return _textCell;
 
+    _mainCell = [tableView dequeueReusableCellWithIdentifier:[MainViewCell ID]];
+    _mainCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _mainCell.contentView.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
+    _mainCell.mainModel = _arr2[indexPath.row];
+    [_mainCell settingText];
+    return _mainCell;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *type = [[NSString alloc]init];
-    type = [_arr[indexPath.row] objectForKey:@"type"];
-    
-    if ([type isEqualToString:@"switch"]) {
-        return _switchCell.cellHeight;
-    }
-    
-    _textCell.textModel = _arr2[indexPath.row];
-    [_textCell settingText];
-    
-    return _textCell.cellHeight;
+    return _mainCell.cellHeight;
 }
 
 #pragma makr 观察者模式
@@ -335,6 +303,7 @@
 -(void)reloadCell:(id)sender{
     
     [self.tableView reloadData];
+    
 }
 //-(void)reloadCell2:(id)sender{
 //    [self.tableView reloadData];

@@ -10,13 +10,23 @@
 #import <UIKit/UIKit.h>
 #import "TextCellModel.h"
 
+@protocol MainCellDelegate <NSObject>
+
+-(void)pushBtnClicked2:(id)sender;
+-(void)reloadCell:(id)sender;
+
+@end
 
 @interface MainViewCell : UITableViewCell
 
 @property (nonatomic,assign,readonly) CGFloat cellHeight;//行高，在首页设置行高的方法中调用
 @property (nonatomic,strong) TextCellModel *mainModel;//存储问题标签和内容的类，在初始化时被调用
 @property (nonatomic,strong) NSString *questionStr;
+@property (nonatomic,assign) id<MainCellDelegate>Delegate;
 //@property (nonatomic,assign) id<SwitchCellDelegate>sDelegate;
+
++(NSString *)ID;
+-(void)settingText;
 
 
 
