@@ -17,7 +17,6 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
     NSString *nowDay = [dateFormatter stringFromDate:currentDate];
-    NSLog(@"当前日期:%@",nowDay);
     
     // 建立资料库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -110,7 +109,21 @@
 }
 
 -(void) deleteQuestion:(NSString *)question{
+    // 建立资料库
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    db = [FMDatabase databaseWithPath:dbPath] ;
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return ;
+    }else
+        NSLog(@"db opened");
 
+    [db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
+    [db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
+    [db close];
 }
 
 -(void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question {

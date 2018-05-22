@@ -34,26 +34,31 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         _bgLab = [[UILabel alloc]init];
-        _bgLab.layer.borderWidth = 1.5;
-        _bgLab.layer.borderColor = [[UIColor colorWithRed:0.01 green:0.01 blue:0.01 alpha:0.9] CGColor];
+//        _bgLab.layer.borderWidth = 1.5;
+
+//        _bgLab.layer.borderColor = [[UIColor colorWithRed:0.01 green:0.01 blue:0.01 alpha:0.9] CGColor];
+
         _bgLab.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBGC2.png" ]];
+        [_bgLab.layer setCornerRadius:10];
+        _bgLab.layer.masksToBounds = YES;
+
         _bgLab.enabled = NO;
         [self.contentView addSubview:_bgLab];
 
         
         _questionLab = [[UILabel alloc]init];
-        _questionLab.font = [UIFont systemFontOfSize:25];
-        _questionLab.frame = CGRectMake(22, 20, [[UIScreen mainScreen]bounds].size.width-44, 64);
-        _questionLab.numberOfLines = 0;
+        _questionLab.font = [UIFont boldSystemFontOfSize:21];
+        _questionLab.frame = CGRectMake(28, 23, [[UIScreen mainScreen]bounds].size.width-56, 26);
+        _questionLab.numberOfLines = 1;
+        _questionLab.lineBreakMode = NSLineBreakByTruncatingTail;
+
         [self.contentView addSubview:_questionLab];
         
         _answerTV = [[UITextView alloc]init];
-        _answerTV.font = [UIFont systemFontOfSize:25];
-        _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+20, [[UIScreen mainScreen]bounds].size.width-40, 120);
+        _answerTV.font = [UIFont systemFontOfSize:17];
+        _answerTV.frame = CGRectMake(28, 57, [[UIScreen mainScreen]bounds].size.width-56, 162);
         _answerTV.tag = 1001;
-        [_answerTV.layer setCornerRadius:4];
-//        _answerTV.layer.borderWidth = 5;
-//        _answerTV.layer.borderColor = [[UIColor colorWithRed:0.52 green:0.09 blue:0.07 alpha:0.5] CGColor];
+        [_answerTV.layer setCornerRadius:7];
         _answerTV.layer.contents = (id)[UIImage imageNamed:@"TextViewBGC.png"].CGImage; //给图层添加背景图片
        
         _answerTV.delegate = self;
@@ -69,7 +74,7 @@
         UIBarButtonItem *cancelButton=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(pickerCancelClicked)];
         cancelButton.tintColor = [UIColor redColor];
         UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];// 让完成按钮显示在右侧
-        UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(pickerDoneClicked)];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(pickerDoneClicked)];
         doneButton.tintColor = [UIColor colorWithRed:0.098 green:0.512 blue:0.99 alpha:1.0];
         
         [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:cancelButton, spaceButton ,doneButton, nil]];
@@ -78,7 +83,7 @@
         [self.contentView addSubview:_answerTV];
         
         _answerLab = [[UILabel alloc]init];
-        _answerLab.font = [UIFont systemFontOfSize:25];
+        _answerLab.font = [UIFont systemFontOfSize:17];
         _answerLab.textColor = [UIColor whiteColor];
         [self.contentView addSubview:_answerLab];
         
@@ -105,9 +110,9 @@
     
     ListLogSM *sm = [ListLogSM shareSingletonModel];
     sm.question = _questionStr;
-    
     [self.tDelegate pushBtnClicked2:self];
 }
+
 -(void)reloadCell{
     [self.tDelegate reloadCell:self];
 }
@@ -154,10 +159,10 @@
 
     
     _answerLab.text = _textModel.answer;
-    _answerTV.layer.borderWidth = 0;
-    _answerTV.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor clearColor]);
     _answerTV.layer.contents = (id)[UIImage imageNamed:@"CellBGC.png"].CGImage; //给图层添加背景图片
     
+    
+    //根据文本生成输入框的尺寸并且调整尺寸
     CGSize answerSize = [_textModel.answer boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-40, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]} context:nil].size;
     _answerLab.frame = CGRectMake(30,CGRectGetMaxY(_questionLab.frame)+20, [[UIScreen mainScreen]bounds].size.width-60, answerSize.height+10);
     _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, answerSize.height+20);
@@ -191,17 +196,17 @@
     _questionLab.text = _textModel.question;
     _questionStr = _textModel.question;
 
-    CGSize questionSize = [_textModel.question boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-60, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]} context:nil].size;
+//    CGSize questionSize = [_textModel.question boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-60, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]} context:nil].size;
     
-    _questionLab.numberOfLines = 0;
+//    _questionLab.numberOfLines = 1;
     
-    _questionLab.frame = CGRectMake(22, 20, [[UIScreen mainScreen]bounds].size.width-44, questionSize.height+10);
+//    _questionLab.frame = CGRectMake(22, 20, [[UIScreen mainScreen]bounds].size.width-44, questionSize.height+10);
     
-     _answerTV.frame = CGRectMake(20, CGRectGetMaxY(_questionLab.frame)+10, [[UIScreen mainScreen]bounds].size.width-40, 120);
+//    _answerTV.frame = CGRectMake(28, 57, [[UIScreen mainScreen]bounds].size.width-40, 120);
     
-    _cellHeight = CGRectGetMaxY(_answerTV.frame)+30;
+//    _cellHeight = CGRectGetMaxY(_answerTV.frame)+30;
     
-    _bgLab.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
+//    _bgLab.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
     
     if (_textModel.answer) {
         _answerLab.text = _textModel.answer;

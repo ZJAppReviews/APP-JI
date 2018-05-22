@@ -29,11 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //更新导航栏样式
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setPrefersLargeTitles:YES];
-    }
-    
     ListLogSM *sm = [ListLogSM shareSingletonModel];
     _question = sm.question;
     
@@ -43,18 +38,6 @@
     [self clearExtraLine:self.tableView];
     self.title = _question;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
-    
-//    UIButton *backBtn = [[UIButton alloc]init];
-//    [backBtn setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-//    
-//    [backBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-//    self.navigationItem.rightBarButtonItem = item;
-
-    
-//    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"back" style:UIBarButtonItemStylePlain target:self action:@selector(leftBtnClicked)];
-//    self.navigationItem.leftBarButtonItem = leftBtn;
     
     // 建立资料库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

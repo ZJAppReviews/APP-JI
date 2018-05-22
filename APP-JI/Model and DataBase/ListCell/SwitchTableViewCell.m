@@ -28,12 +28,11 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        _cellHeight = 180;
+        _cellHeight = 171;
         
         UILabel *bgLab = [[UILabel alloc]init];
-        bgLab.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
-        bgLab.layer.borderWidth = 1.5;
-        bgLab.layer.borderColor = [[UIColor colorWithRed:0.01 green:0.01 blue:0.01 alpha:0.9] CGColor];
+        bgLab.frame = CGRectMake(16, 10, [[UIScreen mainScreen]bounds].size.width-32, _cellHeight-20);
+        [bgLab.layer setCornerRadius:4];
         bgLab.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBGC2.png" ]];
         bgLab.enabled = NO;
         [self.contentView addSubview:bgLab];
@@ -61,12 +60,13 @@
         
         _noBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [self.contentView addSubview:_noBtn];
-        [_noBtn mas_makeConstraints:^(MASConstraintMaker *make){
+/*        [_noBtn mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self->_questionLab).with.offset(50);
             make.right.equalTo(self.contentView).with.offset(-20);
             make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
             make.height.mas_equalTo(@80);
-        }];
+        }];*/
+        _noBtn.frame = CGRectMake(28, 57, 30, 60);
         [_noBtn addTarget:self action:@selector(noBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [_noBtn setTitle:@"没有!" forState:UIControlStateNormal];
         [_noBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -116,7 +116,7 @@
     
     
     //设置是否两个按钮的大小
-    [_yesBtn mas_makeConstraints:^(MASConstraintMaker *make){
+/*    [_yesBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.equalTo(self->_questionLab).with.offset(50);
         make.left.equalTo(self.contentView).with.offset(20);
         make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
@@ -127,7 +127,8 @@
         make.right.equalTo(self.contentView).with.offset(-20);
         make.width.mas_equalTo(([[UIScreen mainScreen]bounds].size.width)/2-30);
         make.height.mas_equalTo(@80);
-    }];
+    }];*/
+    _noBtn.frame = CGRectMake(28, 57, 60, 60);
 
     if (_switchModel.answer) {
         if ([_switchModel.answer  isEqualToString:@"yes"]) {

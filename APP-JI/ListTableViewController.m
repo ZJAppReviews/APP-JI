@@ -16,8 +16,11 @@
 #import "SwitchLogTableViewController.h"
 #import "FMDB.h"
 #import "EditTableViewController.h"
-#import <LocalAuthentication/LocalAuthentication.h>
 #import "NotificationsMethods.h"
+#import "DatabaseMethods.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+
+#import "AuthenticMethods.h"
 
 
 @interface ListTableViewController ()
@@ -40,18 +43,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _unAuthented=1;
-
-    //更新导航栏样式
-    [self.navigationController setNavigationBarHidden:NO];
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setPrefersLargeTitles:YES];
-    }
     
     self.tableView.dataSource = self;
     
     
     self.title = @"壹日壹纪";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
+    self.view.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
+
     [self clearExtraLine:self.tableView];
     
     //添加按钮
@@ -60,13 +59,13 @@
     leftBtn.enabled = NO;
     self.navigationItem.leftBarButtonItem = leftBtn;
     self.navigationItem.rightBarButtonItem = rightBtn;
-                                 
+    
+    
+    //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
     [self.tableView registerClass:[SwitchTableViewCell class] forCellReuseIdentifier:[SwitchTableViewCell ID]];
     [self.tableView registerClass:[TextTableViewCell class] forCellReuseIdentifier:[TextTableViewCell ID]];
 
     [self refreshUI];
-
-
 
 }
 
@@ -158,7 +157,7 @@
     return self.arr.count;
 }
 
-
+//分类初始化列表元件
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -179,21 +178,14 @@
     
     if ([type isEqualToString:@"switch"]) {
         _switchCell.switchModel = _arr2[indexPath.row];
-        
         [_switchCell settingText];
-        
         _switchCell.sDelegate = self;           //cell的代理方法
-        
         return _switchCell;
-        
     }
     
     _textCell.textModel = _arr2[indexPath.row];
-    
     [_textCell settingText];
-    
     _textCell.tDelegate = self;         //cell的代理方法
-    
     return _textCell;
 
 }
@@ -232,36 +224,23 @@
     //删除
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action,NSIndexPath *indexPath){
         
-        // 初始化一个一个UIAlertController
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"这个操作将会删除该类目下的所有记录" preferredStyle:(UIAlertControllerStyleAlert)];
-        
-        // 确认按钮
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"删除" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction *action) {
             
             NSString *question = [NSString stringWithString:[self->_arr[indexPath.row] objectForKey:@"question"]];
             
-            // 删除数组
+            //删除数组
             [self.arr removeObjectAtIndex:indexPath.row];
             [self.arr2 removeObjectAtIndex:indexPath.row];
             
-            // 建立资料库
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentDirectory = [paths objectAtIndex:0];
-            NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-            self->_db = [FMDatabase databaseWithPath:dbPath] ;
-            if (![self->_db open]) {
-                NSLog(@"Could not open db.");
-                return ;
-            }else
-                NSLog(@"db opened");
-            //删除
-            [self->_db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
-            [self->_db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
-            [self->_db close];
+            //删除数据
+            DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+            [dbmethod deleteQuestion:question];
+            
             //刷新表示图
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             
-            // 取消某个特定的本地通知
+            // 取消某个特定的本地通知,这个地方最好加上一个判断
             NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
             [notifimethod cancelNotification:question];
             
@@ -345,25 +324,13 @@
 
 //点击选择类型纪的时候，开始验证
 -(void)pushtoSwitchLog2:(id)sender{
-    if(_unAuthented){
-        LAContext *LAContent = [[LAContext alloc]init];
-        [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
-            if (success) {
-                self->_unAuthented = NO;
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
-                    [self.navigationController pushViewController:switchLogTVC animated:YES];
-                }];
-            } else {
-                NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
-                }
-        }];
-    }
-    else{
-        TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
-        [self.navigationController pushViewController:textLogTVC animated:YES];
+    if([AuthenticMethods isAuthented]){
+        SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
+        [self.navigationController pushViewController:switchLogTVC animated:YES];
     }
 }
+
+
 
 -(void)reloadCell:(id)sender{
     

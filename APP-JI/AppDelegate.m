@@ -79,78 +79,12 @@
     
     [dbmethod addAnswer:answer WithQuestion:categoryIdentifier];
     
-    completionHandler();
+    if (_listTVC) {
+        [_listTVC refreshUI];
+    }
+    
+    //completionHandler();
 }
-
-
-//初始化数据库
-- (void)initDatabaseAction{
-
-}
-
-//本地推送通知
-/*- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
-    
-    
-    if ([identifier isEqualToString:@"yes"]||[identifier isEqualToString:@"no"]) {
-    
-    //在非本App界面时收到本地消息，下拉消息会有快捷回复的按钮，点击按钮后调用的方法，根据identifier来判断点击的哪个按钮，notification为消息内容
-    NSLog(@"%@",identifier);
-    NSString *question = notification.category;
-    
-    // 建立资料库
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
-            if (![db open]) {
-        NSLog(@"Could not open db.");
-        return ;
-    }else
-        NSLog(@"db opened");
-    
-    
-    //建立table
-    if (![db tableExists:@"DataList"]) {
-        
-        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
-    }
-    //更新
-    [db executeUpdate:@"UPDATE DataList SET AnswerT = ? WHERE Question = ?",identifier,question];
-    
-    //找地址
-    NSString *answer = [db stringForQuery:@"SELECT AnswerT FROM DataList WHERE Question = ?",question];
-    
-    NSLog(@"appdelegate %@",answer);
-    
-    //建立table
-    if (![db tableExists:@"LogList"]) {
-        
-        [db executeUpdate:@"CREATE TABLE LogList (Question text, Time text, Answer text)"];
-    }
-    //获取当前日期
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
-    NSString *nowDay = [dateFormatter stringFromDate:currentDate];
-    
-    //写入
-    [db executeUpdate:@"INSERT INTO LogList (Question,Time, Answer) VALUES (?,?,?)",question,nowDay,identifier];
-    
-    [db close];
-    
-    completionHandler();//处理完消息，最后一定要调用这个代码块
-    
-    }
-    else{
-
-   
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"QuickReplyGotTextNotification" object:[responseInfo objectForKey:UIUserNotificationActionResponseTypedTextKey] userInfo:nil];
-    completionHandler(UIBackgroundFetchResultNoData);
-    }
-
-}*/
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
