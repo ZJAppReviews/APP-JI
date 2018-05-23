@@ -11,6 +11,9 @@
 #import "FMDB.h"
 #import <UIKit/UIKit.h>
 #import "DatabaseMethods.h"
+#import "AuthenticMethods.h"
+
+
 
 @interface MainViewCell ()
 
@@ -35,7 +38,36 @@
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
       if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-          
+
+          if(!_bgLab){
+              _bgLab = [[UILabel alloc]init];
+              [self.contentView addSubview:_bgLab];
+
+              _titleLab = [[UILabel alloc]init];
+              [self.contentView addSubview:_titleLab];
+
+              _yesBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+              [self.contentView addSubview:_yesBtn];
+
+              _noBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+              [self.contentView addSubview:_noBtn];
+
+              _contentBG = [[UILabel alloc]init];
+              [self.contentView addSubview:_contentBG];
+
+              _contentLab = [[UILabel alloc]init];
+              [self.contentView addSubview:_contentLab];
+
+              _contentTV = [[UITextView alloc]init];
+              [self.contentView addSubview:_contentTV];
+              
+              _pushBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+              [self.contentView addSubview:_pushBtn];
+
+
+
+          }
+
       }
     return self;
 }
@@ -45,36 +77,37 @@
     NSLog(@"%@,%@,%@",_mainModel.type,_mainModel.question,_mainModel.answer);
     
     //设置元件的背景
-    _bgLab = [[UILabel alloc]init];
+
     _bgLab.backgroundColor = [UIColor colorWithRed:249/255.0 green:204/255.0 blue:60/255.0 alpha:1.0];
     [_bgLab.layer setCornerRadius:10];
     _bgLab.layer.masksToBounds = YES;
-    [self.contentView addSubview:_bgLab];
     
     //设置标题
-    _titleLab = [[UILabel alloc]init];
+
     _titleLab.font = [UIFont boldSystemFontOfSize:21];
     _titleLab.frame = CGRectMake(28, 23, [[UIScreen mainScreen]bounds].size.width-56, 26);
     _titleLab.numberOfLines = 1;
     _titleLab.lineBreakMode = NSLineBreakByTruncatingTail;
     _titleLab.textColor = [UIColor blackColor];
-    [self.contentView addSubview:_titleLab];
     _titleLab.text = _mainModel.question;
 
     
     if([_mainModel.type isEqualToString:@"switch"]){
 
-        _yesBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.contentView addSubview:_yesBtn];
+        _yesBtn.enabled = YES;
+        _yesBtn.hidden = NO;
+        _noBtn.enabled = YES;
+        _noBtn.hidden = NO;
+        _contentBG.hidden = YES;
+        _contentLab.hidden = YES;
+        _contentTV.hidden = YES;
+        
         [_yesBtn addTarget:self action:@selector(yesBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [_yesBtn setTitle:@"是" forState:UIControlStateNormal];
         _yesBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         _yesBtn.titleLabel.font = [UIFont systemFontOfSize:53 weight:UIFontWeightBold];
         [_yesBtn.layer setCornerRadius:7];
 
-        
-        _noBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.contentView addSubview:_noBtn];
         [_noBtn addTarget:self action:@selector(noBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [_noBtn setTitle:@"不是" forState:UIControlStateNormal];
         _noBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -115,15 +148,19 @@
 
     }else if ([_mainModel.type isEqualToString:@"text"]){
 
-        _contentBG = [[UILabel alloc]init];
+        _yesBtn.hidden = YES;
+        _noBtn.hidden = YES;
+        _contentBG.hidden = NO;
+        
         [_contentBG.layer setCornerRadius:7];
         _contentBG.layer.masksToBounds = YES;
-        [self.contentView addSubview:_contentBG];
 
         if(_mainModel.answer){
 
-            _contentLab = [[UILabel alloc]init];
-            [self.contentView addSubview:_contentLab];
+            _contentLab.hidden = NO;
+            _contentTV.hidden = YES;
+            _pushBtn.hidden = NO;
+
             
             //计算文本需要占用的物理尺寸
             CGSize answerSize = [_mainModel.answer boundingRectWithSize:CGSizeMake([[UIScreen mainScreen]bounds].size.width-76, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil].size;
@@ -139,19 +176,19 @@
 
             _cellHeight = answerSize.height+107;
 
-            _pushBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            _pushBtn.frame = CGRectMake(10, 10, [[UIScreen mainScreen]bounds].size.width-20, _cellHeight-20);
-            [_pushBtn addTarget:self action:@selector(pushBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-            _pushBtn.hidden = YES;
-            _pushBtn.enabled = NO;
-            [self.contentView addSubview:_pushBtn];
+            _pushBtn.frame = CGRectMake(28,57,[[UIScreen mainScreen]bounds].size.width-56, answerSize.height+27);
+            [_pushBtn addTarget:self action:@selector(pushBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+
             
         }else{
             
+            _contentTV.hidden = NO;
+            _contentLab.hidden = YES;
+            _pushBtn.hidden = YES;
+
             [_contentBG setBackgroundColor:[UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1.0]];
             _contentBG.frame = CGRectMake(28,57,[[UIScreen mainScreen]bounds].size.width-56, 162);
 
-            _contentTV = [[UITextView alloc]init];
             _contentTV.font = [UIFont systemFontOfSize:17];
             _contentTV.frame = CGRectMake(38, 71, [[UIScreen mainScreen]bounds].size.width-76, 135);
             _contentTV.layer.contents = (id)[UIImage imageNamed:@"TextCellBG.png"].CGImage;
@@ -171,7 +208,6 @@
             doneButton.tintColor = [UIColor colorWithRed:0.098 green:0.512 blue:0.99 alpha:1.0];
             [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:cancelButton, spaceButton ,doneButton, nil]];
             _contentTV.inputAccessoryView = keyboardDoneButtonView;
-            [self.contentView addSubview:_contentTV];
             
             _cellHeight = 242;
             
@@ -191,7 +227,7 @@
     [self settingText];
     DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
     [dbmethod addAnswer:_contentTV.text WithQuestion:_mainModel.question];
-    [self.Delegate refreshUI];
+    [self.Delegate reloadCell:self];
 }
 
 -(void)textInputCancelClicked{
@@ -200,14 +236,33 @@
     _contentTV.layer.contents = (id)[UIImage imageNamed:@"TextCellBG.png"].CGImage;
 }
 
+-(void)pushBtnClicked{
+    
+    [self.Delegate pushClickedWithQuestion:_mainModel.question andType:_mainModel.type];
+    return;
+    
+}
+
 #pragma mark - 选择Cell方法
 
 -(void)noBtnClicked{
+
+    //若为已经记录的状态，则进入主页
     if (_mainModel.answer){
+    
+        [self.Delegate pushClickedWithQuestion:_mainModel.question andType:_mainModel.type];
         return;
+        
     }
+    
+    //如未记录，首先更改首页的元件视图，再写入数据库
     _mainModel.answer = @"no";
-    [self settingText];
+
+    _yesBtn.hidden = YES;
+    _noBtn.frame = CGRectMake(28,57,([[UIScreen mainScreen]bounds].size.width)-56,162);
+    [_noBtn setBackgroundColor:[UIColor colorWithRed:167/255.0 green:134/255.0 blue:27/255.0 alpha:1.0]];
+    [_noBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
     [dbmethod addAnswer:@"no" WithQuestion:_mainModel.question];
 }
@@ -215,10 +270,17 @@
 
 -(void)yesBtnClicked{
     if (_mainModel.answer){
+
+        [self.Delegate pushClickedWithQuestion:_mainModel.question andType:_mainModel.type];
         return;
     }
     _mainModel.answer = @"yes";
-    [self settingText];
+    
+    _noBtn.hidden = YES;
+    _yesBtn.frame = CGRectMake(28,57,([[UIScreen mainScreen]bounds].size.width)-56,162);
+    [_yesBtn setBackgroundColor:[UIColor colorWithRed:167/255.0 green:134/255.0 blue:27/255.0 alpha:1.0]];
+    [_yesBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
     [dbmethod addAnswer:@"yes" WithQuestion:_mainModel.question];
 }

@@ -18,10 +18,10 @@
 static bool haveAuthented;
 
 
-
-+ (BOOL) isAuthented{
+- (void) authenticWithQuestion:(NSString *)question andType:(NSString *)type{
     if(haveAuthented){
-        return TRUE;
+        [self.aDelegate pushDetailViewWithQuestion:question andType:type];
+        return;
     }else{
         
         LAContext *LAContent = [[LAContext alloc]init];
@@ -30,6 +30,7 @@ static bool haveAuthented;
             if (success) {
                 
                 haveAuthented = 1;
+                [self.aDelegate pushDetailViewWithQuestion:question andType:type];
 
                 }else {
                 NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
@@ -37,16 +38,8 @@ static bool haveAuthented;
         }];
     }
 
-    if(haveAuthented == 1){
-        NSLog(@"yes!!!!!");
-        return true;
-    }else{
-        NSLog(@"NOOOO!!!!!");
+}
 
-        return false;
-    }
-
-    }
 @end
 
 

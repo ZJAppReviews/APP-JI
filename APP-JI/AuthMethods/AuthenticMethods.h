@@ -8,8 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol AuthenticDelegate <NSObject>
+
+-(void)pushDetailViewWithQuestion:(NSString *)question andType:(NSString *)type;
+
+@end
+
 @interface AuthenticMethods : NSObject
 
-+ (BOOL) isAuthented;
+@property (nonatomic,assign) id<AuthenticDelegate>aDelegate;
+
+- (void) authenticWithQuestion:(NSString *)question andType:(NSString *)type;
 
 @end

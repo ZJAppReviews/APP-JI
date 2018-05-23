@@ -28,10 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ListLogSM *sm = [ListLogSM shareSingletonModel];
-    _question = sm.question;
-    
+        
     _arr = [NSMutableArray array];
     _arr2 = [NSMutableArray array];
     

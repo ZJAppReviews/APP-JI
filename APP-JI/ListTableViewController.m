@@ -49,8 +49,8 @@
     
     self.title = @"壹日壹纪";
     self.view.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
-
-//    [self clearExtraLine:self.tableView];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClicked)];
@@ -171,6 +171,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    _mainCell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return _mainCell.cellHeight;
 }
 
@@ -259,46 +260,33 @@
 
 }
 
-#pragma mark - 去掉多余的线
--(void)clearExtraLine: (UITableView *)tableView{
-    UIView *view= [[UIView alloc]init];
-    UIImage *backGC = [UIImage imageNamed:@"ViewBGC.png"];
-    view.backgroundColor = [UIColor colorWithPatternImage:backGC];
-    [self.tableView setTableFooterView:view];
-}
+
 
 #pragma mark - Text&Switch CellDelegate
-//点击文字类型纪的时候，开始验证
-- (void)pushBtnClicked2:(id)sender
+- (void)pushClickedWithQuestion:(NSString *)question andType:(NSString *)type
 {
-    if(_unAuthented){
-    LAContext *LAContent = [[LAContext alloc]init];
-    [LAContent evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"请完成验证以查看内容" reply:^(BOOL success, NSError * _Nullable error) {
-        if (success) {
-            self->_unAuthented = NO;
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
-                [self.navigationController pushViewController:textLogTVC animated:YES];
-            }];
-        } else {
-            NSLog(@"身份验证失败！ \nerrorCode : %ld, errorMsg : %@",(long)error.code, error.localizedDescription);
-        }
-    }];
-    }
-    else{
-        TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
-        [self.navigationController pushViewController:textLogTVC animated:YES];
-    }
+    AuthenticMethods *authMethod = [[AuthenticMethods alloc]init];
+    authMethod.aDelegate = self;
+    [authMethod authenticWithQuestion:question andType:type];
 }
 
-//点击选择类型纪的时候，开始验证
--(void)pushtoSwitchLog2:(id)sender{
-    if([AuthenticMethods isAuthented]){
-        SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
-        [self.navigationController pushViewController:switchLogTVC animated:YES];
-    }
-}
+-(void) pushDetailViewWithQuestion:(NSString *)question andType:(NSString *)type{
 
+    if([type  isEqual: @"switch"]){
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
+            switchLogTVC.question = question;
+            [self.navigationController pushViewController:switchLogTVC animated:YES];
+        }];
+    }else if ([type  isEqual: @"text"]){
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
+            textLogTVC.question = question;
+            [self.navigationController pushViewController:textLogTVC animated:YES];
+        }];
+    }
+
+}
 
 
 -(void)reloadCell:(id)sender{
@@ -306,60 +294,5 @@
     [self.tableView reloadData];
     
 }
-//-(void)reloadCell2:(id)sender{
-//    [self.tableView reloadData];
-//}
-//
-//-(void)reloadDatas{
-//    [self.tableView reloadData];
-//    [self.tableView reloadInputViews];
-//}
-
-//-(void)viewDidAppear:(BOOL)animated{
-//    NSLog(@"viewdidappear");
-//}
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

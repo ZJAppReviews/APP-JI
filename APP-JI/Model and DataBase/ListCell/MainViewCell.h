@@ -12,7 +12,7 @@
 
 @protocol MainCellDelegate <NSObject>
 
--(void)pushBtnClicked2:(id)sender;
+-(void)pushClickedWithQuestion:(NSString *)question andType:(NSString *)type;
 -(void)reloadCell:(id)sender;
 -(void)refreshUI;
 
@@ -22,7 +22,6 @@
 
 @property (nonatomic,assign,readonly) CGFloat cellHeight;//行高，在首页设置行高的方法中调用
 @property (nonatomic,strong) TextCellModel *mainModel;//存储问题标签和内容的类，在初始化时被调用
-@property (nonatomic,strong) NSString *questionStr;
 @property (nonatomic,assign) id<MainCellDelegate>Delegate;
 
 +(NSString *)ID;
