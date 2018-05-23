@@ -9,8 +9,6 @@
 
 #import "ListTableViewController.h"
 #import "TextCellModel.h"
-#import "TextTableViewCell.h"
-#import "SwitchTableViewCell.h"
 #import "AddJITableViewController.h"
 #import "TextLogTableViewController.h"
 #import "SwitchLogTableViewController.h"
@@ -28,8 +26,6 @@
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,strong) NSMutableArray *arr2;
 @property (nonatomic,strong) TextCellModel *textCellModel;
-@property (nonatomic,strong) TextTableViewCell *textCell;
-@property (nonatomic,strong) SwitchTableViewCell *switchCell;
 @property (nonatomic,strong) MainViewCell *mainCell;
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) UIButton *addJIBtn;
@@ -208,13 +204,13 @@
             [dbmethod deleteQuestion:question];
             
             //刷新表示图
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             
             // 取消某个特定的本地通知,这个地方最好加上一个判断
             NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
             [notifimethod cancelNotification:question];
             
-            [self refreshUI];
+//            [self refreshUI];
             
             
             

@@ -10,7 +10,6 @@
 #import "ListTableViewController.h"
 #import "LogTextTableViewCell.h"
 #import "LogTextCellModel.h"
-#import "ListLogSM.h"
 #import "FMDB.h"
 
 @interface TextLogTableViewController ()

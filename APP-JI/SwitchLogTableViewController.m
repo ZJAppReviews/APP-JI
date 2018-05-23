@@ -10,7 +10,6 @@
 #import "LogSwitchTableViewCell.h"
 #import "SwitchLogTableViewController.h"
 #import "ListTableViewController.h"
-#import "ListLogSM.h"
 #import "FMDB.h"
 
 @interface SwitchLogTableViewController ()

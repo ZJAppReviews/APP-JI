@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TextTableViewCell.h"
-#import "SwitchTableViewCell.h"
 #import "SwitchLogTableViewController.h"
 #import "MainViewCell.h"
 #import "AuthenticMethods.h"

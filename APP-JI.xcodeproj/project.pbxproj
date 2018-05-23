@@ -41,8 +41,6 @@
 		FC9F65A31CA834BD00363A24 /* APP_JITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65A21CA834BD00363A24 /* APP_JITests.m */; };
 		FC9F65AE1CA834BD00363A24 /* APP_JIUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65AD1CA834BD00363A24 /* APP_JIUITests.m */; };
 		FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */; };
-		FCCCF6251CCCE7150065F20E /* TextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6241CCCE7150065F20E /* TextTableViewCell.m */; };
-		FCCCF6281CCCE7210065F20E /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6271CCCE7210065F20E /* SwitchTableViewCell.m */; };
 		FCCCF62C1CD069540065F20E /* CellBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF62B1CD069540065F20E /* CellBGC.png */; };
 		FCCCF62F1CD1F64A0065F20E /* SwitchLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */; };
 		FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */; };
@@ -52,7 +50,6 @@
 		FCCCF6491CD2EB350065F20E /* TextViewBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF6481CD2EB350065F20E /* TextViewBGC.png */; };
 		FCCCF64B1CD2FCD60065F20E /* CellBGC2.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */; };
 		FCEA02501CAA697500BFDAFA /* CellSettingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEA024F1CAA697500BFDAFA /* CellSettingItem.m */; };
-		FCFD3AE61CDC41D400C31544 /* ListLogSM.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD3AE51CDC41D400C31544 /* ListLogSM.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,10 +128,6 @@
 		FC9F65AF1CA834BD00363A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCA756D31CD5AB020037321D /* LogSwitchCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogSwitchCellModel.h; sourceTree = "<group>"; };
 		FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogSwitchCellModel.m; sourceTree = "<group>"; };
-		FCCCF6231CCCE7150065F20E /* TextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTableViewCell.h; sourceTree = "<group>"; };
-		FCCCF6241CCCE7150065F20E /* TextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTableViewCell.m; sourceTree = "<group>"; };
-		FCCCF6261CCCE7210065F20E /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
-		FCCCF6271CCCE7210065F20E /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
 		FCCCF62B1CD069540065F20E /* CellBGC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBGC.png; sourceTree = "<group>"; };
 		FCCCF62D1CD1F64A0065F20E /* SwitchLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchLogTableViewController.h; sourceTree = "<group>"; };
 		FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchLogTableViewController.m; sourceTree = "<group>"; };
@@ -150,8 +143,6 @@
 		FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBGC2.png; sourceTree = "<group>"; };
 		FCEA024E1CAA697500BFDAFA /* CellSettingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellSettingItem.h; sourceTree = "<group>"; };
 		FCEA024F1CAA697500BFDAFA /* CellSettingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSettingItem.m; sourceTree = "<group>"; };
-		FCFD3AE41CDC41D400C31544 /* ListLogSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListLogSM.h; sourceTree = "<group>"; };
-		FCFD3AE51CDC41D400C31544 /* ListLogSM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListLogSM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,12 +313,6 @@
 			children = (
 				FC1F172A1CB51FB800531356 /* TextCellModel.h */,
 				FC1F172B1CB51FB800531356 /* TextCellModel.m */,
-				FCCCF6231CCCE7150065F20E /* TextTableViewCell.h */,
-				FCCCF6241CCCE7150065F20E /* TextTableViewCell.m */,
-				FCCCF6261CCCE7210065F20E /* SwitchTableViewCell.h */,
-				FCCCF6271CCCE7210065F20E /* SwitchTableViewCell.m */,
-				FCFD3AE41CDC41D400C31544 /* ListLogSM.h */,
-				FCFD3AE51CDC41D400C31544 /* ListLogSM.m */,
 				50529A2B20AAAF89004B1A86 /* MainViewCell.h */,
 				50529A2C20AAAF89004B1A86 /* MainViewCell.m */,
 			);
@@ -559,12 +544,9 @@
 				505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */,
 				FCEA02501CAA697500BFDAFA /* CellSettingItem.m in Sources */,
 				FC64C91A1CB2466B004E874F /* JITableViewCell.m in Sources */,
-				FCCCF6281CCCE7210065F20E /* SwitchTableViewCell.m in Sources */,
 				FCCCF62F1CD1F64A0065F20E /* SwitchLogTableViewController.m in Sources */,
 				505A2D1020A9B610002907FF /* main.m in Sources */,
-				FCCCF6251CCCE7150065F20E /* TextTableViewCell.m in Sources */,
 				FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */,
-				FCFD3AE61CDC41D400C31544 /* ListLogSM.m in Sources */,
 				FC64C9201CB25070004E874F /* CellArrowItem.m in Sources */,
 				FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */,
 				FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */,
