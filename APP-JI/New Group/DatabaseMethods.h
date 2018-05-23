@@ -15,5 +15,6 @@
 - (void) editQuestion:(NSString *)question andType:(int)JiType;
 - (void) deleteQuestion:(NSString *)question;
 - (void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question;
+- (BOOL)isQuestionRepeated:(NSString *)question;
 
 @end

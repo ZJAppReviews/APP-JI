@@ -162,5 +162,32 @@
     }
 
 
+- (BOOL)isQuestionRepeated:(NSString *)question{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return true ;
+    }else
+        NSLog(@"db opened");
+    //建立table
+    if (![db tableExists:@"DataList"]) {
+        
+        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
+        NSLog(@"Creat table DataList succeed!");
+    }
+    //查找
+    NSString *result = [db stringForQuery:@"SELECT Question FROM DataList WHERE Question = ?",question];
+    if (result) {
+        return true;
+    }
+    [db close];
+    return false;
+
+}
+
 @end
 

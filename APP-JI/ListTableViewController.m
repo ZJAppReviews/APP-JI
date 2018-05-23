@@ -248,11 +248,20 @@
 
 #pragma mark - 导航栏上新建Button事件
 -(void)rightBtnClicked{
-    AddJITableViewController *addTVC = [[AddJITableViewController alloc]init];
+/*    AddJITableViewController *addTVC = [[AddJITableViewController alloc]init];
     addTVC.backTVC = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addTVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:navController animated:YES completion:nil];
+    [self presentViewController:navController animated:YES completion:nil];*/
+    
+    //获取storyboard: 通过bundle根据storyboard的名字来获取我们的storyboard,
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"NewTheme" bundle:[NSBundle mainBundle]];
+    
+    //由storyboard根据myView的storyBoardID来获取我们要切换的视图
+    UIViewController *newThemeView = [story instantiateViewControllerWithIdentifier:@"newTheme"];
+    
+    //由navigationController推向我们要推向的view
+    [self presentViewController:newThemeView animated:YES completion:nil];
 
 }
 

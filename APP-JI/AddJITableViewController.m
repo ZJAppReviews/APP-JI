@@ -101,9 +101,6 @@
     NSArray *group1 = @[item1,item2];
     
     CellSwitchItem *item3 = [CellSwitchItem itemWithIcon:NULL andTitle:@"开启提醒"];
- //   CellSwitchItem *item4 = [CellSwitchItem itemWithIcon:NULL andTitle:@"在随机的时间提醒"];
-   // CellArrowItem *item5 = [CellArrowItem itemWithIcon:NULL andTitle:@"提醒时间"];
-  //  CellArrowItem *item6 = [CellArrowItem itemWithIcon:NULL andTitle:@"重复"];
     NSArray *group2 = @[item3];
     
     [self.cellData addObject:group1];

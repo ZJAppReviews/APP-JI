@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		50529A2D20AAAF8A004B1A86 /* MainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50529A2C20AAAF89004B1A86 /* MainViewCell.m */; };
 		5058038320B45B72003D33BC /* TextCellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038220B45B71003D33BC /* TextCellBG.png */; };
+		5058038720B57F82003D33BC /* newtheme.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038620B57F81003D33BC /* newtheme.png */; };
+		5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */; };
+		5058039020B59F01003D33BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5058038E20B59F00003D33BC /* Main.storyboard */; };
+		5058039220B5C3BF003D33BC /* random.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039120B5C3BF003D33BC /* random.png */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
 		505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D1220A9CF80002907FF /* AuthenticMethods.m */; };
-		50FB8D3720A5AEF200EC6D25 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */; };
+		50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */; };
 		CAFFA80786B0EDB90EF26BF5 /* libPods-APP-JI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */; };
 		FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1F172B1CB51FB800531356 /* TextCellModel.m */; };
 		FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5617BC1CE88959006EFC65 /* NotificationsMethods.m */; };
@@ -35,7 +39,6 @@
 		FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */; };
 		FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */; };
 		FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F658C1CA834BD00363A24 /* AppDelegate.m */; };
-		FC9F65931CA834BD00363A24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65911CA834BD00363A24 /* Main.storyboard */; };
 		FC9F65951CA834BD00363A24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65941CA834BD00363A24 /* Assets.xcassets */; };
 		FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */; };
 		FC9F65A31CA834BD00363A24 /* APP_JITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65A21CA834BD00363A24 /* APP_JITests.m */; };
@@ -75,13 +78,18 @@
 		50529A2B20AAAF89004B1A86 /* MainViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewCell.h; sourceTree = "<group>"; };
 		50529A2C20AAAF89004B1A86 /* MainViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewCell.m; sourceTree = "<group>"; };
 		5058038220B45B71003D33BC /* TextCellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextCellBG.png; sourceTree = "<group>"; };
+		5058038620B57F81003D33BC /* newtheme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newtheme.png; sourceTree = "<group>"; };
+		5058038B20B594B2003D33BC /* NewThemeSetTitleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeSetTitleTableViewController.h; sourceTree = "<group>"; };
+		5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeSetTitleTableViewController.m; sourceTree = "<group>"; };
+		5058038F20B59F00003D33BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5058039120B5C3BF003D33BC /* random.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = random.png; sourceTree = "<group>"; };
 		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		505A2D1120A9CF80002907FF /* AuthenticMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticMethods.h; sourceTree = "<group>"; };
 		505A2D1220A9CF80002907FF /* AuthenticMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticMethods.m; sourceTree = "<group>"; };
 		5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APP-JI.entitlements"; sourceTree = "<group>"; };
-		50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTheme.storyboard; sourceTree = "<group>"; };
 		866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.release.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.release.xcconfig"; sourceTree = "<group>"; };
 		FC1F172A1CB51FB800531356 /* TextCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCellModel.h; sourceTree = "<group>"; };
 		FC1F172B1CB51FB800531356 /* TextCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCellModel.m; sourceTree = "<group>"; };
@@ -116,7 +124,6 @@
 		FC9F65851CA834BD00363A24 /* APP-JI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APP-JI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9F658B1CA834BD00363A24 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC9F658C1CA834BD00363A24 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FC9F65921CA834BD00363A24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC9F65941CA834BD00363A24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC9F65971CA834BD00363A24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC9F65991CA834BD00363A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -250,6 +257,7 @@
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
+				5058038E20B59F00003D33BC /* Main.storyboard */,
 				505A2D0F20A9B610002907FF /* main.m */,
 				FC8C3E9C1CA93B8B00E3AAC6 /* AddJITableViewController.h */,
 				FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */,
@@ -261,7 +269,9 @@
 				FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */,
 				FCCCF6301CD1F65C0065F20E /* TextLogTableViewController.h */,
 				FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */,
-				FC9F65911CA834BD00363A24 /* Main.storyboard */,
+				50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */,
+				5058038B20B594B2003D33BC /* NewThemeSetTitleTableViewController.h */,
+				5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */,
 				FC9F65941CA834BD00363A24 /* Assets.xcassets */,
 				FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */,
 				FC9F65991CA834BD00363A24 /* Info.plist */,
@@ -273,9 +283,11 @@
 		FC9F65881CA834BD00363A24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5058038620B57F81003D33BC /* newtheme.png */,
 				FC8253991CECAE9D00E6ED38 /* ji.png */,
 				FC82900F1CF1A37E00ACB26B /* firstin.png */,
 				FC8290111CF1A38B00ACB26B /* firstin2.png */,
+				5058039120B5C3BF003D33BC /* random.png */,
 				FC8290131CF1A39C00ACB26B /* start.png */,
 				FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */,
 				FCCCF6481CD2EB350065F20E /* TextViewBGC.png */,
@@ -351,7 +363,6 @@
 				FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */,
 				FCCCF6351CD1FC270065F20E /* LogListCell */,
 				FCAA59791CB410A500E41A8D /* ListCell */,
-				50FB8D3620A5AEF200EC6D25 /* Setting.storyboard */,
 			);
 			name = "AddModel & Cell";
 			path = "Model and DataBase";
@@ -425,7 +436,7 @@
 				TargetAttributes = {
 					FC9F65841CA834BD00363A24 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = T97FFXXX75;
+						DevelopmentTeam = 79G8F42F56;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -481,15 +492,17 @@
 				FCCCF64B1CD2FCD60065F20E /* CellBGC2.png in Resources */,
 				FCCCF6491CD2EB350065F20E /* TextViewBGC.png in Resources */,
 				FC8253981CECA1BA00E6ED38 /* back.png in Resources */,
-				50FB8D3720A5AEF200EC6D25 /* Setting.storyboard in Resources */,
+				50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */,
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,
+				5058039220B5C3BF003D33BC /* random.png in Resources */,
 				FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */,
 				FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */,
 				FC8290141CF1A39C00ACB26B /* start.png in Resources */,
 				FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */,
 				FC9F65951CA834BD00363A24 /* Assets.xcassets in Resources */,
+				5058039020B59F01003D33BC /* Main.storyboard in Resources */,
 				FC8290101CF1A37E00ACB26B /* firstin.png in Resources */,
-				FC9F65931CA834BD00363A24 /* Main.storyboard in Resources */,
+				5058038720B57F82003D33BC /* newtheme.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +568,7 @@
 				FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */,
 				FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */,
 				FC64C9271CB26174004E874F /* ListTableViewController.m in Sources */,
+				5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */,
 				FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */,
 				505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */,
 			);
@@ -592,10 +606,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FC9F65911CA834BD00363A24 /* Main.storyboard */ = {
+		5058038E20B59F00003D33BC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC9F65921CA834BD00363A24 /* Base */,
+				5058038F20B59F00003D33BC /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -660,6 +674,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -718,6 +733,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "APP-JI/APP-JI.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 79G8F42F56;
 				INFOPLIST_FILE = "APP-JI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -734,6 +750,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "APP-JI/APP-JI.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 79G8F42F56;
 				INFOPLIST_FILE = "APP-JI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
