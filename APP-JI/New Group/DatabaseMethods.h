@@ -11,7 +11,7 @@
 @interface DatabaseMethods : NSObject
 
 - (void) initDatabaseAction;
-- (void) addQuestion:(NSString *)question andType:(int)JiType;
+- (void) addQuestion:(NSString *)question andType:(NSString *)type;
 - (void) editQuestion:(NSString *)question andType:(int)JiType;
 - (void) deleteQuestion:(NSString *)question;
 - (void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question;

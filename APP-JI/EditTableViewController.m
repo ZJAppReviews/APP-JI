@@ -172,7 +172,7 @@
     if (_textItem.notifi) {
         NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
         [notifimethod cancelNotification:question];
-        [notifimethod setUserNotification:question withDate:_notificationTime andType:_textItem.type];
+ //       [notifimethod setUserNotification:question withDate:_notificationTime andType:_textItem.type];
         }
 
     //成功记录了问题和问题类型

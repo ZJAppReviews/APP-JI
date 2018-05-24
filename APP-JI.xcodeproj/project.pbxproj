@@ -13,6 +13,17 @@
 		5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */; };
 		5058039020B59F01003D33BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5058038E20B59F00003D33BC /* Main.storyboard */; };
 		5058039220B5C3BF003D33BC /* random.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039120B5C3BF003D33BC /* random.png */; };
+		5058039820B67E89003D33BC /* NewThemeSetTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058039720B67E89003D33BC /* NewThemeSetTypeTableViewController.m */; };
+		505803A320B695C2003D33BC /* videoBtnSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039D20B695B3003D33BC /* videoBtnSelected.png */; };
+		505803A420B695C4003D33BC /* videoBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803A020B695B4003D33BC /* videoBtnGeneral.png */; };
+		505803A520B695C7003D33BC /* textBtnSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039E20B695B3003D33BC /* textBtnSelected.png */; };
+		505803A620B695C9003D33BC /* textBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039F20B695B3003D33BC /* textBtnGeneral.png */; };
+		505803A720B695CB003D33BC /* switchBtnSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039C20B695B3003D33BC /* switchBtnSelected.png */; };
+		505803A820B695CE003D33BC /* switchBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039B20B695B2003D33BC /* switchBtnGeneral.png */; };
+		505803A920B695D1003D33BC /* photoBtnSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803A220B695B4003D33BC /* photoBtnSelected.png */; };
+		505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803A120B695B4003D33BC /* photoBtnGeneral.png */; };
+		505803AD20B6A2CB003D33BC /* newNotification.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803AC20B6A2CB003D33BC /* newNotification.png */; };
+		505803B020B6A341003D33BC /* NewThemeNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
 		505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D1220A9CF80002907FF /* AuthenticMethods.m */; };
@@ -32,7 +43,6 @@
 		FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290111CF1A38B00ACB26B /* firstin2.png */; };
 		FC8290141CF1A39C00ACB26B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290131CF1A39C00ACB26B /* start.png */; };
 		FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */; };
-		FC8C3E9E1CA93B8B00E3AAC6 /* AddJITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */; };
 		FC8C3EA21CA9402700E3AAC6 /* NoDataVC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */; };
 		FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */; };
 		FC8C3EA61CA949E200E3AAC6 /* AddNewJI.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA51CA949E200E3AAC6 /* AddNewJI.png */; };
@@ -83,6 +93,19 @@
 		5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeSetTitleTableViewController.m; sourceTree = "<group>"; };
 		5058038F20B59F00003D33BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5058039120B5C3BF003D33BC /* random.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = random.png; sourceTree = "<group>"; };
+		5058039620B67E89003D33BC /* NewThemeSetTypeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeSetTypeTableViewController.h; sourceTree = "<group>"; };
+		5058039720B67E89003D33BC /* NewThemeSetTypeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeSetTypeTableViewController.m; sourceTree = "<group>"; };
+		5058039B20B695B2003D33BC /* switchBtnGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchBtnGeneral.png; sourceTree = "<group>"; };
+		5058039C20B695B3003D33BC /* switchBtnSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchBtnSelected.png; sourceTree = "<group>"; };
+		5058039D20B695B3003D33BC /* videoBtnSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoBtnSelected.png; sourceTree = "<group>"; };
+		5058039E20B695B3003D33BC /* textBtnSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBtnSelected.png; sourceTree = "<group>"; };
+		5058039F20B695B3003D33BC /* textBtnGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textBtnGeneral.png; sourceTree = "<group>"; };
+		505803A020B695B4003D33BC /* videoBtnGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoBtnGeneral.png; sourceTree = "<group>"; };
+		505803A120B695B4003D33BC /* photoBtnGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBtnGeneral.png; sourceTree = "<group>"; };
+		505803A220B695B4003D33BC /* photoBtnSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBtnSelected.png; sourceTree = "<group>"; };
+		505803AC20B6A2CB003D33BC /* newNotification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newNotification.png; sourceTree = "<group>"; };
+		505803AE20B6A341003D33BC /* NewThemeNotificationTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeNotificationTableViewController.h; sourceTree = "<group>"; };
+		505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeNotificationTableViewController.m; sourceTree = "<group>"; };
 		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -113,8 +136,6 @@
 		FC8290131CF1A39C00ACB26B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewController.h; sourceTree = "<group>"; };
 		FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewController.m; sourceTree = "<group>"; };
-		FC8C3E9C1CA93B8B00E3AAC6 /* AddJITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJITableViewController.h; sourceTree = "<group>"; };
-		FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJITableViewController.m; sourceTree = "<group>"; };
 		FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoDataVC.png; sourceTree = "<group>"; };
 		FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewBGC.png; sourceTree = "<group>"; };
 		FC8C3EA51CA949E200E3AAC6 /* AddNewJI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddNewJI.png; sourceTree = "<group>"; };
@@ -187,6 +208,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		505803AB20B695E7003D33BC /* newBtn */ = {
+			isa = PBXGroup;
+			children = (
+				505803A220B695B4003D33BC /* photoBtnSelected.png */,
+				5058039B20B695B2003D33BC /* switchBtnGeneral.png */,
+				5058039C20B695B3003D33BC /* switchBtnSelected.png */,
+				5058039F20B695B3003D33BC /* textBtnGeneral.png */,
+				5058039E20B695B3003D33BC /* textBtnSelected.png */,
+				505803A020B695B4003D33BC /* videoBtnGeneral.png */,
+				5058039D20B695B3003D33BC /* videoBtnSelected.png */,
+				505803A120B695B4003D33BC /* photoBtnGeneral.png */,
+			);
+			name = newBtn;
+			sourceTree = "<group>";
+		};
+		505803B120B6A384003D33BC /* NewTheme */ = {
+			isa = PBXGroup;
+			children = (
+				50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */,
+				5058038B20B594B2003D33BC /* NewThemeSetTitleTableViewController.h */,
+				5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */,
+				5058039620B67E89003D33BC /* NewThemeSetTypeTableViewController.h */,
+				5058039720B67E89003D33BC /* NewThemeSetTypeTableViewController.m */,
+				505803AE20B6A341003D33BC /* NewThemeNotificationTableViewController.h */,
+				505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */,
+			);
+			path = NewTheme;
+			sourceTree = "<group>";
+		};
 		505A2D0E20A9A888002907FF /* DBMethods */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,13 +304,12 @@
 				505A2D1420A9CF85002907FF /* AuthMethods */,
 				505A2D0E20A9A888002907FF /* DBMethods */,
 				FC5617BA1CE8892F006EFC65 /* Notification */,
+				505803B120B6A384003D33BC /* NewTheme */,
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
 				5058038E20B59F00003D33BC /* Main.storyboard */,
 				505A2D0F20A9B610002907FF /* main.m */,
-				FC8C3E9C1CA93B8B00E3AAC6 /* AddJITableViewController.h */,
-				FC8C3E9D1CA93B8B00E3AAC6 /* AddJITableViewController.m */,
 				FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */,
 				FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */,
 				FC64C9251CB26174004E874F /* ListTableViewController.h */,
@@ -269,9 +318,6 @@
 				FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */,
 				FCCCF6301CD1F65C0065F20E /* TextLogTableViewController.h */,
 				FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */,
-				50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */,
-				5058038B20B594B2003D33BC /* NewThemeSetTitleTableViewController.h */,
-				5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */,
 				FC9F65941CA834BD00363A24 /* Assets.xcassets */,
 				FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */,
 				FC9F65991CA834BD00363A24 /* Info.plist */,
@@ -283,7 +329,9 @@
 		FC9F65881CA834BD00363A24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				505803AB20B695E7003D33BC /* newBtn */,
 				5058038620B57F81003D33BC /* newtheme.png */,
+				505803AC20B6A2CB003D33BC /* newNotification.png */,
 				FC8253991CECAE9D00E6ED38 /* ji.png */,
 				FC82900F1CF1A37E00ACB26B /* firstin.png */,
 				FC8290111CF1A38B00ACB26B /* firstin2.png */,
@@ -488,21 +536,30 @@
 				FC8C3EA21CA9402700E3AAC6 /* NoDataVC.png in Resources */,
 				FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */,
 				FCCCF62C1CD069540065F20E /* CellBGC.png in Resources */,
+				505803A820B695CE003D33BC /* switchBtnGeneral.png in Resources */,
 				FC8C3EA61CA949E200E3AAC6 /* AddNewJI.png in Resources */,
+				505803A620B695C9003D33BC /* textBtnGeneral.png in Resources */,
 				FCCCF64B1CD2FCD60065F20E /* CellBGC2.png in Resources */,
+				505803A720B695CB003D33BC /* switchBtnSelected.png in Resources */,
 				FCCCF6491CD2EB350065F20E /* TextViewBGC.png in Resources */,
+				505803A320B695C2003D33BC /* videoBtnSelected.png in Resources */,
 				FC8253981CECA1BA00E6ED38 /* back.png in Resources */,
 				50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */,
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,
 				5058039220B5C3BF003D33BC /* random.png in Resources */,
+				505803A520B695C7003D33BC /* textBtnSelected.png in Resources */,
+				505803A920B695D1003D33BC /* photoBtnSelected.png in Resources */,
 				FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */,
 				FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */,
+				505803AD20B6A2CB003D33BC /* newNotification.png in Resources */,
+				505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */,
 				FC8290141CF1A39C00ACB26B /* start.png in Resources */,
 				FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */,
 				FC9F65951CA834BD00363A24 /* Assets.xcassets in Resources */,
 				5058039020B59F01003D33BC /* Main.storyboard in Resources */,
 				FC8290101CF1A37E00ACB26B /* firstin.png in Resources */,
 				5058038720B57F82003D33BC /* newtheme.png in Resources */,
+				505803A420B695C4003D33BC /* videoBtnGeneral.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +608,6 @@
 				FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */,
 				FCCCF63E1CD1FCD60065F20E /* LogTextCellModel.m in Sources */,
 				FCCCF6471CD1FD170065F20E /* LogTextTableViewCell.m in Sources */,
-				FC8C3E9E1CA93B8B00E3AAC6 /* AddJITableViewController.m in Sources */,
 				FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */,
 				FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */,
 				505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */,
@@ -565,9 +621,11 @@
 				FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */,
 				50529A2D20AAAF8A004B1A86 /* MainViewCell.m in Sources */,
 				FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */,
+				5058039820B67E89003D33BC /* NewThemeSetTypeTableViewController.m in Sources */,
 				FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */,
 				FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */,
 				FC64C9271CB26174004E874F /* ListTableViewController.m in Sources */,
+				505803B020B6A341003D33BC /* NewThemeNotificationTableViewController.m in Sources */,
 				5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */,
 				FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */,
 				505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */,

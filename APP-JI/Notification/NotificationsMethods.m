@@ -12,7 +12,7 @@
 
 @implementation NotificationsMethods
 
-- (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType {
+- (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(NSString *)questionType {
 
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
 
@@ -30,12 +30,12 @@
     content.badge = @1;
     
     //添加快捷响应方法
-    if (JiType == 1){
+    if ([questionType isEqualToString:@"switch"]){
         UNNotificationAction *answerYes = [UNNotificationAction actionWithIdentifier:@"yes" title:@"是" options:UNNotificationActionOptionNone];
         UNNotificationAction *answerNo = [UNNotificationAction actionWithIdentifier:@"no" title:@"不是" options:UNNotificationActionOptionNone];
         UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:question actions:@[answerYes,answerNo] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];
-    }else if (JiType == 0){
+    }else if ([questionType isEqualToString:@"text"]){
         UNTextInputNotificationAction *answerText =[UNTextInputNotificationAction actionWithIdentifier:@"answerText" title:@"记录" options:UNNotificationActionOptionNone textInputButtonTitle:@"记录" textInputPlaceholder:@"" ];
         UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:question actions:@[answerText] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
         [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:[NSSet setWithArray:@[category]]];

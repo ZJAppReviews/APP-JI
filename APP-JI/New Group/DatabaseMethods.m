@@ -100,13 +100,42 @@
 }
 
 
--(void) addQuestion:(NSString *)question andType:(int)JiType{
-
+- (void) editQuestion:(NSString *)question andType:(int)JiType{
+    
 }
 
--(void) editQuestion:(NSString *)question andType:(int)JiType{
+#pragma mark - 新增主题
 
+-(void) addQuestion:(NSString *)question andType:(NSString *)type{
+    
+    // 建立资料库
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return ;
+    }else
+        NSLog(@"db opened");
+    //建立table
+    if (![db tableExists:@"DataList"]) {
+        
+        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
+        NSLog(@"Creat table DataList succeed!");
+    }
+
+
+    [db executeUpdate:@"INSERT INTO DataList (Question, Type) VALUES (?,?)",question,type];
+
+    [db close];
+    
 }
+
+
+
+#pragma mark - 删除主题
 
 -(void) deleteQuestion:(NSString *)question{
     // 建立资料库
@@ -125,6 +154,11 @@
     [db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
     [db close];
 }
+
+
+
+
+#pragma mark - 添加记录
 
 -(void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question {
 
@@ -161,6 +195,9 @@
     
     }
 
+
+
+#pragma mark - 判断主题标题是否重复
 
 - (BOOL)isQuestionRepeated:(NSString *)question{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

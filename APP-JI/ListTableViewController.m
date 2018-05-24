@@ -9,7 +9,6 @@
 
 #import "ListTableViewController.h"
 #import "TextCellModel.h"
-#import "AddJITableViewController.h"
 #import "TextLogTableViewController.h"
 #import "SwitchLogTableViewController.h"
 #import "FMDB.h"
@@ -30,7 +29,6 @@
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) UIButton *addJIBtn;
 @property (nonatomic,strong) UIImageView *noDataImgV;
-@property (nonatomic) BOOL unAuthented;
 
 @end
 
@@ -39,13 +37,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _unAuthented=1;
     
     self.tableView.dataSource = self;
     
+    //设置页面样式
     self.title = @"壹日壹纪";
     self.view.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //添加按钮
@@ -59,8 +56,12 @@
     //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
 
     [self.tableView registerClass:[MainViewCell class] forCellReuseIdentifier:[MainViewCell ID]];
-    [self refreshUI];
 
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self refreshUI];
+    return;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -248,19 +249,9 @@
 
 #pragma mark - 导航栏上新建Button事件
 -(void)rightBtnClicked{
-/*    AddJITableViewController *addTVC = [[AddJITableViewController alloc]init];
-    addTVC.backTVC = self;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addTVC];
-        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:navController animated:YES completion:nil];*/
-    
-    //获取storyboard: 通过bundle根据storyboard的名字来获取我们的storyboard,
+
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"NewTheme" bundle:[NSBundle mainBundle]];
-    
-    //由storyboard根据myView的storyBoardID来获取我们要切换的视图
     UIViewController *newThemeView = [story instantiateViewControllerWithIdentifier:@"newTheme"];
-    
-    //由navigationController推向我们要推向的view
     [self presentViewController:newThemeView animated:YES completion:nil];
 
 }

@@ -11,7 +11,7 @@
 
 @interface NotificationsMethods : NSObject
 
-- (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(int)JiType;
+- (BOOL)setUserNotification:(NSString *)question withDate:(NSDateComponents *)UNTime andType:(NSString *)JiType;
 - (BOOL)cancelNotification:(NSString *)question;
 
 

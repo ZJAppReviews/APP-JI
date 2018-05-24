@@ -8,11 +8,13 @@
 
 #import "NewThemeSetTitleTableViewController.h"
 #import "DatabaseMethods.h"
+#import "NewThemeSetTypeTableViewController.h"
 
 @interface NewThemeSetTitleTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *questionTF;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
+@property (nonatomic,strong) NSString *questionStr;
 
 @end
 
@@ -30,21 +32,19 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
     [self doneTyping];
     return YES;
-
 }
 
 
 -(void)doneTyping{
-    NSString *questionStr = [_questionTF text];
-    if([questionStr isEqualToString:@""]){
+    _questionStr = [_questionTF text];
+    if([_questionStr isEqualToString:@""]){
         [self aleartWithError:@"请填写主题"];
         return;
     }
     DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
-    if([dbmethod isQuestionRepeated:questionStr]){
+    if([dbmethod isQuestionRepeated:_questionStr]){
         [self aleartWithError:@"已存在同名称主题，请修改后重试。"];
         return;
     }
@@ -61,6 +61,11 @@
     return;
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"Theme2Type"]){
+        NewThemeSetTypeTableViewController *setTypeController = segue.destinationViewController;
+        setTypeController.questionStr = _questionStr;
+    }
+}
 
 @end

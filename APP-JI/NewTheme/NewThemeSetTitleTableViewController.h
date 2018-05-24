@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListTableViewController.h"
 
 @interface NewThemeSetTitleTableViewController : UITableViewController<UITextFieldDelegate>
+
 
 @end
