@@ -24,6 +24,9 @@
 		505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803A120B695B4003D33BC /* photoBtnGeneral.png */; };
 		505803AD20B6A2CB003D33BC /* newNotification.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803AC20B6A2CB003D33BC /* newNotification.png */; };
 		505803B020B6A341003D33BC /* NewThemeNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */; };
+		505803B920B87D10003D33BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 505803B820B87D0F003D33BC /* Assets.xcassets */; };
+		505803BB20B93E71003D33BC /* PasswordView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505803BA20B93E71003D33BC /* PasswordView.storyboard */; };
+		5058040020B9A23B003D33BC /* PasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
 		505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D1220A9CF80002907FF /* AuthenticMethods.m */; };
@@ -49,7 +52,6 @@
 		FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */; };
 		FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */; };
 		FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F658C1CA834BD00363A24 /* AppDelegate.m */; };
-		FC9F65951CA834BD00363A24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65941CA834BD00363A24 /* Assets.xcassets */; };
 		FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */; };
 		FC9F65A31CA834BD00363A24 /* APP_JITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65A21CA834BD00363A24 /* APP_JITests.m */; };
 		FC9F65AE1CA834BD00363A24 /* APP_JIUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65AD1CA834BD00363A24 /* APP_JIUITests.m */; };
@@ -106,6 +108,10 @@
 		505803AC20B6A2CB003D33BC /* newNotification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newNotification.png; sourceTree = "<group>"; };
 		505803AE20B6A341003D33BC /* NewThemeNotificationTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeNotificationTableViewController.h; sourceTree = "<group>"; };
 		505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeNotificationTableViewController.m; sourceTree = "<group>"; };
+		505803B820B87D0F003D33BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		505803BA20B93E71003D33BC /* PasswordView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordView.storyboard; sourceTree = "<group>"; };
+		505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTableViewController.swift; sourceTree = "<group>"; };
+		5058040120B9A30E003D33BC /* APP-JI-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "APP-JI-Bridging-Header.h"; path = "../APP-JI-Bridging-Header.h"; sourceTree = "<group>"; };
 		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -145,7 +151,6 @@
 		FC9F65851CA834BD00363A24 /* APP-JI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APP-JI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9F658B1CA834BD00363A24 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC9F658C1CA834BD00363A24 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FC9F65941CA834BD00363A24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC9F65971CA834BD00363A24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC9F65991CA834BD00363A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9F659E1CA834BD00363A24 /* APP-JITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APP-JITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,8 +255,11 @@
 		505A2D1420A9CF85002907FF /* AuthMethods */ = {
 			isa = PBXGroup;
 			children = (
+				5058040120B9A30E003D33BC /* APP-JI-Bridging-Header.h */,
 				505A2D1120A9CF80002907FF /* AuthenticMethods.h */,
 				505A2D1220A9CF80002907FF /* AuthenticMethods.m */,
+				505803BA20B93E71003D33BC /* PasswordView.storyboard */,
+				505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */,
 			);
 			path = AuthMethods;
 			sourceTree = "<group>";
@@ -318,8 +326,8 @@
 				FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */,
 				FCCCF6301CD1F65C0065F20E /* TextLogTableViewController.h */,
 				FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */,
-				FC9F65941CA834BD00363A24 /* Assets.xcassets */,
 				FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */,
+				505803B820B87D0F003D33BC /* Assets.xcassets */,
 				FC9F65991CA834BD00363A24 /* Info.plist */,
 				FC9F65881CA834BD00363A24 /* Supporting Files */,
 			);
@@ -485,6 +493,8 @@
 					FC9F65841CA834BD00363A24 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 79G8F42F56;
+						LastSwiftMigration = 0930;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -545,17 +555,18 @@
 				505803A320B695C2003D33BC /* videoBtnSelected.png in Resources */,
 				FC8253981CECA1BA00E6ED38 /* back.png in Resources */,
 				50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */,
+				505803BB20B93E71003D33BC /* PasswordView.storyboard in Resources */,
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,
 				5058039220B5C3BF003D33BC /* random.png in Resources */,
 				505803A520B695C7003D33BC /* textBtnSelected.png in Resources */,
 				505803A920B695D1003D33BC /* photoBtnSelected.png in Resources */,
 				FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */,
+				505803B920B87D10003D33BC /* Assets.xcassets in Resources */,
 				FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */,
 				505803AD20B6A2CB003D33BC /* newNotification.png in Resources */,
 				505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */,
 				FC8290141CF1A39C00ACB26B /* start.png in Resources */,
 				FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */,
-				FC9F65951CA834BD00363A24 /* Assets.xcassets in Resources */,
 				5058039020B59F01003D33BC /* Main.storyboard in Resources */,
 				FC8290101CF1A37E00ACB26B /* firstin.png in Resources */,
 				5058038720B57F82003D33BC /* newtheme.png in Resources */,
@@ -629,6 +640,7 @@
 				5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */,
 				FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */,
 				505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */,
+				5058040020B9A23B003D33BC /* PasswordTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,7 +722,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: huang0623@foxmail.com (RA2SVFBUZJ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -732,8 +744,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = DailyLog;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI-Bridging-Header";
 			};
 			name = Debug;
 		};
@@ -764,7 +778,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: huang0623@foxmail.com (RA2SVFBUZJ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -779,7 +793,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = DailyLog;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI-Bridging-Header";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -789,14 +805,21 @@
 			baseConfigurationReference = 4BF36C322CE8CD3A5D19A05A /* Pods-APP-JI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "APP-JI/APP-JI.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79G8F42F56;
 				INFOPLIST_FILE = "APP-JI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.DailyLogging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.DailyLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI/AuthMethods/APP-JI-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -806,14 +829,19 @@
 			baseConfigurationReference = 866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "APP-JI/APP-JI.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79G8F42F56;
 				INFOPLIST_FILE = "APP-JI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.DailyLogging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.DailyLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI/AuthMethods/APP-JI-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -821,6 +849,7 @@
 		FC9F65B61CA834BD00363A24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "APP-JITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -833,6 +862,7 @@
 		FC9F65B71CA834BD00363A24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "APP-JITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -845,6 +875,7 @@
 		FC9F65B91CA834BD00363A24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "APP-JIUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thinkofsomethingclever.APP-JIUITests";
@@ -857,6 +888,7 @@
 		FC9F65BA1CA834BD00363A24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "APP-JIUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thinkofsomethingclever.APP-JIUITests";

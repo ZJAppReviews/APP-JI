@@ -47,8 +47,7 @@
     
     //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClicked)];
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:nil];
-    leftBtn.enabled = NO;
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setBtnClicked)];
     self.navigationItem.leftBarButtonItem = leftBtn;
     self.navigationItem.rightBarButtonItem = rightBtn;
     
@@ -256,6 +255,13 @@
 
 }
 
+-(void)setBtnClicked{
+    
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"PasswordView" bundle:[NSBundle mainBundle]];
+    UIViewController *newThemeView = [story instantiateViewControllerWithIdentifier:@"inputPassword"];
+    [self presentViewController:newThemeView animated:YES completion:nil];
+    
+}
 
 
 #pragma mark - Text&Switch CellDelegate

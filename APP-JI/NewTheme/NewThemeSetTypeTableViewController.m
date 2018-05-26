@@ -16,6 +16,18 @@
 @property (weak, nonatomic) IBOutlet UIButton *videoType;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextStep;
 @property (nonatomic,strong) NSString *typeStr;
+@property (weak, nonatomic) IBOutlet UILabel *switchBG;
+@property (weak, nonatomic) IBOutlet UILabel *switchLab;
+@property (weak, nonatomic) IBOutlet UILabel *textBG;
+@property (weak, nonatomic) IBOutlet UILabel *textLaB;
+@property (weak, nonatomic) IBOutlet UILabel *photoLab;
+@property (weak, nonatomic) IBOutlet UILabel *photoBG;
+@property (weak, nonatomic) IBOutlet UILabel *videoLab;
+@property (weak, nonatomic) IBOutlet UILabel *videoBG;
+@property (strong, nonatomic) NSArray *describeLab;
+@property (strong, nonatomic) NSArray *describeBG;
+@property (strong, nonatomic) NSArray *describeBtn;
+
 
 @end
 
@@ -36,6 +48,15 @@
     [_videoType addTarget:self action:@selector(BtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_videoType setImage:[UIImage imageNamed:@"videoBtnSelected"] forState:UIControlStateSelected];
     
+    _describeLab = [[NSArray alloc] initWithObjects:_switchLab,_textLaB,_photoLab,_videoLab,nil];
+    _describeBG = [[NSArray alloc] initWithObjects:_switchBG,_textBG,_photoBG,_videoBG,nil];
+    _describeBtn =[[NSArray alloc] initWithObjects:_switchType,_textType,_photoType,_videoType, nil];
+    
+    for (UILabel * obj in _describeBG){
+        [obj.layer setCornerRadius:17];
+        obj.layer.masksToBounds = YES;
+    }
+    
     _nextStep.enabled = false;
 }
 
@@ -50,25 +71,41 @@
 
 -(void)BtnClicked:(UIButton *)button{
 
-    _textType.selected = false;
-    _switchType.selected = false;
-    _photoType.selected = false;
-    _videoType.selected = false;
+    for (UIButton *Btn in _describeBtn){
+        Btn.selected = false;
+        Btn.enabled = true;
+    }
+    
+    for (UILabel *lab in _describeBG){
+        lab.backgroundColor = [UIColor whiteColor];
+    }
+    
+    for (UILabel *lab in _describeLab){
+        lab.textColor = [UIColor blackColor];
+    }
     
     button.selected = true;
     _nextStep.enabled =true;
     
     if(button == _textType){
         _typeStr = @"text";
+        _textLaB.textColor = [UIColor whiteColor];
+        _textBG.backgroundColor = [UIColor colorWithRed:168/255.0 green:135/255.0 blue:0 alpha:1];
     }
     if(button == _switchType){
         _typeStr = @"switch";
+        _switchLab.textColor = [UIColor whiteColor];
+        _switchBG.backgroundColor = [UIColor colorWithRed:168/255.0 green:135/255.0 blue:0 alpha:1];
     }
     if(button == _photoType){
         _typeStr = @"photo";
+        _photoLab.textColor = [UIColor whiteColor];
+        _photoBG.backgroundColor = [UIColor colorWithRed:168/255.0 green:135/255.0 blue:0 alpha:1];
     }
     if(button == _videoType){
         _typeStr = @"video";
+        _videoLab.textColor = [UIColor whiteColor];
+        _videoBG.backgroundColor = [UIColor colorWithRed:168/255.0 green:135/255.0 blue:0 alpha:1];
     }
     
     return;
