@@ -257,8 +257,8 @@
 
 -(void)setBtnClicked{
     
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"PasswordView" bundle:[NSBundle mainBundle]];
-    UIViewController *newThemeView = [story instantiateViewControllerWithIdentifier:@"inputPassword"];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Setting" bundle:[NSBundle mainBundle]];
+    UIViewController *newThemeView = [story instantiateViewControllerWithIdentifier:@"SettingNavigationController"];
     [self presentViewController:newThemeView animated:YES completion:nil];
     
 }

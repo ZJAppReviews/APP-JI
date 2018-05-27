@@ -11,6 +11,9 @@
 
 @implementation DatabaseMethods
 
+
+#pragma mark - 初始化操作
+
 - (void) initDatabaseAction{
     //获取当前日期
     NSDate *currentDate = [NSDate date];
@@ -100,11 +103,7 @@
 }
 
 
-- (void) editQuestion:(NSString *)question andType:(int)JiType{
-    
-}
-
-#pragma mark - 新增主题
+#pragma mark - 主题操作
 
 -(void) addQuestion:(NSString *)question andType:(NSString *)type{
     
@@ -133,10 +132,6 @@
     
 }
 
-
-
-#pragma mark - 删除主题
-
 -(void) deleteQuestion:(NSString *)question{
     // 建立资料库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -155,10 +150,35 @@
     [db close];
 }
 
+- (BOOL)isQuestionRepeated:(NSString *)question{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return true ;
+    }else
+        NSLog(@"db opened");
+    //建立table
+    if (![db tableExists:@"DataList"]) {
+        
+        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
+        NSLog(@"Creat table DataList succeed!");
+    }
+    //查找
+    NSString *result = [db stringForQuery:@"SELECT Question FROM DataList WHERE Question = ?",question];
+    if (result) {
+        return true;
+    }
+    [db close];
+    return false;
+    
+}
 
 
-
-#pragma mark - 添加记录
+#pragma mark - 记录操作
 
 -(void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question {
 
@@ -195,36 +215,11 @@
     
     }
 
+#pragma mark - 密码操作
+
+//数据库包含 密码：字符串，没有设置密码时字符串内容为“null”，是否打开生物验证，是否在首页进行验证
 
 
-#pragma mark - 判断主题标题是否重复
-
-- (BOOL)isQuestionRepeated:(NSString *)question{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
-    
-    if (![db open]) {
-        NSLog(@"Could not open db.");
-        return true ;
-    }else
-        NSLog(@"db opened");
-    //建立table
-    if (![db tableExists:@"DataList"]) {
-        
-        [db executeUpdate:@"CREATE TABLE DataList (Question text, Type text, AnswerT text)"];
-        NSLog(@"Creat table DataList succeed!");
-    }
-    //查找
-    NSString *result = [db stringForQuery:@"SELECT Question FROM DataList WHERE Question = ?",question];
-    if (result) {
-        return true;
-    }
-    [db close];
-    return false;
-
-}
 
 @end
 

@@ -24,9 +24,11 @@
 		505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803A120B695B4003D33BC /* photoBtnGeneral.png */; };
 		505803AD20B6A2CB003D33BC /* newNotification.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803AC20B6A2CB003D33BC /* newNotification.png */; };
 		505803B020B6A341003D33BC /* NewThemeNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */; };
-		505803B920B87D10003D33BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 505803B820B87D0F003D33BC /* Assets.xcassets */; };
 		505803BB20B93E71003D33BC /* PasswordView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505803BA20B93E71003D33BC /* PasswordView.storyboard */; };
 		5058040020B9A23B003D33BC /* PasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */; };
+		5058040420BA766F003D33BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5058040320BA766F003D33BC /* Assets.xcassets */; };
+		5058040820BADAE2003D33BC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5058040720BADAE2003D33BC /* Setting.storyboard */; };
+		5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058040920BB0C86003D33BC /* SettingNavigationController.swift */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
 		505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D1220A9CF80002907FF /* AuthenticMethods.m */; };
@@ -108,10 +110,12 @@
 		505803AC20B6A2CB003D33BC /* newNotification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newNotification.png; sourceTree = "<group>"; };
 		505803AE20B6A341003D33BC /* NewThemeNotificationTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeNotificationTableViewController.h; sourceTree = "<group>"; };
 		505803AF20B6A341003D33BC /* NewThemeNotificationTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeNotificationTableViewController.m; sourceTree = "<group>"; };
-		505803B820B87D0F003D33BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		505803BA20B93E71003D33BC /* PasswordView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordView.storyboard; sourceTree = "<group>"; };
 		505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTableViewController.swift; sourceTree = "<group>"; };
-		5058040120B9A30E003D33BC /* APP-JI-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "APP-JI-Bridging-Header.h"; path = "../APP-JI-Bridging-Header.h"; sourceTree = "<group>"; };
+		5058040220B9C03F003D33BC /* APP-JI-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APP-JI-Bridging-Header.h"; sourceTree = "<group>"; };
+		5058040320BA766F003D33BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "APP-JI/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
+		5058040720BADAE2003D33BC /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		5058040920BB0C86003D33BC /* SettingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
 		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -242,6 +246,15 @@
 			path = NewTheme;
 			sourceTree = "<group>";
 		};
+		5058040620BADAB7003D33BC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5058040720BADAE2003D33BC /* Setting.storyboard */,
+				5058040920BB0C86003D33BC /* SettingNavigationController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		505A2D0E20A9A888002907FF /* DBMethods */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +268,7 @@
 		505A2D1420A9CF85002907FF /* AuthMethods */ = {
 			isa = PBXGroup;
 			children = (
-				5058040120B9A30E003D33BC /* APP-JI-Bridging-Header.h */,
+				5058040220B9C03F003D33BC /* APP-JI-Bridging-Header.h */,
 				505A2D1120A9CF80002907FF /* AuthenticMethods.h */,
 				505A2D1220A9CF80002907FF /* AuthenticMethods.m */,
 				505803BA20B93E71003D33BC /* PasswordView.storyboard */,
@@ -308,6 +321,7 @@
 		FC9F65871CA834BD00363A24 /* APP-JI */ = {
 			isa = PBXGroup;
 			children = (
+				5058040620BADAB7003D33BC /* Setting */,
 				5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */,
 				505A2D1420A9CF85002907FF /* AuthMethods */,
 				505A2D0E20A9A888002907FF /* DBMethods */,
@@ -316,6 +330,7 @@
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
+				5058040320BA766F003D33BC /* Assets.xcassets */,
 				5058038E20B59F00003D33BC /* Main.storyboard */,
 				505A2D0F20A9B610002907FF /* main.m */,
 				FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */,
@@ -327,7 +342,6 @@
 				FCCCF6301CD1F65C0065F20E /* TextLogTableViewController.h */,
 				FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */,
 				FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */,
-				505803B820B87D0F003D33BC /* Assets.xcassets */,
 				FC9F65991CA834BD00363A24 /* Info.plist */,
 				FC9F65881CA834BD00363A24 /* Supporting Files */,
 			);
@@ -559,9 +573,9 @@
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,
 				5058039220B5C3BF003D33BC /* random.png in Resources */,
 				505803A520B695C7003D33BC /* textBtnSelected.png in Resources */,
+				5058040820BADAE2003D33BC /* Setting.storyboard in Resources */,
 				505803A920B695D1003D33BC /* photoBtnSelected.png in Resources */,
 				FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */,
-				505803B920B87D10003D33BC /* Assets.xcassets in Resources */,
 				FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */,
 				505803AD20B6A2CB003D33BC /* newNotification.png in Resources */,
 				505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */,
@@ -569,6 +583,7 @@
 				FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */,
 				5058039020B59F01003D33BC /* Main.storyboard in Resources */,
 				FC8290101CF1A37E00ACB26B /* firstin.png in Resources */,
+				5058040420BA766F003D33BC /* Assets.xcassets in Resources */,
 				5058038720B57F82003D33BC /* newtheme.png in Resources */,
 				505803A420B695C4003D33BC /* videoBtnGeneral.png in Resources */,
 			);
@@ -618,6 +633,7 @@
 			files = (
 				FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */,
 				FCCCF63E1CD1FCD60065F20E /* LogTextCellModel.m in Sources */,
+				5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */,
 				FCCCF6471CD1FD170065F20E /* LogTextTableViewCell.m in Sources */,
 				FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */,
 				FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */,
