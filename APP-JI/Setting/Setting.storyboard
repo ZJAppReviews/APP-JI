@@ -184,7 +184,7 @@
                         <sections>
                             <tableViewSection id="srj-PK-lMX">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Mjm-h4-krf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Mjm-h4-krf">
                                         <rect key="frame" x="0.0" y="35" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mjm-h4-krf" id="a7G-XA-QuW">
@@ -220,15 +220,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90C-Fs-fgd">
-                                                    <rect key="frame" x="16" y="13" width="70" height="33"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qub-8F-dlA">
+                                                    <rect key="frame" x="16" y="19" width="70" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="更改密码"/>
-                                                </button>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="90C-Fs-fgd" firstAttribute="leading" secondItem="OLm-5d-cg6" secondAttribute="leadingMargin" id="HXx-Cm-6WM"/>
-                                                <constraint firstItem="90C-Fs-fgd" firstAttribute="centerY" secondItem="OLm-5d-cg6" secondAttribute="centerY" id="IMK-dO-Wod"/>
+                                                <constraint firstItem="qub-8F-dlA" firstAttribute="centerY" secondItem="OLm-5d-cg6" secondAttribute="centerY" id="6UJ-wU-egk"/>
+                                                <constraint firstItem="qub-8F-dlA" firstAttribute="leading" secondItem="OLm-5d-cg6" secondAttribute="leadingMargin" id="ror-Uu-I5U"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -239,15 +240,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3y-Oi-e1B">
-                                                    <rect key="frame" x="16" y="13" width="70" height="33"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关闭密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X80-qH-kMg">
+                                                    <rect key="frame" x="16" y="19" width="70" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="关闭密码"/>
-                                                </button>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="M3y-Oi-e1B" firstAttribute="centerY" secondItem="Qjc-fD-GnF" secondAttribute="centerY" id="7d7-hd-hkg"/>
-                                                <constraint firstItem="M3y-Oi-e1B" firstAttribute="leading" secondItem="Qjc-fD-GnF" secondAttribute="leadingMargin" id="F35-rO-vjO"/>
+                                                <constraint firstItem="X80-qH-kMg" firstAttribute="centerY" secondItem="Qjc-fD-GnF" secondAttribute="centerY" id="A3A-vR-La6"/>
+                                                <constraint firstItem="X80-qH-kMg" firstAttribute="leading" secondItem="Qjc-fD-GnF" secondAttribute="leadingMargin" id="zWP-Iu-B92"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -255,7 +257,7 @@
                             </tableViewSection>
                             <tableViewSection id="oKe-Bc-cW3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="h6K-nO-vzz">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="h6K-nO-vzz">
                                         <rect key="frame" x="0.0" y="287" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h6K-nO-vzz" id="Mpe-22-XT4">
@@ -284,7 +286,7 @@
                             </tableViewSection>
                             <tableViewSection footerTitle="关闭该项时，仅在进入记录的详情页面时需要输入密码。" id="F1U-jk-ibO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="ogl-Pk-f1R">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="ogl-Pk-f1R">
                                         <rect key="frame" x="0.0" y="383" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ogl-Pk-f1R" id="4MW-8M-ux2">
@@ -319,6 +321,7 @@
                     </tableView>
                     <connections>
                         <outlet property="passwordEnabledSwtich" destination="kK6-zK-bhB" id="dyc-Yk-iJN"/>
+                        <outlet property="secondCell" destination="LZZ-ap-4dB" id="fv5-cw-cLD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Spi-f6-9uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
