@@ -15,6 +15,7 @@ class PasswordNavigationController : UINavigationController {
         super.viewDidLoad()
     }
     
+    
 }
 
 class PasswordViewController: UIViewController {
@@ -25,6 +26,7 @@ class PasswordViewController: UIViewController {
         super.viewDidLoad()
 
         passwordView.passwordTF.becomeFirstResponder()
+        passwordView.delegate = self
         
     }
     
@@ -34,6 +36,14 @@ class PasswordViewController: UIViewController {
         
     }
     
+    open func setMode(mode:String){
+        if mode == "add"{
+            self.title = "创建密码"
+        }else if mode == "delete"{
+            self.title = "请验证密码"
+        }
+        passwordView.mode = mode
+    }
     
 
 }
@@ -45,28 +55,47 @@ class PasswordView: UIView {
     @IBOutlet var thirdLab: UILabel!
     @IBOutlet var fourthLab: UILabel!
     @IBOutlet var passwordTF: UITextField!
+    var mode = "nil"
+    var tempPassword = "nil"
+    var delegate:PasswordViewController? = nil
     
     @IBAction func editingChanged(_ sender: UITextField) {
         
         switch sender.text?.lengthOfBytes(using: String.Encoding.utf8) {
         case 1:
-            firstLab.isHidden = false
+            firstLab.isHidden = !firstLab.isHidden
         case 2:
-            secondLab.isHidden = false
+            secondLab.isHidden = !secondLab.isHidden
         case 3:
-            thirdLab.isHidden = false
+            thirdLab.isHidden = !thirdLab.isHidden
         case 4:
-            fourthLab.isHidden = false
-            if sender.text == "1234"{
-                self.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                
+            fourthLab.isHidden = !fourthLab.isHidden
+            if mode == "add"{
+                self.delegate!.title = "请再次输入验证"
+                mode = "addAuth"
+                tempPassword = sender.text!
+            }else if mode == "addAuth"{
+                if tempPassword == sender.text!{
+                    UserDefaults.standard.set(sender.text!, forKey: "Password")
+                    self.delegate!.navigationController?.dismiss(animated: true, completion: nil)
+                }else{
+                    let wrongAleart = UIAlertController(title: "两次密码不一致，请重新输入", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    wrongAleart.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: nil))
+                    self.delegate?.navigationController?.present(wrongAleart, animated: true, completion: nil)
+                    self.delegate!.setMode(mode: "add")
+                }
+            }else if mode == "delete"{
+                if sender.text == UserDefaults.standard.string(forKey: "Password"){
+                    UserDefaults.standard.set("none", forKey: "Password")
+                    self.delegate!.navigationController?.dismiss(animated: true, completion: nil)
+                }else{
+                    let wrongAleart = UIAlertController(title: "密码错误，请重试", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    wrongAleart.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: nil))
+                    self.delegate?.navigationController?.present(wrongAleart, animated: true, completion: nil)
+                }
             }
-        case 5:
             sender.text = ""
-            firstLab.isHidden = true
-            secondLab.isHidden = true
-            thirdLab.isHidden = true
-            fourthLab.isHidden = true
+
         default:
             print("some thing went wrong")
         }
