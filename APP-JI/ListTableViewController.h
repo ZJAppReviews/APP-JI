@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SwitchLogTableViewController.h"
 #import "MainViewCell.h"
-#import "AuthenticMethods.h"
 
 
-@interface ListTableViewController : UITableViewController<UITableViewDataSource,MainCellDelegate,AuthenticDelegate>
+
+@interface ListTableViewController : UITableViewController<UITableViewDataSource,MainCellDelegate>
 //协议对象
 -(void) refreshUI;
 -(void) rightBtnClicked;
-//-(void) pushDetailViewWithQuestion:(NSString *)question andType:(NSString *)type;
 
 @end

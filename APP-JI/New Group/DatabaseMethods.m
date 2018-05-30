@@ -177,6 +177,24 @@
     
 }
 
+-(NSString *)getTypeOfQuestion:(NSString *)question{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"JIDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return @"some thing wrong happend" ;
+    }else
+        NSLog(@"db opened");
+    
+    NSString *result = [db stringForQuery:@"SELECT Type FROM DataList WHERE Question = ?",question];
+    if (result) {
+        return result;
+    }
+    return @"some thing wrong happend";
+}
 
 #pragma mark - 记录操作
 
@@ -215,9 +233,7 @@
     
     }
 
-#pragma mark - 密码操作
 
-//数据库包含 密码：字符串，没有设置密码时字符串内容为“null”，是否打开生物验证，是否在首页进行验证
 
 
 

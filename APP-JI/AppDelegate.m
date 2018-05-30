@@ -39,6 +39,14 @@
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     
+    if (![NSUserDefaults.standardUserDefaults stringForKey:@"Password"])
+    {
+        [NSUserDefaults.standardUserDefaults setValue:@"none" forKey:@"Password"];
+        [NSUserDefaults.standardUserDefaults setBool:false forKey:@"PasswordEnabled"];
+        [NSUserDefaults.standardUserDefaults setBool:false forKey:@"FirstAuthEnabled"];
+        [NSUserDefaults.standardUserDefaults setBool:false forKey:@"TouchIDEnabled"];
+    }
+    [NSUserDefaults.standardUserDefaults setBool:false forKey:@"Authed"];
     return YES;
 }
 

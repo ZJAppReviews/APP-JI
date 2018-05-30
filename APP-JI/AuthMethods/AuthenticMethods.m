@@ -18,9 +18,8 @@
 static bool haveAuthented;
 
 
-- (void) authenticWithQuestion:(NSString *)question andType:(NSString *)type{
+- (void) authentic{
     if(haveAuthented){
-        [self.aDelegate pushDetailViewWithQuestion:question andType:type];
         return;
     }else{
         

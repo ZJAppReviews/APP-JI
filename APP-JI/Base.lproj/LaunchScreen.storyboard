@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JQ2-f5-ymQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JQ2-f5-ymQ">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,14 +13,10 @@
         <scene sceneID="uMj-ee-cXk">
             <objects>
                 <tableViewController id="W4t-HO-tbR" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4OO-Uu-z8x">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4OO-Uu-z8x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ViewBGC.png" id="V16-Uz-EIm">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="673"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.88627450980392153" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="W4t-HO-tbR" id="dsr-Q0-ymS"/>
@@ -28,10 +24,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="壹日壹纪" largeTitleDisplayMode="always" id="z5P-6n-LcX">
-                        <barButtonItem key="leftBarButtonItem" title="设置" style="plain" id="07y-OS-4Pl">
+                        <barButtonItem key="leftBarButtonItem" title="设置" id="07y-OS-4Pl">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="新建" style="plain" id="3r1-Db-kOd">
+                        <barButtonItem key="rightBarButtonItem" title="新建" id="3r1-Db-kOd">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -58,7 +54,4 @@
             <point key="canvasLocation" x="670" y="221"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ViewBGC.png" width="494" height="196"/>
-    </resources>
 </document>

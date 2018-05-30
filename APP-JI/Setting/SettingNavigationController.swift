@@ -35,18 +35,18 @@ class PasswordSettingTableViewController: UITableViewController {
     
     var sectionNum = 4
     var passwordEnabledSwitch:UISwitch?
+    var touchIDEnabledSwitch:UISwitch?
+    var firstAuthEnabledSwitch:UISwitch?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let password = UserDefaults.standard.string(forKey: "Password")
-        if password == nil {
-            let nonePassword = "none"
-            UserDefaults.standard.set(nonePassword, forKey: "Password")
-        }else if password == "none" {
+
+        if !UserDefaults.standard.bool(forKey: "PasswordEnabled") {
             passwordEnabledSwitch?.isOn = false
             if sectionNum != 1{
                 sectionNum = 1
@@ -59,17 +59,20 @@ class PasswordSettingTableViewController: UITableViewController {
                 let set = IndexSet(arrayLiteral: 1,2,3)
                 self.tableView.insertSections(set, with: UITableViewRowAnimation.none)
             }
+            passwordEnabledSwitch?.isOn = true
+            touchIDEnabledSwitch?.isOn = UserDefaults.standard.bool(forKey: "TouchIDEnabled")
+            firstAuthEnabledSwitch?.isOn = UserDefaults.standard.bool(forKey: "FirstAuthEnabled")
         }
         
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: String(indexPath.section))
         let cellTitle = [["启用密码"],["更改密码"],["使用触控 ID"],["启动时需要密码解锁"]]
         if(cell == nil){
             cell=UITableViewCell(style: UITableViewCellStyle.default
-                , reuseIdentifier: "Cell");
+                , reuseIdentifier: String(indexPath.section));
         }
         if indexPath.section != 1{
             let switchView = UISwitch(frame: .zero)
@@ -78,13 +81,22 @@ class PasswordSettingTableViewController: UITableViewController {
             switchView.tag = indexPath.section
             switchView.addTarget(self, action: #selector(switchToggled(_:)), for: UIControlEvents.valueChanged)
             cell!.selectionStyle = UITableViewCellSelectionStyle.none
-            if indexPath.section == 0 {
+            switch indexPath.section{
+            case 0:
                 passwordEnabledSwitch = switchView
+                passwordEnabledSwitch?.isOn = UserDefaults.standard.bool(forKey: "PasswordEnabled")
+            case 1:
+                cell!.selectionStyle = UITableViewCellSelectionStyle.default
+            case 2:
+                touchIDEnabledSwitch = switchView
+                touchIDEnabledSwitch?.isOn = UserDefaults.standard.bool(forKey: "TouchIDEnabled")
+            case 3:
+                firstAuthEnabledSwitch = switchView
+                firstAuthEnabledSwitch?.isOn = UserDefaults.standard.bool(forKey: "FirstAuthEnabled")
+            default:
+                print("some thing went wrong")
             }
-            
-        }else{
-            cell?.accessoryView = nil
-            cell!.selectionStyle = UITableViewCellSelectionStyle.default
+
         }
         
         cell?.textLabel?.text =  cellTitle[indexPath.section][indexPath.row]
@@ -113,6 +125,7 @@ class PasswordSettingTableViewController: UITableViewController {
 
     }
     
+    //MARK:行中的开关被触发
     func switchToggled(_ sender : UISwitch!){
         var sendMode:String?
         if sender.tag == 0{
@@ -125,12 +138,30 @@ class PasswordSettingTableViewController: UITableViewController {
             let setPasswordNav:UINavigationController = setPassword.instantiateViewController(withIdentifier: "inputPassword") as! UINavigationController
             let setPasswordViewController = setPasswordNav.topViewController as? PasswordViewController
             self.navigationController?.present(setPasswordNav, animated: true, completion: {setPasswordViewController?.setMode(mode:sendMode!)})
+        }else if sender.tag == 2{
+            if sender.isOn == true {
+                UserDefaults.standard.set(true, forKey: "TouchIDEnabled")
+            }else{
+                UserDefaults.standard.set(false, forKey: "TouchIDEnabled")
+            }
+        }else if sender.tag == 3{
+            if sender.isOn == true {
+                UserDefaults.standard.set(true, forKey: "FirstAuthEnabled")
+            }else{
+                UserDefaults.standard.set(false, forKey: "FirstAuthEnabled")
+            }
         }
 
     }
 
-    func aaa() -> Void{
-        return
+    //MARK: 更改密码行被点击
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1{
+            let changePassword = UIStoryboard(name: "PasswordView", bundle: nil)
+            let changePasswordNav:UINavigationController = changePassword.instantiateViewController(withIdentifier: "inputPassword") as! UINavigationController
+            let changePasswordViewController = changePasswordNav.topViewController as? PasswordViewController
+            self.navigationController?.present(changePasswordNav, animated: true, completion: {changePasswordViewController?.setMode(mode: "change")})
+        }
     }
     
 }

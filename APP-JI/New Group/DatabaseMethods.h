@@ -14,6 +14,7 @@
 - (void) addQuestion:(NSString *)question andType:(NSString *)type;
 - (void) deleteQuestion:(NSString *)question;
 - (void) addAnswer:(NSString *)answer WithQuestion:(NSString *)question;
-- (BOOL)isQuestionRepeated:(NSString *)question;
+- (BOOL) isQuestionRepeated:(NSString *)question;
+- (NSString *) getTypeOfQuestion:(NSString *)question;
 
 @end

@@ -12,7 +12,7 @@
 
 @protocol MainCellDelegate <NSObject>
 
--(void)pushClickedWithQuestion:(NSString *)question andType:(NSString *)type;
+-(void)pushClickedWithQuestion:(NSString *)question;
 -(void)reloadCell:(id)sender;
 -(void)refreshUI;
 

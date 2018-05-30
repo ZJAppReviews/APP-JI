@@ -31,7 +31,6 @@
 		5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058040920BB0C86003D33BC /* SettingNavigationController.swift */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
-		505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D1220A9CF80002907FF /* AuthenticMethods.m */; };
 		50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */; };
 		CAFFA80786B0EDB90EF26BF5 /* libPods-APP-JI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */; };
 		FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1F172B1CB51FB800531356 /* TextCellModel.m */; };
@@ -119,8 +118,6 @@
 		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		505A2D1120A9CF80002907FF /* AuthenticMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticMethods.h; sourceTree = "<group>"; };
-		505A2D1220A9CF80002907FF /* AuthenticMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticMethods.m; sourceTree = "<group>"; };
 		5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APP-JI.entitlements"; sourceTree = "<group>"; };
 		50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTheme.storyboard; sourceTree = "<group>"; };
 		866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.release.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.release.xcconfig"; sourceTree = "<group>"; };
@@ -268,9 +265,6 @@
 		505A2D1420A9CF85002907FF /* AuthMethods */ = {
 			isa = PBXGroup;
 			children = (
-				5058040220B9C03F003D33BC /* APP-JI-Bridging-Header.h */,
-				505A2D1120A9CF80002907FF /* AuthenticMethods.h */,
-				505A2D1220A9CF80002907FF /* AuthenticMethods.m */,
 				505803BA20B93E71003D33BC /* PasswordView.storyboard */,
 				505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */,
 			);
@@ -321,6 +315,7 @@
 		FC9F65871CA834BD00363A24 /* APP-JI */ = {
 			isa = PBXGroup;
 			children = (
+				5058040220B9C03F003D33BC /* APP-JI-Bridging-Header.h */,
 				5058040620BADAB7003D33BC /* Setting */,
 				5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */,
 				505A2D1420A9CF85002907FF /* AuthMethods */,
@@ -637,7 +632,6 @@
 				FCCCF6471CD1FD170065F20E /* LogTextTableViewCell.m in Sources */,
 				FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */,
 				FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */,
-				505A2D1320A9CF80002907FF /* AuthenticMethods.m in Sources */,
 				FCEA02501CAA697500BFDAFA /* CellSettingItem.m in Sources */,
 				FC64C91A1CB2466B004E874F /* JITableViewCell.m in Sources */,
 				FCCCF62F1CD1F64A0065F20E /* SwitchLogTableViewController.m in Sources */,
@@ -827,13 +821,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79G8F42F56;
 				INFOPLIST_FILE = "APP-JI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.DailyLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI/AuthMethods/APP-JI-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI/APP-JI-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -851,12 +845,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79G8F42F56;
 				INFOPLIST_FILE = "APP-JI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uniquestudio.DailyLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI/AuthMethods/APP-JI-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI/APP-JI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

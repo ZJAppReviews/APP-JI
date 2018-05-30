@@ -11,7 +11,6 @@
 #import "FMDB.h"
 #import <UIKit/UIKit.h>
 #import "DatabaseMethods.h"
-#import "AuthenticMethods.h"
 
 
 
@@ -218,7 +217,7 @@
 
 }
 
-#pragma mark - 文字Cell方法
+#pragma mark - Text Cell方法
 
 -(void)textInputDoneClicked{
     _mainModel.answer = _contentTV.text;
@@ -238,19 +237,19 @@
 
 -(void)pushBtnClicked{
     
-    [self.Delegate pushClickedWithQuestion:_mainModel.question andType:_mainModel.type];
+    [self.Delegate pushClickedWithQuestion:_mainModel.question];
     return;
     
 }
 
-#pragma mark - 选择Cell方法
+#pragma mark - Swich Cell方法
 
 -(void)noBtnClicked{
 
     //若为已经记录的状态，则进入主页
     if (_mainModel.answer){
     
-        [self.Delegate pushClickedWithQuestion:_mainModel.question andType:_mainModel.type];
+        [self.Delegate pushClickedWithQuestion:_mainModel.question];
         return;
         
     }
@@ -271,7 +270,7 @@
 -(void)yesBtnClicked{
     if (_mainModel.answer){
 
-        [self.Delegate pushClickedWithQuestion:_mainModel.question andType:_mainModel.type];
+        [self.Delegate pushClickedWithQuestion:_mainModel.question];
         return;
     }
     _mainModel.answer = @"yes";

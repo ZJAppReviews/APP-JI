@@ -15,12 +15,10 @@
 #import "EditTableViewController.h"
 #import "NotificationsMethods.h"
 #import "DatabaseMethods.h"
-#import <LocalAuthentication/LocalAuthentication.h>
-
-#import "AuthenticMethods.h"
 #import "MainViewCell.h"
+#import "DailyLog-Swift.h"
 
-@interface ListTableViewController ()
+@interface ListTableViewController () <PasswordTableViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,strong) NSMutableArray *arr2;
@@ -29,6 +27,8 @@
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) UIButton *addJIBtn;
 @property (nonatomic,strong) UIImageView *noDataImgV;
+@property (nonatomic,strong) NSString *questionClicked;
+
 
 @end
 
@@ -264,26 +264,45 @@
 }
 
 
-#pragma mark - Text&Switch CellDelegate
-- (void)pushClickedWithQuestion:(NSString *)question andType:(NSString *)type
+#pragma mark - Cell进入记录详情页面的代理方法
+- (void)pushClickedWithQuestion:(NSString *)question
 {
-    AuthenticMethods *authMethod = [[AuthenticMethods alloc]init];
-    authMethod.aDelegate = self;
-    [authMethod authenticWithQuestion:question andType:type];
+    //如果开启密码且关闭了再启动时验证且本次启动时未经过验证时调用验证方法,否则直接进入
+    if ([NSUserDefaults.standardUserDefaults boolForKey:@"PasswordEnabled"]&&![NSUserDefaults.standardUserDefaults boolForKey:@"FirstAuthEnabled"]&&![NSUserDefaults.standardUserDefaults boolForKey:@"Authed"]){
+        
+        UIStoryboard *authView = [UIStoryboard storyboardWithName:@"PasswordView" bundle:nil];
+        UINavigationController *authNavController = [authView instantiateViewControllerWithIdentifier:@"inputPassword"];
+        PasswordViewController *passwordViewController = (PasswordViewController *) authNavController.topViewController;
+        _questionClicked = question;
+        void(^passBlock)(void) = ^(){
+            [passwordViewController setModeWithMode:@"auth"];
+            [passwordViewController setDelegateView:self];
+            return;
+        };
+        [self presentViewController:authNavController animated:true completion:passBlock];
+    }else{
+        [self pushDetailView];
+    }
 }
 
--(void) pushDetailViewWithQuestion:(NSString *)question andType:(NSString *)type{
 
+
+-(void) pushDetailView{
+
+    NSString *type = [[NSString alloc]init];
+    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
+    type = [dbmethod getTypeOfQuestion:_questionClicked];
+    
     if([type  isEqual: @"switch"]){
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             SwitchLogTableViewController *switchLogTVC = [[SwitchLogTableViewController alloc]init];
-            switchLogTVC.question = question;
+            switchLogTVC.question = self->_questionClicked;
             [self.navigationController pushViewController:switchLogTVC animated:YES];
         }];
     }else if ([type  isEqual: @"text"]){
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             TextLogTableViewController *textLogTVC = [[TextLogTableViewController alloc]init];
-            textLogTVC.question = question;
+            textLogTVC.question = self->_questionClicked;
             [self.navigationController pushViewController:textLogTVC animated:YES];
         }];
     }
