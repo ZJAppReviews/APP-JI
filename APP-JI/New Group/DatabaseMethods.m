@@ -169,10 +169,11 @@
     }
     //查找
     NSString *result = [db stringForQuery:@"SELECT Question FROM DataList WHERE Question = ?",question];
+    [db close];
+
     if (result) {
         return true;
     }
-    [db close];
     return false;
     
 }
@@ -190,6 +191,7 @@
         NSLog(@"db opened");
     
     NSString *result = [db stringForQuery:@"SELECT Type FROM DataList WHERE Question = ?",question];
+    [db close];
     if (result) {
         return result;
     }

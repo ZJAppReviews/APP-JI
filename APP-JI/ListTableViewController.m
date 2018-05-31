@@ -15,15 +15,14 @@
 #import "EditTableViewController.h"
 #import "NotificationsMethods.h"
 #import "DatabaseMethods.h"
-#import "MainViewCell.h"
 #import "DailyLog-Swift.h"
 
-@interface ListTableViewController () <PasswordTableViewDelegate>
+@interface ListTableViewController () <PasswordTableViewDelegate,MainTableViewCellDelegate>
 
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,strong) NSMutableArray *arr2;
 @property (nonatomic,strong) TextCellModel *textCellModel;
-@property (nonatomic,strong) MainViewCell *mainCell;
+@property (nonatomic,strong) MainTableViewCell *mainCell;
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) UIButton *addJIBtn;
 @property (nonatomic,strong) NSString *questionClicked;
@@ -43,17 +42,20 @@
     self.title = @"壹日壹纪";
     self.view.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    //添加按钮
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnClicked)];
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setBtnClicked)];
     self.navigationItem.leftBarButtonItem = leftBtn;
     self.navigationItem.rightBarButtonItem = rightBtn;
-    
-    
-    //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
+    _addJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _addJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-136.5, 150, 273, 174);
+    [_addJIBtn setBackgroundImage:[UIImage imageNamed:@"MainView_NoDataButton"] forState:UIControlStateNormal];
+    [_addJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addJIBtn];
 
-    [self.tableView registerClass:[MainViewCell class] forCellReuseIdentifier:[MainViewCell ID]];
+    //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
+    [self.tableView registerClass:[MainTableViewTextCell class] forCellReuseIdentifier:@"text"];
+    [self.tableView registerClass:[MainTableViewSwitchCell class] forCellReuseIdentifier:@"switch"];
+    
     
     //如果打开了在首页验证，在这里推出验证视图
     if ([NSUserDefaults.standardUserDefaults boolForKey:@"PasswordEnabled"]&&[NSUserDefaults.standardUserDefaults boolForKey:@"FirstAuthEnabled"]&&![NSUserDefaults.standardUserDefaults boolForKey:@"Authed"]){
@@ -121,11 +123,7 @@
     
     if (_arr.count == 0) {
         
-        _addJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _addJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-136.5, 150, 273, 174);
-        [_addJIBtn setBackgroundImage:[UIImage imageNamed:@"MainView_NoDataButton"] forState:UIControlStateNormal];
-        [_addJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_addJIBtn];
+        _addJIBtn.hidden = false;
         
     }else {
         
@@ -137,14 +135,14 @@
             [_arr2 addObject:_textCellModel];
         }
         
-        [_addJIBtn setHidden:YES];
+        _addJIBtn.hidden = true;
         
         [self.tableView reloadData];
-        [self.tableView reloadInputViews];
+        //[self.tableView reloadInputViews];
     }
 
 
-    }
+}
 
 
 #pragma mark - Table view data source
@@ -162,12 +160,14 @@
 
 //分类初始化列表元件
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    _mainCell = [tableView dequeueReusableCellWithIdentifier:[MainViewCell ID]];
+    
+    TextCellModel *current = _arr2[indexPath.row];
+    
+    _mainCell = [tableView dequeueReusableCellWithIdentifier:current.type];
     _mainCell.selectionStyle = UITableViewCellSelectionStyleNone;
     _mainCell.contentView.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
     _mainCell.mainModel = _arr2[indexPath.row];
-    _mainCell.Delegate = self;
+    _mainCell.delegate = self;
     [_mainCell settingText];
     return _mainCell;
     
@@ -211,13 +211,16 @@
             [dbmethod deleteQuestion:question];
             
             //刷新表示图
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             
             // 取消某个特定的本地通知,这个地方最好加上一个判断
             NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
             [notifimethod cancelNotification:question];
             
-            [self refreshUI];
+            if (self->_arr.count == 0) {
+                self->_addJIBtn.hidden = false;
+            }
+            
         }];
         // 取消按钮
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction *action) {
@@ -271,13 +274,14 @@
 #pragma mark - Cell进入记录详情页面的代理方法
 - (void)pushClickedWithQuestion:(NSString *)question
 {
+    _questionClicked = question;
+
     //如果开启密码且关闭了再启动时验证且本次启动时未经过验证时调用验证方法,否则直接进入
     if ([NSUserDefaults.standardUserDefaults boolForKey:@"PasswordEnabled"]&&![NSUserDefaults.standardUserDefaults boolForKey:@"FirstAuthEnabled"]&&![NSUserDefaults.standardUserDefaults boolForKey:@"Authed"]){
         
         UIStoryboard *authView = [UIStoryboard storyboardWithName:@"PasswordView" bundle:nil];
         UINavigationController *authNavController = [authView instantiateViewControllerWithIdentifier:@"inputPassword"];
         PasswordViewController *passwordViewController = (PasswordViewController *) authNavController.topViewController;
-        _questionClicked = question;
         void(^passBlock)(void) = ^(){
             [passwordViewController setModeWithMode:@"auth"];
             [passwordViewController setDelegateView:self];
@@ -289,10 +293,17 @@
     }
 }
 
+- (void)reloadCell {
+    
+    [self.tableView reloadData];
+
+}
+
+
 
 
 -(void) pushDetailView{
-
+    
     NSString *type = [[NSString alloc]init];
     DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
     type = [dbmethod getTypeOfQuestion:_questionClicked];
@@ -310,7 +321,7 @@
             [self.navigationController pushViewController:textLogTVC animated:YES];
         }];
     }
-
+    
 }
 
 
@@ -319,5 +330,6 @@
     [self.tableView reloadData];
     
 }
+
 
 @end

@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SwitchLogTableViewController.h"
-#import "MainViewCell.h"
 
 
 
-@interface ListTableViewController : UITableViewController<UITableViewDataSource,MainCellDelegate>
+@interface ListTableViewController : UITableViewController<UITableViewDataSource>
 //协议对象
 -(void) refreshUI;
 -(void) rightBtnClicked;

@@ -3,3 +3,5 @@
 //
 
 #import "ListTableViewController.h"
+#import "DatabaseMethods.h"
+#import "TextCellModel.h"

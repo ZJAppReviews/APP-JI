@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50529A2D20AAAF8A004B1A86 /* MainViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50529A2C20AAAF89004B1A86 /* MainViewCell.m */; };
 		5058038320B45B72003D33BC /* TextCellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038220B45B71003D33BC /* TextCellBG.png */; };
 		5058038720B57F82003D33BC /* newtheme.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038620B57F81003D33BC /* newtheme.png */; };
 		5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */; };
@@ -89,8 +88,6 @@
 /* Begin PBXFileReference section */
 		03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APP-JI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BF36C322CE8CD3A5D19A05A /* Pods-APP-JI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.debug.xcconfig"; sourceTree = "<group>"; };
-		50529A2B20AAAF89004B1A86 /* MainViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewCell.h; sourceTree = "<group>"; };
-		50529A2C20AAAF89004B1A86 /* MainViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewCell.m; sourceTree = "<group>"; };
 		5058038220B45B71003D33BC /* TextCellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextCellBG.png; sourceTree = "<group>"; };
 		5058038620B57F81003D33BC /* newtheme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newtheme.png; sourceTree = "<group>"; };
 		5058038B20B594B2003D33BC /* NewThemeSetTitleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeSetTitleTableViewController.h; sourceTree = "<group>"; };
@@ -392,8 +389,6 @@
 			children = (
 				FC1F172A1CB51FB800531356 /* TextCellModel.h */,
 				FC1F172B1CB51FB800531356 /* TextCellModel.m */,
-				50529A2B20AAAF89004B1A86 /* MainViewCell.h */,
-				50529A2C20AAAF89004B1A86 /* MainViewCell.m */,
 				50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */,
 			);
 			path = ListCell;
@@ -644,7 +639,6 @@
 				FC64C9201CB25070004E874F /* CellArrowItem.m in Sources */,
 				FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */,
 				FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */,
-				50529A2D20AAAF8A004B1A86 /* MainViewCell.m in Sources */,
 				FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */,
 				5058039820B67E89003D33BC /* NewThemeSetTypeTableViewController.m in Sources */,
 				FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */,

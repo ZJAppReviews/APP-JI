@@ -240,6 +240,7 @@
     [self.Delegate pushClickedWithQuestion:_mainModel.question];
     return;
     
+    
 }
 
 #pragma mark - Swich Cell方法
