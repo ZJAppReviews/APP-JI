@@ -27,15 +27,12 @@ class PasswordNavigationController : UINavigationController {
 
 class PasswordViewController: UIViewController {
     
+    @IBOutlet var cancelBtn: UIBarButtonItem!
     @IBOutlet var passwordView: PasswordView!
     var delegateView: PasswordTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        passwordView.passwordTF.becomeFirstResponder()
-        
-        
     }
 
     
@@ -64,21 +61,46 @@ class PasswordViewController: UIViewController {
             
             if UserDefaults.standard.bool(forKey: "TouchIDEnabled"){
                 let myContext = LAContext()
-                let myLocalizedReasonString = "验证以查看内容"
                 var authError: NSError?
                 if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-                    myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
-                        if success {
-                            UserDefaults.standard.set(true, forKey: "Authed")
-                            self.navigationController?.dismiss(animated: true, completion: {self.delegateView?.pushDetailView()})
-                        }else{
-                            self.passwordView.passwordTF.becomeFirstResponder()
+                    myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "验证以查看内容") { success, evaluateError in
+                        DispatchQueue.main.async {
+                            if success {
+                                UserDefaults.standard.set(true, forKey: "Authed")
+                                self.navigationController?.dismiss(animated: true, completion: {self.delegateView?.pushDetailView()})
+                            }else{
+                                self.passwordView.passwordTF.becomeFirstResponder()
+                            }
                         }
                     }
                 }
             }else{
                 self.passwordView.passwordTF.becomeFirstResponder()
             }
+            
+        case "firstAuth":
+            self.title = "请验证密码"
+            cancelBtn.isEnabled = false
+            
+            if UserDefaults.standard.bool(forKey: "TouchIDEnabled"){
+                let myContext = LAContext()
+                var authError: NSError?
+                if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                    myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "验证以查看内容") { success, evaluateError in
+                        DispatchQueue.main.async {
+                            if success {
+                                UserDefaults.standard.set(true, forKey: "Authed")
+                                self.navigationController?.dismiss(animated: true, completion: nil)
+                            }else{
+                                self.passwordView.passwordTF.becomeFirstResponder()
+                            }
+                        }
+                    }
+                }
+            }else{
+                self.passwordView.passwordTF.becomeFirstResponder()
+            }
+
         default:
             self.title = "请验证密码"
             passwordView.passwordTF.becomeFirstResponder()
@@ -153,6 +175,13 @@ class PasswordView: UIView {
                 if sender.text == UserDefaults.standard.string(forKey: "Password"){
                     UserDefaults.standard.set(true, forKey: "Authed")
                     self.delegate?.navigationController?.dismiss(animated: true, completion: {self.delegate?.delegateView?.pushDetailView()})
+                }else{
+                    self.delegate?.navigationController?.present(wrongAleart, animated: true, completion: nil)
+                }
+            case "firstAuth":
+                if sender.text == UserDefaults.standard.string(forKey: "Password"){
+                    UserDefaults.standard.set(true, forKey: "Authed")
+                    self.delegate?.navigationController?.dismiss(animated: true, completion: nil)
                 }else{
                     self.delegate?.navigationController?.present(wrongAleart, animated: true, completion: nil)
                 }

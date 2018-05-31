@@ -54,20 +54,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Syk-Ec-XF5" id="Avy-p3-GA9">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="应用按照主题来进行记录。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jH6-cM-JNh">
-                                                    <rect key="frame" x="15" y="10" width="345" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" red="0.99944812059402466" green="0.89125925302505493" blue="0.44740617275238037" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="jH6-cM-JNh" secondAttribute="trailing" constant="15" id="2dS-9r-Hb6"/>
-                                                <constraint firstItem="jH6-cM-JNh" firstAttribute="leading" secondItem="Avy-p3-GA9" secondAttribute="leading" constant="15" id="LCN-3f-VEH"/>
-                                                <constraint firstItem="jH6-cM-JNh" firstAttribute="top" secondItem="Avy-p3-GA9" secondAttribute="top" constant="10" id="Uku-Xw-XSP"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

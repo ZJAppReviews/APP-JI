@@ -31,6 +31,7 @@
 		5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058040920BB0C86003D33BC /* SettingNavigationController.swift */; };
 		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
+		50C8AEE020BFDF68008037C6 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */; };
 		50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */; };
 		CAFFA80786B0EDB90EF26BF5 /* libPods-APP-JI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */; };
 		FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1F172B1CB51FB800531356 /* TextCellModel.m */; };
@@ -119,6 +120,7 @@
 		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APP-JI.entitlements"; sourceTree = "<group>"; };
+		50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTheme.storyboard; sourceTree = "<group>"; };
 		866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.release.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.release.xcconfig"; sourceTree = "<group>"; };
 		FC1F172A1CB51FB800531356 /* TextCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCellModel.h; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				FC1F172B1CB51FB800531356 /* TextCellModel.m */,
 				50529A2B20AAAF89004B1A86 /* MainViewCell.h */,
 				50529A2C20AAAF89004B1A86 /* MainViewCell.m */,
+				50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */,
 			);
 			path = ListCell;
 			sourceTree = "<group>";
@@ -496,7 +499,7 @@
 		FC9F657D1CA834BD00363A24 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "黄鹏昊";
 				TargetAttributes = {
 					FC9F65841CA834BD00363A24 = {
@@ -626,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C8AEE020BFDF68008037C6 /* MainTableViewCell.swift in Sources */,
 				FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */,
 				FCCCF63E1CD1FCD60065F20E /* LogTextCellModel.m in Sources */,
 				5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */,
@@ -751,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_MODULE_NAME = DailyLog;
@@ -801,10 +805,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = DailyLog;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "APP-JI-Bridging-Header";
 				VALIDATE_PRODUCT = YES;
 			};

@@ -26,7 +26,6 @@
 @property (nonatomic,strong) MainViewCell *mainCell;
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,strong) UIButton *addJIBtn;
-@property (nonatomic,strong) UIImageView *noDataImgV;
 @property (nonatomic,strong) NSString *questionClicked;
 
 
@@ -55,6 +54,19 @@
     //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
 
     [self.tableView registerClass:[MainViewCell class] forCellReuseIdentifier:[MainViewCell ID]];
+    
+    //如果打开了在首页验证，在这里推出验证视图
+    if ([NSUserDefaults.standardUserDefaults boolForKey:@"PasswordEnabled"]&&[NSUserDefaults.standardUserDefaults boolForKey:@"FirstAuthEnabled"]&&![NSUserDefaults.standardUserDefaults boolForKey:@"Authed"]){
+        
+        UIStoryboard *authView = [UIStoryboard storyboardWithName:@"PasswordView" bundle:nil];
+        UINavigationController *authNavController = [authView instantiateViewControllerWithIdentifier:@"inputPassword"];
+        PasswordViewController *passwordViewController = (PasswordViewController *) authNavController.topViewController;
+        void(^passBlock)(void) = ^(){
+            [passwordViewController setModeWithMode:@"firstAuth"];
+            return;
+        };
+        [self presentViewController:authNavController animated:true completion:passBlock];
+    }
 
 }
 
@@ -109,13 +121,9 @@
     
     if (_arr.count == 0) {
         
-        _noDataImgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"NoDataVC.png"]];
-        _noDataImgV.frame = CGRectMake(0, 145, [[UIScreen mainScreen]bounds].size.width, 240);
-        [self.view addSubview:_noDataImgV];
-        
         _addJIBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _addJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-80, 400, 160, 50);
-        [_addJIBtn setBackgroundImage:[UIImage imageNamed:@"AddNewJI.png"] forState:UIControlStateNormal];
+        _addJIBtn.frame = CGRectMake([[UIScreen mainScreen]bounds].size.width/2-136.5, 150, 273, 174);
+        [_addJIBtn setBackgroundImage:[UIImage imageNamed:@"MainView_NoDataButton"] forState:UIControlStateNormal];
         [_addJIBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_addJIBtn];
         
@@ -128,7 +136,7 @@
             _textCellModel = [TextCellModel JIWithDict:dict];
             [_arr2 addObject:_textCellModel];
         }
-        [_noDataImgV setHidden:YES];
+        
         [_addJIBtn setHidden:YES];
         
         [self.tableView reloadData];
@@ -167,7 +175,6 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    _mainCell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return _mainCell.cellHeight;
 }
 
@@ -204,16 +211,13 @@
             [dbmethod deleteQuestion:question];
             
             //刷新表示图
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
             
             // 取消某个特定的本地通知,这个地方最好加上一个判断
             NotificationsMethods *notifimethod = [[NotificationsMethods alloc]init];
             [notifimethod cancelNotification:question];
             
-//            [self refreshUI];
-            
-            
-            
+            [self refreshUI];
         }];
         // 取消按钮
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction *action) {

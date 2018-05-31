@@ -255,6 +255,11 @@
     }
     
     //如未记录，首先更改首页的元件视图，再写入数据库
+    
+    UIImpactFeedbackGenerator *impacGenerator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+    [impacGenerator prepare];
+    [impacGenerator impactOccurred];
+    
     _mainModel.answer = @"no";
 
     _yesBtn.hidden = YES;
@@ -273,6 +278,11 @@
         [self.Delegate pushClickedWithQuestion:_mainModel.question];
         return;
     }
+    
+    UIImpactFeedbackGenerator *impacGenerator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+    [impacGenerator prepare];
+    [impacGenerator impactOccurred];
+    
     _mainModel.answer = @"yes";
     
     _noBtn.hidden = YES;
