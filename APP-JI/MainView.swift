@@ -70,7 +70,11 @@ class MianViewController: UITableViewController,MainViewCellDelegate,PasswordTab
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //print(currentCell?.cellHeight)
+        //print(indexPath.row)
+        //print((tableView.cellForRow(at: indexPath) as! MainTableViewCell).cellHeight)
         return (currentCell?.cellHeight)!
+        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -133,12 +137,20 @@ class MianViewController: UITableViewController,MainViewCellDelegate,PasswordTab
     
     func pushDetailView() {
         OperationQueue.main.addOperation {
-            //let logNav = LogNavigationController.init(rootViewController: self, themeTitleToPush: self.themeToPush!)
-            //let logNav = LogNavigationController.init(rootViewController: self)
-            let sb = UIStoryboard.init(name: "LogTableView", bundle: nil)
-            let logNav = sb.instantiateViewController(withIdentifier: "LogNav") as! LogNavigationController
-            //self.navigationController?.pushViewController(logNav, animated: true)
-            self.navigationController?.present(logNav, animated: true, completion: nil)
+            let dataMethod = CoreDataMethods.init()
+            var logTVC:LogTableViewController?
+            switch dataMethod.getType(title: self.themeToPush!){
+            case "text":
+                logTVC = TextLogTableViewController.init(style: .plain)
+            case "switch":
+                logTVC = SwitchLogTableViewController.init(style: .plain)
+            case "photo":
+                logTVC = PhotoLogTableViewController.init(style: .plain)
+            default:
+                logTVC = TextLogTableViewController.init(style: .plain)
+            }
+            logTVC?.themeTitle = self.themeToPush
+            self.navigationController?.pushViewController(logTVC!, animated: true)
         }
     }
 }

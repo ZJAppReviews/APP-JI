@@ -31,7 +31,6 @@
 		50C8AEE020BFDF68008037C6 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */; };
 		50C8AEE520C25EDB008037C6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEE320C25EDB008037C6 /* DataModel.xcdatamodeld */; };
 		50C8AEE920C3D404008037C6 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEE820C3D404008037C6 /* LogTableView.swift */; };
-		50C8AEEC20C3D476008037C6 /* LogTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C8AEEB20C3D476008037C6 /* LogTableView.storyboard */; };
 		50C8AF8420C534C5008037C6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AF8320C534C5008037C6 /* MainView.swift */; };
 		50C8AF8620C534D5008037C6 /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C8AF8520C534D4008037C6 /* MainView.storyboard */; };
 		50C8AFC720C57645008037C6 /* CoreDataMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AFC620C57645008037C6 /* CoreDataMethods.swift */; };
@@ -99,7 +98,6 @@
 		50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		50C8AEE420C25EDB008037C6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		50C8AEE820C3D404008037C6 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
-		50C8AEEB20C3D476008037C6 /* LogTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogTableView.storyboard; sourceTree = "<group>"; };
 		50C8AF8320C534C5008037C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		50C8AF8520C534D4008037C6 /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
 		50C8AFC620C57645008037C6 /* CoreDataMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataMethods.swift; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 		50C8AEEA20C3D419008037C6 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				50C8AEEB20C3D476008037C6 /* LogTableView.storyboard */,
 				50C8AEE820C3D404008037C6 /* LogTableView.swift */,
 				509C9D3F20C661CA00C29BAF /* LogTableViewCell.swift */,
 			);
@@ -462,7 +459,6 @@
 				505803A720B695CB003D33BC /* switchBtnSelected.png in Resources */,
 				50C8AF8620C534D5008037C6 /* MainView.storyboard in Resources */,
 				505803A320B695C2003D33BC /* videoBtnSelected.png in Resources */,
-				50C8AEEC20C3D476008037C6 /* LogTableView.storyboard in Resources */,
 				50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */,
 				505803BB20B93E71003D33BC /* PasswordView.storyboard in Resources */,
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,

@@ -359,7 +359,8 @@ class MainTableViewPhotoCell:MainTableViewCell,UIImagePickerControllerDelegate,U
             addActionSheet.addAction(addFromPhotoAction)
             addActionSheet.addAction(cancelAction)
             self.window?.rootViewController?.present(addActionSheet, animated: true, completion: nil)
-            
+        }else{
+            self.delegate!.pushClicked(theme: (theme?.title)!)
         }
     }
     
@@ -368,7 +369,7 @@ class MainTableViewPhotoCell:MainTableViewCell,UIImagePickerControllerDelegate,U
         let image:UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageDate = Date.init()
         let dateFormatter = DateFormatter.init()
-        dateFormatter.dateFormat = "yyyy_MM_dd"
+        dateFormatter.dateFormat = "YYYY_MM_dd"
         let imageName = dateFormatter.string(from: imageDate)
         if let imageData = UIImageJPEGRepresentation(image, 1) as NSData? {
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

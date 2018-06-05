@@ -8,47 +8,10 @@
 
 import Foundation
 
-class LogNavigationController: UINavigationController {
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    var themeTitle:String?
-    
-/*    init(rootViewController: UIViewController, themeTitleToPush:String) {
-        let dataMethod = CoreDataMethods.init()
-        themeTitle = themeTitleToPush
-        let type = dataMethod.getType(title: themeTitle!)
-        switch type {
-        case "Text":
-            let textTVC = TextLogTableViewController.init(style: .plain)
-            super.init(rootViewController: textTVC)
-        case "Switch":
-            let switchTVC = SwitchLogTableViewController.init(style: .plain)
-            super.init(rootViewController: switchTVC)
-        case "Photo":
-            let photoTVC = PhotoLogTableViewController.init(style: .plain)
-            super.init(rootViewController: photoTVC)
-        default:
-            super.init(rootViewController: rootViewController)
-            print("wrong type send to LogNav")
-        }
-        self.title = themeTitle
-    }*/
-    
-    override init(rootViewController: UIViewController) {
-        let textTVC = TextLogTableViewController.init(style: .plain)
-        super.init(rootViewController: textTVC)
-    }
-    
-
-}
-
 class LogTableViewController: UITableViewController {
     
     var logs:Array<Log>?
-    var currentCell:LogTableViewCell?
+    var themeTitle:String?
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -60,23 +23,25 @@ class LogTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.backgroundColor = UIColor.init(named: "LightYellow")
+        self.tableView.separatorStyle = .none
+        self.title = themeTitle
         let dataMethod = CoreDataMethods.init()
-        logs = dataMethod.getLog(themeTitle: (self.navigationController as! LogNavigationController).themeTitle!)
+        logs = dataMethod.getLog(themeTitle: themeTitle!)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (logs?.count)!
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return currentCell!.cellHeight!
-    }
+
 
 }
 
 
 class PhotoLogTableViewController: LogTableViewController {
     
+    var currentCell:PhotoLogTableViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,15 +50,21 @@ class PhotoLogTableViewController: LogTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! PhotoLogTableViewCell
+        currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? PhotoLogTableViewCell
         currentCell!.logContent = logs![indexPath.row]
+        currentCell!.setContent()
         return currentCell!
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return currentCell!.cellHeight!
     }
     
 }
 
 class TextLogTableViewController: LogTableViewController {
     
+    var currentCell:TextLogTableViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,16 +73,22 @@ class TextLogTableViewController: LogTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TextLogTableViewCell
+        currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? TextLogTableViewCell
         currentCell!.logContent = logs![indexPath.row]
+        currentCell!.setContent()
         return currentCell!
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return currentCell!.cellHeight!
     }
     
 }
 
 class SwitchLogTableViewController: LogTableViewController {
     
-    
+    var currentCell:SwitchLogTableViewCell?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(SwitchLogTableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -119,9 +96,14 @@ class SwitchLogTableViewController: LogTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwitchLogTableViewCell
+        currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SwitchLogTableViewCell
         currentCell!.logContent = logs![indexPath.row]
+        currentCell!.setContent()
         return currentCell!
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return currentCell!.cellHeight!
     }
     
 }
