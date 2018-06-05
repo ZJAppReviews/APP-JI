@@ -7,8 +7,9 @@
 //
 
 #import "NewThemeSetTitleTableViewController.h"
-#import "DatabaseMethods.h"
 #import "NewThemeSetTypeTableViewController.h"
+#import "DailyLog-Swift.h"
+
 
 @interface NewThemeSetTitleTableViewController ()
 
@@ -19,6 +20,10 @@
 @end
 
 @implementation NewThemeSetTitleTableViewController
+
+- (IBAction)baganEditing:(id)sender {
+    _Done.enabled = true;
+}
 
 -(void)viewDidLoad{
 
@@ -43,8 +48,8 @@
         [self aleartWithError:@"请填写主题"];
         return;
     }
-    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
-    if([dbmethod isQuestionRepeated:_questionStr]){
+    CoreDataMethods *dataMethod = [[CoreDataMethods alloc] init];
+    if([dataMethod isThemeRepeatedWithTitle:_questionStr]){
         [self aleartWithError:@"已存在同名称主题，请修改后重试。"];
         return;
     }

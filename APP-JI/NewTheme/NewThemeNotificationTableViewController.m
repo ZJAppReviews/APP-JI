@@ -8,7 +8,8 @@
 
 #import "NewThemeNotificationTableViewController.h"
 #import "NotificationsMethods.h"
-#import "DatabaseMethods.h"
+#import "DailyLog-Swift.h"
+
 
 @interface NewThemeNotificationTableViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *notificationSwitch;
@@ -72,8 +73,8 @@
     }
     
     //写入数据
-    DatabaseMethods *dbMethod =[[DatabaseMethods alloc]init];
-    [dbMethod addQuestion:_questionStr andType:_questionType];
+    CoreDataMethods *dataMethod = [[CoreDataMethods alloc] init];
+    [dataMethod addThemeWithTitle:_questionStr type:_questionType notificationTime:nil];
     
     //干掉视图
     [self dismissViewControllerAnimated:YES completion:nil];

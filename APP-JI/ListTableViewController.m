@@ -17,7 +17,7 @@
 #import "DatabaseMethods.h"
 #import "DailyLog-Swift.h"
 
-@interface ListTableViewController () <PasswordTableViewDelegate,MainTableViewCellDelegate>
+@interface ListTableViewController () <PasswordTableViewDelegate,MainViewCellDelegate>
 
 @property (nonatomic,strong) NSMutableArray *arr;
 @property (nonatomic,strong) NSMutableArray *arr2;
@@ -55,6 +55,8 @@
     //注册Cell类，从而使在出队cell的时候若复用池子中没有Cell可以直接新建
     [self.tableView registerClass:[MainTableViewTextCell class] forCellReuseIdentifier:@"text"];
     [self.tableView registerClass:[MainTableViewSwitchCell class] forCellReuseIdentifier:@"switch"];
+    [self.tableView registerClass:[MainTableViewPhotoCell class] forCellReuseIdentifier:@"photo"];
+
     
     
     //如果打开了在首页验证，在这里推出验证视图
@@ -166,7 +168,7 @@
     _mainCell = [tableView dequeueReusableCellWithIdentifier:current.type];
     _mainCell.selectionStyle = UITableViewCellSelectionStyleNone;
     _mainCell.contentView.backgroundColor = [UIColor colorWithRed:254/255.0 green:226/255.0 blue:122/255.0 alpha:1];
-    _mainCell.mainModel = _arr2[indexPath.row];
+//    _mainCell.mainModel = _arr2[indexPath.row];
     _mainCell.delegate = self;
     [_mainCell settingText];
     return _mainCell;

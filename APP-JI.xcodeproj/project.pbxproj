@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5058038320B45B72003D33BC /* TextCellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038220B45B71003D33BC /* TextCellBG.png */; };
 		5058038720B57F82003D33BC /* newtheme.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058038620B57F81003D33BC /* newtheme.png */; };
 		5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */; };
 		5058039020B59F01003D33BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5058038E20B59F00003D33BC /* Main.storyboard */; };
-		5058039220B5C3BF003D33BC /* random.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039120B5C3BF003D33BC /* random.png */; };
 		5058039820B67E89003D33BC /* NewThemeSetTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058039720B67E89003D33BC /* NewThemeSetTypeTableViewController.m */; };
 		505803A320B695C2003D33BC /* videoBtnSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5058039D20B695B3003D33BC /* videoBtnSelected.png */; };
 		505803A420B695C4003D33BC /* videoBtnGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 505803A020B695B4003D33BC /* videoBtnGeneral.png */; };
@@ -28,44 +26,28 @@
 		5058040420BA766F003D33BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5058040320BA766F003D33BC /* Assets.xcassets */; };
 		5058040820BADAE2003D33BC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5058040720BADAE2003D33BC /* Setting.storyboard */; };
 		5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058040920BB0C86003D33BC /* SettingNavigationController.swift */; };
-		505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0C20A9A882002907FF /* DatabaseMethods.m */; };
 		505A2D1020A9B610002907FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 505A2D0F20A9B610002907FF /* main.m */; };
+		509C9D4020C661CA00C29BAF /* LogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C9D3F20C661CA00C29BAF /* LogTableViewCell.swift */; };
 		50C8AEE020BFDF68008037C6 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */; };
+		50C8AEE520C25EDB008037C6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEE320C25EDB008037C6 /* DataModel.xcdatamodeld */; };
+		50C8AEE920C3D404008037C6 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AEE820C3D404008037C6 /* LogTableView.swift */; };
+		50C8AEEC20C3D476008037C6 /* LogTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C8AEEB20C3D476008037C6 /* LogTableView.storyboard */; };
+		50C8AF8420C534C5008037C6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AF8320C534C5008037C6 /* MainView.swift */; };
+		50C8AF8620C534D5008037C6 /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C8AF8520C534D4008037C6 /* MainView.storyboard */; };
+		50C8AFC720C57645008037C6 /* CoreDataMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8AFC620C57645008037C6 /* CoreDataMethods.swift */; };
 		50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */; };
 		CAFFA80786B0EDB90EF26BF5 /* libPods-APP-JI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */; };
-		FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1F172B1CB51FB800531356 /* TextCellModel.m */; };
 		FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5617BC1CE88959006EFC65 /* NotificationsMethods.m */; };
-		FC64C91A1CB2466B004E874F /* JITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64C9191CB2466B004E874F /* JITableViewCell.m */; };
-		FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64C91C1CB25053004E874F /* CellSwitchItem.m */; };
-		FC64C9201CB25070004E874F /* CellArrowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64C91F1CB25070004E874F /* CellArrowItem.m */; };
-		FC64C9271CB26174004E874F /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64C9261CB26174004E874F /* ListTableViewController.m */; };
-		FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64C93D1CB265E0004E874F /* CellTextItem.m */; };
 		FC64C9401CB2696B004E874F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC64C93F1CB2696B004E874F /* libsqlite3.dylib */; };
-		FC8253981CECA1BA00E6ED38 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8253971CECA1BA00E6ED38 /* back.png */; };
-		FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8253991CECAE9D00E6ED38 /* ji.png */; };
-		FC8290101CF1A37E00ACB26B /* firstin.png in Resources */ = {isa = PBXBuildFile; fileRef = FC82900F1CF1A37E00ACB26B /* firstin.png */; };
-		FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290111CF1A38B00ACB26B /* firstin2.png */; };
 		FC8290141CF1A39C00ACB26B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8290131CF1A39C00ACB26B /* start.png */; };
-		FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */; };
-		FC8C3EA21CA9402700E3AAC6 /* NoDataVC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */; };
 		FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */; };
-		FC8C3EA61CA949E200E3AAC6 /* AddNewJI.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA51CA949E200E3AAC6 /* AddNewJI.png */; };
 		FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */; };
-		FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */; };
 		FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F658C1CA834BD00363A24 /* AppDelegate.m */; };
 		FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */; };
 		FC9F65A31CA834BD00363A24 /* APP_JITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65A21CA834BD00363A24 /* APP_JITests.m */; };
 		FC9F65AE1CA834BD00363A24 /* APP_JIUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9F65AD1CA834BD00363A24 /* APP_JIUITests.m */; };
-		FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */; };
 		FCCCF62C1CD069540065F20E /* CellBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF62B1CD069540065F20E /* CellBGC.png */; };
-		FCCCF62F1CD1F64A0065F20E /* SwitchLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */; };
-		FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */; };
-		FCCCF63E1CD1FCD60065F20E /* LogTextCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF63D1CD1FCD60065F20E /* LogTextCellModel.m */; };
-		FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6431CD1FD070065F20E /* LogSwitchTableViewCell.m */; };
-		FCCCF6471CD1FD170065F20E /* LogTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF6461CD1FD170065F20E /* LogTextTableViewCell.m */; };
-		FCCCF6491CD2EB350065F20E /* TextViewBGC.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF6481CD2EB350065F20E /* TextViewBGC.png */; };
 		FCCCF64B1CD2FCD60065F20E /* CellBGC2.png in Resources */ = {isa = PBXBuildFile; fileRef = FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */; };
-		FCEA02501CAA697500BFDAFA /* CellSettingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEA024F1CAA697500BFDAFA /* CellSettingItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,12 +70,10 @@
 /* Begin PBXFileReference section */
 		03FCFAC914775AB008DEFB01 /* libPods-APP-JI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-APP-JI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BF36C322CE8CD3A5D19A05A /* Pods-APP-JI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.debug.xcconfig"; sourceTree = "<group>"; };
-		5058038220B45B71003D33BC /* TextCellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextCellBG.png; sourceTree = "<group>"; };
 		5058038620B57F81003D33BC /* newtheme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newtheme.png; sourceTree = "<group>"; };
 		5058038B20B594B2003D33BC /* NewThemeSetTitleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeSetTitleTableViewController.h; sourceTree = "<group>"; };
 		5058038C20B594B2003D33BC /* NewThemeSetTitleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeSetTitleTableViewController.m; sourceTree = "<group>"; };
 		5058038F20B59F00003D33BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5058039120B5C3BF003D33BC /* random.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = random.png; sourceTree = "<group>"; };
 		5058039620B67E89003D33BC /* NewThemeSetTypeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewThemeSetTypeTableViewController.h; sourceTree = "<group>"; };
 		5058039720B67E89003D33BC /* NewThemeSetTypeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewThemeSetTypeTableViewController.m; sourceTree = "<group>"; };
 		5058039B20B695B2003D33BC /* switchBtnGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchBtnGeneral.png; sourceTree = "<group>"; };
@@ -113,41 +93,24 @@
 		5058040320BA766F003D33BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "APP-JI/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		5058040720BADAE2003D33BC /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		5058040920BB0C86003D33BC /* SettingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
-		505A2D0B20A9A882002907FF /* DatabaseMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseMethods.h; sourceTree = "<group>"; };
-		505A2D0C20A9A882002907FF /* DatabaseMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseMethods.m; sourceTree = "<group>"; };
 		505A2D0F20A9B610002907FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APP-JI.entitlements"; sourceTree = "<group>"; };
+		509C9D3F20C661CA00C29BAF /* LogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewCell.swift; sourceTree = "<group>"; };
 		50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		50C8AEE420C25EDB008037C6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		50C8AEE820C3D404008037C6 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
+		50C8AEEB20C3D476008037C6 /* LogTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogTableView.storyboard; sourceTree = "<group>"; };
+		50C8AF8320C534C5008037C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		50C8AF8520C534D4008037C6 /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
+		50C8AFC620C57645008037C6 /* CoreDataMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataMethods.swift; sourceTree = "<group>"; };
 		50FB8D3620A5AEF200EC6D25 /* NewTheme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTheme.storyboard; sourceTree = "<group>"; };
 		866AE31D400CE0F65ED61D70 /* Pods-APP-JI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APP-JI.release.xcconfig"; path = "Pods/Target Support Files/Pods-APP-JI/Pods-APP-JI.release.xcconfig"; sourceTree = "<group>"; };
-		FC1F172A1CB51FB800531356 /* TextCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCellModel.h; sourceTree = "<group>"; };
-		FC1F172B1CB51FB800531356 /* TextCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCellModel.m; sourceTree = "<group>"; };
 		FC5617BB1CE88959006EFC65 /* NotificationsMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsMethods.h; sourceTree = "<group>"; };
 		FC5617BC1CE88959006EFC65 /* NotificationsMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsMethods.m; sourceTree = "<group>"; };
-		FC64C9181CB2466B004E874F /* JITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JITableViewCell.h; sourceTree = "<group>"; };
-		FC64C9191CB2466B004E874F /* JITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JITableViewCell.m; sourceTree = "<group>"; };
-		FC64C91B1CB25053004E874F /* CellSwitchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellSwitchItem.h; sourceTree = "<group>"; };
-		FC64C91C1CB25053004E874F /* CellSwitchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSwitchItem.m; sourceTree = "<group>"; };
-		FC64C91E1CB25070004E874F /* CellArrowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellArrowItem.h; sourceTree = "<group>"; };
-		FC64C91F1CB25070004E874F /* CellArrowItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellArrowItem.m; sourceTree = "<group>"; };
-		FC64C9251CB26174004E874F /* ListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
-		FC64C9261CB26174004E874F /* ListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
-		FC64C93C1CB265E0004E874F /* CellTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTextItem.h; sourceTree = "<group>"; };
-		FC64C93D1CB265E0004E874F /* CellTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellTextItem.m; sourceTree = "<group>"; };
 		FC64C93F1CB2696B004E874F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
-		FC8253971CECA1BA00E6ED38 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		FC8253991CECAE9D00E6ED38 /* ji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ji.png; sourceTree = "<group>"; };
-		FC82900F1CF1A37E00ACB26B /* firstin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstin.png; sourceTree = "<group>"; };
-		FC8290111CF1A38B00ACB26B /* firstin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstin2.png; sourceTree = "<group>"; };
 		FC8290131CF1A39C00ACB26B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
-		FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewController.h; sourceTree = "<group>"; };
-		FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewController.m; sourceTree = "<group>"; };
-		FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoDataVC.png; sourceTree = "<group>"; };
 		FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewBGC.png; sourceTree = "<group>"; };
-		FC8C3EA51CA949E200E3AAC6 /* AddNewJI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddNewJI.png; sourceTree = "<group>"; };
 		FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBGC.png; sourceTree = "<group>"; };
-		FC9A5A631CC1D394005BC3A9 /* SingletonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonModel.h; sourceTree = "<group>"; };
-		FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonModel.m; sourceTree = "<group>"; };
 		FC9F65851CA834BD00363A24 /* APP-JI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APP-JI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9F658B1CA834BD00363A24 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC9F658C1CA834BD00363A24 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -159,23 +122,8 @@
 		FC9F65A91CA834BD00363A24 /* APP-JIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APP-JIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9F65AD1CA834BD00363A24 /* APP_JIUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APP_JIUITests.m; sourceTree = "<group>"; };
 		FC9F65AF1CA834BD00363A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCA756D31CD5AB020037321D /* LogSwitchCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogSwitchCellModel.h; sourceTree = "<group>"; };
-		FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogSwitchCellModel.m; sourceTree = "<group>"; };
 		FCCCF62B1CD069540065F20E /* CellBGC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBGC.png; sourceTree = "<group>"; };
-		FCCCF62D1CD1F64A0065F20E /* SwitchLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchLogTableViewController.h; sourceTree = "<group>"; };
-		FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchLogTableViewController.m; sourceTree = "<group>"; };
-		FCCCF6301CD1F65C0065F20E /* TextLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLogTableViewController.h; sourceTree = "<group>"; };
-		FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLogTableViewController.m; sourceTree = "<group>"; };
-		FCCCF63C1CD1FCD60065F20E /* LogTextCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTextCellModel.h; sourceTree = "<group>"; };
-		FCCCF63D1CD1FCD60065F20E /* LogTextCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTextCellModel.m; sourceTree = "<group>"; };
-		FCCCF6421CD1FD070065F20E /* LogSwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogSwitchTableViewCell.h; sourceTree = "<group>"; };
-		FCCCF6431CD1FD070065F20E /* LogSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogSwitchTableViewCell.m; sourceTree = "<group>"; };
-		FCCCF6451CD1FD170065F20E /* LogTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTextTableViewCell.h; sourceTree = "<group>"; };
-		FCCCF6461CD1FD170065F20E /* LogTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTextTableViewCell.m; sourceTree = "<group>"; };
-		FCCCF6481CD2EB350065F20E /* TextViewBGC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextViewBGC.png; sourceTree = "<group>"; };
 		FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBGC2.png; sourceTree = "<group>"; };
-		FCEA024E1CAA697500BFDAFA /* CellSettingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellSettingItem.h; sourceTree = "<group>"; };
-		FCEA024F1CAA697500BFDAFA /* CellSettingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSettingItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,8 +202,8 @@
 		505A2D0E20A9A888002907FF /* DBMethods */ = {
 			isa = PBXGroup;
 			children = (
-				505A2D0B20A9A882002907FF /* DatabaseMethods.h */,
-				505A2D0C20A9A882002907FF /* DatabaseMethods.m */,
+				50C8AFC620C57645008037C6 /* CoreDataMethods.swift */,
+				50C8AEE320C25EDB008037C6 /* DataModel.xcdatamodeld */,
 			);
 			name = DBMethods;
 			path = "New Group";
@@ -268,6 +216,16 @@
 				505803FF20B9A23B003D33BC /* PasswordTableViewController.swift */,
 			);
 			path = AuthMethods;
+			sourceTree = "<group>";
+		};
+		50C8AEEA20C3D419008037C6 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				50C8AEEB20C3D476008037C6 /* LogTableView.storyboard */,
+				50C8AEE820C3D404008037C6 /* LogTableView.swift */,
+				509C9D3F20C661CA00C29BAF /* LogTableViewCell.swift */,
+			);
+			path = Log;
 			sourceTree = "<group>";
 		};
 		F2B09C89154D78CD9ED7D3D3 /* Pods */ = {
@@ -315,26 +273,22 @@
 			isa = PBXGroup;
 			children = (
 				5058040220B9C03F003D33BC /* APP-JI-Bridging-Header.h */,
-				5058040620BADAB7003D33BC /* Setting */,
-				5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */,
 				505A2D1420A9CF85002907FF /* AuthMethods */,
+				5058040620BADAB7003D33BC /* Setting */,
 				505A2D0E20A9A888002907FF /* DBMethods */,
 				FC5617BA1CE8892F006EFC65 /* Notification */,
 				505803B120B6A384003D33BC /* NewTheme */,
 				FCEA024D1CAA692600BFDAFA /* AddModel & Cell */,
 				FC9F658B1CA834BD00363A24 /* AppDelegate.h */,
 				FC9F658C1CA834BD00363A24 /* AppDelegate.m */,
+				5075FF3B20A1C5CF0091918E /* APP-JI.entitlements */,
 				5058040320BA766F003D33BC /* Assets.xcassets */,
 				5058038E20B59F00003D33BC /* Main.storyboard */,
 				505A2D0F20A9B610002907FF /* main.m */,
-				FC87A8FB1D421924003EE2C2 /* EditTableViewController.h */,
-				FC87A8FC1D421924003EE2C2 /* EditTableViewController.m */,
-				FC64C9251CB26174004E874F /* ListTableViewController.h */,
-				FC64C9261CB26174004E874F /* ListTableViewController.m */,
-				FCCCF62D1CD1F64A0065F20E /* SwitchLogTableViewController.h */,
-				FCCCF62E1CD1F64A0065F20E /* SwitchLogTableViewController.m */,
-				FCCCF6301CD1F65C0065F20E /* TextLogTableViewController.h */,
-				FCCCF6311CD1F65C0065F20E /* TextLogTableViewController.m */,
+				50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */,
+				50C8AF8320C534C5008037C6 /* MainView.swift */,
+				50C8AF8520C534D4008037C6 /* MainView.storyboard */,
+				50C8AEEA20C3D419008037C6 /* Log */,
 				FC9F65961CA834BD00363A24 /* LaunchScreen.storyboard */,
 				FC9F65991CA834BD00363A24 /* Info.plist */,
 				FC9F65881CA834BD00363A24 /* Supporting Files */,
@@ -348,20 +302,11 @@
 				505803AB20B695E7003D33BC /* newBtn */,
 				5058038620B57F81003D33BC /* newtheme.png */,
 				505803AC20B6A2CB003D33BC /* newNotification.png */,
-				FC8253991CECAE9D00E6ED38 /* ji.png */,
-				FC82900F1CF1A37E00ACB26B /* firstin.png */,
-				FC8290111CF1A38B00ACB26B /* firstin2.png */,
-				5058039120B5C3BF003D33BC /* random.png */,
 				FC8290131CF1A39C00ACB26B /* start.png */,
 				FCCCF64A1CD2FCD60065F20E /* CellBGC2.png */,
-				FCCCF6481CD2EB350065F20E /* TextViewBGC.png */,
-				5058038220B45B71003D33BC /* TextCellBG.png */,
 				FC8C3EA31CA9433E00E3AAC6 /* ViewBGC.png */,
-				FC8253971CECA1BA00E6ED38 /* back.png */,
 				FC8C3EA71CA94D9200E3AAC6 /* NavBGC.png */,
 				FCCCF62B1CD069540065F20E /* CellBGC.png */,
-				FC8C3EA11CA9402700E3AAC6 /* NoDataVC.png */,
-				FC8C3EA51CA949E200E3AAC6 /* AddNewJI.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -384,48 +329,9 @@
 			path = "APP-JIUITests";
 			sourceTree = "<group>";
 		};
-		FCAA59791CB410A500E41A8D /* ListCell */ = {
-			isa = PBXGroup;
-			children = (
-				FC1F172A1CB51FB800531356 /* TextCellModel.h */,
-				FC1F172B1CB51FB800531356 /* TextCellModel.m */,
-				50C8AEDF20BFDF68008037C6 /* MainTableViewCell.swift */,
-			);
-			path = ListCell;
-			sourceTree = "<group>";
-		};
-		FCCCF6351CD1FC270065F20E /* LogListCell */ = {
-			isa = PBXGroup;
-			children = (
-				FCCCF63C1CD1FCD60065F20E /* LogTextCellModel.h */,
-				FCCCF63D1CD1FCD60065F20E /* LogTextCellModel.m */,
-				FCCCF6451CD1FD170065F20E /* LogTextTableViewCell.h */,
-				FCCCF6461CD1FD170065F20E /* LogTextTableViewCell.m */,
-				FCA756D31CD5AB020037321D /* LogSwitchCellModel.h */,
-				FCA756D41CD5AB020037321D /* LogSwitchCellModel.m */,
-				FCCCF6421CD1FD070065F20E /* LogSwitchTableViewCell.h */,
-				FCCCF6431CD1FD070065F20E /* LogSwitchTableViewCell.m */,
-			);
-			path = LogListCell;
-			sourceTree = "<group>";
-		};
 		FCEA024D1CAA692600BFDAFA /* AddModel & Cell */ = {
 			isa = PBXGroup;
 			children = (
-				FCEA024E1CAA697500BFDAFA /* CellSettingItem.h */,
-				FCEA024F1CAA697500BFDAFA /* CellSettingItem.m */,
-				FC64C91B1CB25053004E874F /* CellSwitchItem.h */,
-				FC64C91C1CB25053004E874F /* CellSwitchItem.m */,
-				FC64C91E1CB25070004E874F /* CellArrowItem.h */,
-				FC64C91F1CB25070004E874F /* CellArrowItem.m */,
-				FC64C93C1CB265E0004E874F /* CellTextItem.h */,
-				FC64C93D1CB265E0004E874F /* CellTextItem.m */,
-				FC64C9181CB2466B004E874F /* JITableViewCell.h */,
-				FC64C9191CB2466B004E874F /* JITableViewCell.m */,
-				FC9A5A631CC1D394005BC3A9 /* SingletonModel.h */,
-				FC9A5A641CC1D394005BC3A9 /* SingletonModel.m */,
-				FCCCF6351CD1FC270065F20E /* LogListCell */,
-				FCAA59791CB410A500E41A8D /* ListCell */,
 			);
 			name = "AddModel & Cell";
 			path = "Model and DataBase";
@@ -549,33 +455,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5058038320B45B72003D33BC /* TextCellBG.png in Resources */,
-				FC8C3EA21CA9402700E3AAC6 /* NoDataVC.png in Resources */,
-				FC8290121CF1A38B00ACB26B /* firstin2.png in Resources */,
 				FCCCF62C1CD069540065F20E /* CellBGC.png in Resources */,
 				505803A820B695CE003D33BC /* switchBtnGeneral.png in Resources */,
-				FC8C3EA61CA949E200E3AAC6 /* AddNewJI.png in Resources */,
 				505803A620B695C9003D33BC /* textBtnGeneral.png in Resources */,
 				FCCCF64B1CD2FCD60065F20E /* CellBGC2.png in Resources */,
 				505803A720B695CB003D33BC /* switchBtnSelected.png in Resources */,
-				FCCCF6491CD2EB350065F20E /* TextViewBGC.png in Resources */,
+				50C8AF8620C534D5008037C6 /* MainView.storyboard in Resources */,
 				505803A320B695C2003D33BC /* videoBtnSelected.png in Resources */,
-				FC8253981CECA1BA00E6ED38 /* back.png in Resources */,
+				50C8AEEC20C3D476008037C6 /* LogTableView.storyboard in Resources */,
 				50FB8D3720A5AEF200EC6D25 /* NewTheme.storyboard in Resources */,
 				505803BB20B93E71003D33BC /* PasswordView.storyboard in Resources */,
 				FC9F65981CA834BD00363A24 /* LaunchScreen.storyboard in Resources */,
-				5058039220B5C3BF003D33BC /* random.png in Resources */,
 				505803A520B695C7003D33BC /* textBtnSelected.png in Resources */,
 				5058040820BADAE2003D33BC /* Setting.storyboard in Resources */,
 				505803A920B695D1003D33BC /* photoBtnSelected.png in Resources */,
 				FC8C3EA81CA94D9200E3AAC6 /* NavBGC.png in Resources */,
-				FC82539A1CECAE9D00E6ED38 /* ji.png in Resources */,
 				505803AD20B6A2CB003D33BC /* newNotification.png in Resources */,
 				505803AA20B695D4003D33BC /* photoBtnGeneral.png in Resources */,
 				FC8290141CF1A39C00ACB26B /* start.png in Resources */,
 				FC8C3EA41CA9433E00E3AAC6 /* ViewBGC.png in Resources */,
 				5058039020B59F01003D33BC /* Main.storyboard in Resources */,
-				FC8290101CF1A37E00ACB26B /* firstin.png in Resources */,
 				5058040420BA766F003D33BC /* Assets.xcassets in Resources */,
 				5058038720B57F82003D33BC /* newtheme.png in Resources */,
 				505803A420B695C4003D33BC /* videoBtnGeneral.png in Resources */,
@@ -624,31 +523,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509C9D4020C661CA00C29BAF /* LogTableViewCell.swift in Sources */,
 				50C8AEE020BFDF68008037C6 /* MainTableViewCell.swift in Sources */,
+				50C8AEE920C3D404008037C6 /* LogTableView.swift in Sources */,
 				FC5617BD1CE88959006EFC65 /* NotificationsMethods.m in Sources */,
-				FCCCF63E1CD1FCD60065F20E /* LogTextCellModel.m in Sources */,
 				5058040A20BB0C86003D33BC /* SettingNavigationController.swift in Sources */,
-				FCCCF6471CD1FD170065F20E /* LogTextTableViewCell.m in Sources */,
-				FC9A5A651CC1D394005BC3A9 /* SingletonModel.m in Sources */,
-				FC1F172C1CB51FB800531356 /* TextCellModel.m in Sources */,
-				FCEA02501CAA697500BFDAFA /* CellSettingItem.m in Sources */,
-				FC64C91A1CB2466B004E874F /* JITableViewCell.m in Sources */,
-				FCCCF62F1CD1F64A0065F20E /* SwitchLogTableViewController.m in Sources */,
 				505A2D1020A9B610002907FF /* main.m in Sources */,
 				FC9F658D1CA834BD00363A24 /* AppDelegate.m in Sources */,
-				FC64C9201CB25070004E874F /* CellArrowItem.m in Sources */,
-				FC87A8FD1D421924003EE2C2 /* EditTableViewController.m in Sources */,
-				FC64C91D1CB25053004E874F /* CellSwitchItem.m in Sources */,
-				FC64C93E1CB265E0004E874F /* CellTextItem.m in Sources */,
 				5058039820B67E89003D33BC /* NewThemeSetTypeTableViewController.m in Sources */,
-				FCCCF6441CD1FD070065F20E /* LogSwitchTableViewCell.m in Sources */,
-				FCA756D51CD5AB020037321D /* LogSwitchCellModel.m in Sources */,
-				FC64C9271CB26174004E874F /* ListTableViewController.m in Sources */,
 				505803B020B6A341003D33BC /* NewThemeNotificationTableViewController.m in Sources */,
 				5058038D20B594B2003D33BC /* NewThemeSetTitleTableViewController.m in Sources */,
-				FCCCF6321CD1F65C0065F20E /* TextLogTableViewController.m in Sources */,
-				505A2D0D20A9A882002907FF /* DatabaseMethods.m in Sources */,
+				50C8AF8420C534C5008037C6 /* MainView.swift in Sources */,
+				50C8AEE520C25EDB008037C6 /* DataModel.xcdatamodeld in Sources */,
 				5058040020B9A23B003D33BC /* PasswordTableViewController.swift in Sources */,
+				50C8AFC720C57645008037C6 /* CoreDataMethods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +835,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50C8AEE320C25EDB008037C6 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50C8AEE420C25EDB008037C6 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 50C8AEE420C25EDB008037C6 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FC9F657D1CA834BD00363A24 /* Project object */;
 }

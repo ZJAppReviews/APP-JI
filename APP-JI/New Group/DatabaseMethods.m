@@ -144,10 +144,21 @@
         return ;
     }else
         NSLog(@"db opened");
+    
+    if ([[self getTypeOfQuestion:question] isEqualToString:@"photo"]){
+        NSFileManager *fileManager=[NSFileManager defaultManager];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString *uniquePath=[[paths objectAtIndex:0] stringByAppendingPathComponent:question];
+        [fileManager removeItemAtPath:uniquePath error:nil];
+
+    }
 
     [db executeUpdate:@"DELETE FROM DataList WHERE Question = ?",question];
     [db executeUpdate:@"DELETE FROM LogList WHERE Question = ?",question];
     [db close];
+
+    
+
 }
 
 - (BOOL)isQuestionRepeated:(NSString *)question{
@@ -233,7 +244,8 @@
 
     [db close];
     
-    }
+}
+
 
 
 

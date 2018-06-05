@@ -7,16 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "ListTableViewController.h"
 #import "NotificationsMethods.h"
-#import "NoDataViewController.h"
-#import "AddJITableViewController.h"
-#import "DatabaseMethods.h"
 #import <UserNotifications/UserNotifications.h>
-#import <FMDB.h>
+#import "DailyLog-Swift.h"
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
-@property (nonatomic,strong) ListTableViewController *listTVC;
 @end
 
 @implementation AppDelegate
@@ -24,21 +19,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
-    [dbmethod initDatabaseAction];
+    //根据登陆时间判断是否需要刷新首页的视图
+    NSDate *date = [[NSDate alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY年MM月dd日"];
+    NSString *nowDay = [dateFormatter stringFromDate:date];
+    if (![[NSUserDefaults.standardUserDefaults stringForKey:@"LoginTime"] isEqualToString:nowDay]){
+        [NSUserDefaults.standardUserDefaults setValue:nowDay forKey:@"LoginTime"];
+        CoreDataMethods *datamethod = [[CoreDataMethods alloc] init];
+        [datamethod refreshTodayContent];
+    }
     
+    //设置全局外观
+    UINavigationBar *bar = [UINavigationBar appearance];
+    bar.tintColor = [UIColor blackColor];
+    
+    //设置首页的视图
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ViewBGC.png"]];
-    _listTVC = [[ListTableViewController alloc]init];
-    _nav = [[UINavigationController alloc]init];
-    self.window.rootViewController = _nav;
-    [self setNav];
-    
-    [_nav pushViewController:_listTVC animated:YES];
+    UIStoryboard *mainView = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    UINavigationController *mainViewNav = [mainView instantiateViewControllerWithIdentifier:@"mainViewNav"];
+    self.window.rootViewController = mainViewNav;
 
+    //设置相应推送通知的代理
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     
+    //判断是否需要验证密码
     if (![NSUserDefaults.standardUserDefaults stringForKey:@"Password"])
     {
         [NSUserDefaults.standardUserDefaults setValue:@"none" forKey:@"Password"];
@@ -51,32 +57,18 @@
 }
 
 
-
-- (void)setNav
-
-{
-    UINavigationBar *bar = [UINavigationBar appearance];
-
-    bar.barTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellBGC2.png"]];
-    bar.tintColor = [UIColor blackColor];
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];
-    if (@available(iOS 11.0, *)) {
-        [bar setPrefersLargeTitles:true];
-    }
-}
-
 //3D Touch 快捷方式
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    [_listTVC rightBtnClicked];
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"NewTheme" bundle:[NSBundle mainBundle]];
+    UIViewController *newThemeView = [story instantiateViewControllerWithIdentifier:@"newTheme"];
+    [self.window.rootViewController presentViewController:newThemeView animated:YES completion:nil];
 }
 
 //响应通知
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
     
     NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
-    DatabaseMethods *dbmethod = [[DatabaseMethods alloc]init];
-    [dbmethod initDatabaseAction];
-    
+
     NSString *answer;
     if ([response.actionIdentifier  isEqual: @"answerText"]) {
         UNTextInputNotificationResponse *textResponse = (UNTextInputNotificationResponse*)response;
@@ -85,13 +77,9 @@
         answer = response.actionIdentifier;
     }
     
-    [dbmethod addAnswer:answer WithQuestion:categoryIdentifier];
+    CoreDataMethods *dataMethod = [[CoreDataMethods alloc]init];
+    [dataMethod addLogWithTitle:categoryIdentifier content:answer];
     
-    if (_listTVC) {
-        [_listTVC refreshUI];
-    }
-    
-    //completionHandler();
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -114,6 +102,50 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+#pragma mark - Core Data stack
+
+@synthesize persistentContainer = _persistentContainer;
+
+- (NSPersistentContainer *)persistentContainer {
+    // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
+    @synchronized (self) {
+        if (_persistentContainer == nil) {
+            _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"DataModel"];
+            [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
+                if (error != nil) {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    
+                    /*
+                     Typical reasons for an error here include:
+                     * The parent directory does not exist, cannot be created, or disallows writing.
+                     * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                     * The device is out of space.
+                     * The store could not be migrated to the current model version.
+                     Check the error message to determine what the actual problem was.
+                     */
+                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+                    abort();
+                }
+            }];
+        }
+    }
+    
+    return _persistentContainer;
+}
+
+#pragma mark - Core Data Saving support
+
+- (void)saveContext {
+    NSManagedObjectContext *context = self.persistentContainer.viewContext;
+    NSError *error = nil;
+    if ([context hasChanges] && ![context save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        abort();
+    }
 }
 
 @end
